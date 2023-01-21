@@ -17,27 +17,37 @@ class _SocialsPageState extends State<SocialsPage> {
         body: Column(
           children: [
             Row(
-              children: [
-                Text('FirstName'),
-                Spacer(),
-                Text('LastName'),
-              ],
+              children: const [Text(' ')],
+            ), //Empty row
+
+            Container(
+              height: 50,
+              width: 200,
+              decoration: BoxDecoration(
+                  border: Border.all(
+                color: Colors.black,
+                width: 2,
+              )),
+              child: Row(
+                // ignore: prefer_const_literals_to_create_immutables
+                children: [
+                  const Text('FirstName'),
+                  const Text(' '),
+                  const Text('LastName'),
+                ],
+              ), //Firstname and Lastname
             ),
             Row(
-              children: [
+              children: const [Text(' ')],
+            ), //empty row
+
+            Row(
+              children: const [
+                // ignore: prefer_const_constructors
                 Text('Location'),
               ],
-            )
+            ), //Location
           ],
-          // ignore: prefer_const_literals_to_create_immutables
-          /*children: [
-              Row(
-                children: [
-                  // ignore: prefer_const_constructors
-                  Text('User\'s name '),
-                ],
-              ),
-            ]));*/
         ));
   }
 }
