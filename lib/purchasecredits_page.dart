@@ -11,7 +11,7 @@ class _PurchaseCredistsState extends State<PurchaseCredists> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+        appBar: AppBar(
           title: const Text('greenifyTransit'),
           automaticallyImplyLeading: false,
           leading: IconButton(
@@ -19,7 +19,8 @@ class _PurchaseCredistsState extends State<PurchaseCredists> {
               Navigator.of(context).pop();
             },
             icon: const Icon(Icons.arrow_back),
-          )),
-    );
+          ),
+        ),
+        body: SingleChildScrollView());
   }
 }
