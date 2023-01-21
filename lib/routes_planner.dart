@@ -136,7 +136,8 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
   }
 
   // Function that checks the weather for the Average between the 2 Coordinates
-  void getWeatherCondition(originLat, originLng, destLat, destLng, key) async {
+  Future<bool> getWeatherCondition(
+      originLat, originLng, destLat, destLng, key) async {
     // Get the mean latitude and longitude to check the weather of
     var averageLat = (originLat + destLat) / 2;
     var averageLng = (originLng + originLng) / 2;
@@ -144,13 +145,16 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
     //print("Average LatLng is $averageLat,$averageLng");
     // Make the weather API Call (bruh Google deprecated everything for this so I gotta sail out into the unknown)
     // Open Weather Map Says it'll take 2 hours for my damn API key to activate but I'll create the request so that I don't have to wait for it later (around 11.50 rn)
-    /*
     String baseURL = 'https://api.openweathermap.org/data/2.5/weather';
     String request = '$baseURL?lat=$averageLat&lon=$averageLng&appid=$key';
     var response = await http.get(Uri.parse(request));
     var jsonString = response.body.toString();
     var data = jsonDecode(jsonString);
-    */
+    if (response.statusCode == 200) {
+      return data;
+    } else {
+      throw Exception('Failed to call API');
+    }
   }
 
   // Function that makes the Distance Matrix API CAll
