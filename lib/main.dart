@@ -1,12 +1,11 @@
-
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
 import 'package:greenifytransitcodefest/social_page.dart';
 import 'package:greenifytransitcodefest/routes_planner.dart';
 import 'package:greenifytransitcodefest/status_page.dart';
-void main() {
 
+void main() {
   runApp(const MyApp());
 }
 
@@ -30,6 +29,7 @@ class RootPage extends StatefulWidget {
   State<RootPage> createState() => _RootPageState();
 }
 
+//sanitycheck
 class _RootPageState extends State<RootPage> {
   int currentPage = 0;
   /* List<Widget> pages = const [
