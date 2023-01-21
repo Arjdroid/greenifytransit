@@ -25,7 +25,7 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
   String dLat = '37.92185635671533';
   String dLng = '-122.3790957425826';
   //List modes = ['walking', 'bicycling', 'transit', 'driving'];
-  String tMode = 'bicycling';
+  String tMode = 'driving';
   int duration = 0;
   int distance = 0;
   //List carTypes = ['petrol', 'diesel', 'hybrid', 'ev']
@@ -138,10 +138,33 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
         } else if (carClass == 'suv') {
           setState(() {
             emissions = baseCarEmission * 1.14;
+            debugstatement = 'SUV is base * 1.14';
+            baseEmissions = baseCarEmission;
           });
         }
+      } else if (carType == 'hybrid') {
+        // What have I done
+        setState(() {
+          emissions = baseCarEmission * 0.6;
+          // Debug
+          debugstatement = 'base * 0.6';
+          baseEmissions = baseCarEmission;
+        });
+      } else if (carClass == 'sedan') {
+        setState(() {
+          emissions = baseCarEmission * 1.05 * 0.6;
+          // Debug
+          debugstatement = 'base * 1.05 * 0.6';
+          baseEmissions = baseCarEmission;
+        });
+      } else if (carClass == 'suv') {
+        setState(() {
+          emissions = baseCarEmission * 1.14 * 0.6;
+          debugstatement = 'base * 1.14 * 0.6';
+          baseEmissions = baseCarEmission;
+        });
       }
-    }
+    } // End of IF DRIVING
   }
 
   @override
