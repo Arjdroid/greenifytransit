@@ -8,6 +8,7 @@ class PurchaseCredists extends StatefulWidget {
 }
 
 class _PurchaseCredistsState extends State<PurchaseCredists> {
+  bool isSwitch = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -71,7 +72,7 @@ class _PurchaseCredistsState extends State<PurchaseCredists> {
                   Container(
                     margin: const EdgeInsets.all(30),
                     width: 330,
-                    height: 250,
+                    height: 500,
                     color: Colors.green,
                     child: Column(
                       children: [
@@ -96,6 +97,14 @@ class _PurchaseCredistsState extends State<PurchaseCredists> {
                                     fontFamily: 'arial')),
                           ],
                         ),
+                        Switch(
+                            value: isSwitch,
+                            activeColor: Colors.blue,
+                            onChanged: (bool newBool) {
+                              setState(() {
+                                isSwitch = newBool;
+                              });
+                            }),
                         const Text(
                           'Scheme 2',
                           style: TextStyle(
@@ -116,6 +125,14 @@ class _PurchaseCredistsState extends State<PurchaseCredists> {
                                     fontFamily: 'arial')),
                           ],
                         ),
+                        Switch(
+                            value: isSwitch,
+                            activeColor: Colors.blue,
+                            onChanged: (bool newBool) {
+                              setState(() {
+                                isSwitch = newBool;
+                              });
+                            }),
                         const SizedBox(
                           height: 20,
                         ),
@@ -127,6 +144,9 @@ class _PurchaseCredistsState extends State<PurchaseCredists> {
                             fontSize: 20,
                           ),
                         ),
+                        const SizedBox(
+                          height: 20,
+                        ),
                         Row(
                           children: const [
                             Text('Price:',
@@ -136,7 +156,15 @@ class _PurchaseCredistsState extends State<PurchaseCredists> {
                                     fontSize: 25,
                                     fontFamily: 'arial')),
                           ],
-                        )
+                        ),
+                        Switch(
+                            value: isSwitch,
+                            activeColor: Colors.blue,
+                            onChanged: (bool newBool) {
+                              setState(() {
+                                isSwitch = newBool;
+                              });
+                            }),
                       ],
                     ),
                   ),
