@@ -55,25 +55,29 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          elevation: 0,
-          title: Text('Route Planner'),
+      appBar: AppBar(
+        elevation: 0,
+        title: Text('Route Planner'),
+      ),
+      body: Padding(
+        padding: EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text('Distance Matrix Details'),
+            Text('Origin LatLng: $originLat, $originLng'),
+            Text('Dest. LatLng: $destLat, $destLng'),
+            //Text('Mode: ' + modes.elementAt(0)),
+            Text('Mode: $mode'),
+            //Text('$distMatrixKey'),
+            Text('Travel Time:'),
+          ],
         ),
-        body: Padding(
-          padding: EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text('Distance Matrix Details'),
-              Text('Origin LatLng: $originLat, $originLng'),
-              Text('Dest. LatLng: $destLat, $destLng'),
-              //Text('Mode: ' + modes.elementAt(0)),
-              Text('Mode: $mode'),
-              //Text('$distMatrixKey'),
-              Text('Travel Time:'),
-            ],
-          ),
-        ));
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: onPressed,
+      ),
+    );
   }
 }
