@@ -42,14 +42,20 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
   double baseEmissions = 0;
   // Carbon Emissions (in grams)
   double emissions = 0;
+  // Current Weather Condition (temporary standin for getWeatherCondition)
 
   // Function that checks the weather for the Average between the 2 Coordinates
-  void getWeatherCondition(originLat, originLng, destLat, destLng /*, key*/) {
+  void getWeatherCondition(originLat, originLng, destLat, destLng, key) {
     // Get the mean latitude and longitude to check the weather of
     var averageLat = (originLat + destLat) / 2;
     var averageLng = (originLng + originLng) / 2;
     // Debug
-    print("Average LatLng is $averageLat,$averageLng");
+    //print("Average LatLng is $averageLat,$averageLng");
+    // Make the weather API Call (bruh Google deprecated everything for this so I gotta sail out into the unknown)
+    // Open Weather Map Says it'll take 2 hours for my damn API key to activate but I'll create the request so that I don't have to wait for it later (around 11.50 rn)
+    // Docs: https://openweathermap.org/current
+    String baseURL = 'https://api.openweathermap.org/data/2.5/weather';
+    String request = '$baseURL?lat=$averageLat&lon=$averageLng&appid=$key';
   }
 
   // Function that makes the Distance Matrix API CAll
@@ -236,7 +242,7 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
         onPressed: () async {
           getDistanceMatrix(oLat, oLng, dLat, dLng, tMode, distMatrixKey);
           //getCarbonEmissions(duration, tMode, cTyp, cCls);
-          getWeatherCondition(oLat, oLng, dLat, dLng);
+          //getWeatherCondition(oLat, oLng, dLat, dLng, openWeatherMapKey);
         },
         child: const Icon(Icons.filter_center_focus_outlined),
       ),
