@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:greenifytransitcodefest/purchasecredits_page.dart';
+import 'package:greenifytransitcodefest/settings_page.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 class StatusPage extends StatefulWidget {
@@ -27,7 +28,13 @@ class _StatusPageState extends State<StatusPage> {
         actions: [
           IconButton(
             onPressed: () {
-              debugPrint('Settings');
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (BuildContext context) {
+                    return const SettingsPage();
+                  },
+                ),
+              );
             },
             icon: const Icon(
               Icons.settings,

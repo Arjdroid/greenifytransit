@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:greenifytransitcodefest/settings_page.dart';
 
 class PurchaseCredists extends StatefulWidget {
   const PurchaseCredists({super.key});
@@ -27,7 +28,13 @@ class _PurchaseCredistsState extends State<PurchaseCredists> {
           actions: [
             IconButton(
               onPressed: () {
-                debugPrint('Settings');
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return const SettingsPage();
+                    },
+                  ),
+                );
               },
               icon: const Icon(
                 Icons.settings,
