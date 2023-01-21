@@ -48,7 +48,22 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
   bool isWeatherClear = true;
 
   // Function that actually generates the suggestions
-  void getSuggestions() async {}
+  void getSuggestions(
+    weatherClarity,
+  ) async {
+    // Consider whether the weather is clear or not
+    if (weatherClarity == true) {
+      // All modes of transport applicable
+      List availableModes = ['walking', 'bicycling', 'transit', 'driving'];
+      // Debug
+      print('Weather is clear, available modes are: $availableModes');
+    } else if (weatherClarity == false) {
+      // Only Driving and Transit available as viable modes of Transport
+      List availableMode = ['transit', 'driving'];
+      // Debug
+      print('Weather is not clear, available modes are: $availableMode');
+    }
+  }
 
   // Function that checks the weather for the Average between the 2 Coordinates
   void getWeatherCondition(originLat, originLng, destLat, destLng, key) async {
@@ -253,6 +268,7 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
           getDistanceMatrix(oLat, oLng, dLat, dLng, tMode, distMatrixKey);
           //getCarbonEmissions(duration, tMode, cTyp, cCls);
           //getWeatherCondition(oLat, oLng, dLat, dLng, openWeatherMapKey);
+          getSuggestions(isWeatherClear);
         },
         child: const Icon(Icons.filter_center_focus_outlined),
       ),
