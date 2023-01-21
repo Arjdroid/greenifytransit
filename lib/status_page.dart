@@ -12,7 +12,7 @@ class _StatusPageState extends State<StatusPage> {
   final List<CarbonEmsissionData> chartData = [
     CarbonEmsissionData(1, 500, Colors.red),
     CarbonEmsissionData(2, 2000, Colors.blue),
-    CarbonEmsissionData(3, 400, Colors.green),
+    CarbonEmsissionData(3, 400, Colors.white),
     CarbonEmsissionData(4, 1000, Colors.yellow)
   ];
   dynamic emissions = 1000000;
@@ -60,11 +60,13 @@ class _StatusPageState extends State<StatusPage> {
           Container(
             width: 200,
             height: 250,
+            alignment: Alignment.centerLeft,
+            color: Color.fromARGB(255, 115, 226, 119),
             child: SfCartesianChart(
               title: ChartTitle(
                   text: 'carbon emssions saved this month',
-                  textStyle: TextStyle(
-                    color: Colors.green,
+                  textStyle: const TextStyle(
+                    color: Colors.white,
                     fontStyle: FontStyle.normal,
                   )),
               series: <ChartSeries>[
