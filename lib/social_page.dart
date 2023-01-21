@@ -42,19 +42,16 @@ class _SocialsPageState extends State<SocialsPage> {
           children: const [Text(' ')],
         ), //empty row
 
-        Container(
-          height: 50,
-          width: 200,
-          color: Colors.blueGrey,
-          child: Row(
-            children: const [
-              // ignore: prefer_const_constructors
-              Text(
-                ' Location - City, State, Country',
-                style: TextStyle(color: Colors.white),
-              ),
-            ],
+        TextFormField(
+          decoration: const InputDecoration(
+            hintText: 'Enter your location - City, State, Country',
           ),
+          validator: (String? value) {
+            if (value == null || value.isEmpty) {
+              return 'Please enter some text';
+            }
+            return null;
+          },
         ),
 
         Row(
