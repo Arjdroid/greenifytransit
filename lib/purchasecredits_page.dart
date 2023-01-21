@@ -87,6 +87,7 @@ class _PurchaseCredistsState extends State<PurchaseCredists> {
                       style: TextStyle(
                         color: Color.fromARGB(255, 214, 247, 246),
                         fontSize: 20,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                     const SizedBox(
@@ -94,7 +95,7 @@ class _PurchaseCredistsState extends State<PurchaseCredists> {
                     ),
                     Row(
                       children: const [
-                        Text('Price:',
+                        Text('Price: per kg CO2',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 color: Color.fromARGB(255, 214, 247, 246),
@@ -128,6 +129,7 @@ class _PurchaseCredistsState extends State<PurchaseCredists> {
                       style: TextStyle(
                         color: Color.fromARGB(255, 214, 247, 246),
                         fontSize: 20,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                     const SizedBox(
@@ -135,7 +137,8 @@ class _PurchaseCredistsState extends State<PurchaseCredists> {
                     ),
                     Row(
                       children: const [
-                        Text('Price:',
+                        Text('Price: per kg CO2',
+                            textAlign: TextAlign.end,
                             style: TextStyle(
                                 color: Color.fromARGB(255, 214, 247, 246),
                                 fontSize: 20,
@@ -164,10 +167,10 @@ class _PurchaseCredistsState extends State<PurchaseCredists> {
                   children: [
                     const Text(
                       'Scheme 3',
-                      textAlign: TextAlign.left,
                       style: TextStyle(
                         color: Color.fromARGB(255, 214, 247, 246),
                         fontSize: 20,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                     const SizedBox(
@@ -175,7 +178,7 @@ class _PurchaseCredistsState extends State<PurchaseCredists> {
                     ),
                     Row(
                       children: const [
-                        Text('Price:',
+                        Text('Price: per kg CO2',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 color: Color.fromARGB(255, 214, 247, 246),
