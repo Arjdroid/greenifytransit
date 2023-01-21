@@ -73,7 +73,7 @@ class _PurchaseCredistsState extends State<PurchaseCredists> {
                     fontWeight: FontWeight.bold),
               ),
               Container(
-                margin: const EdgeInsets.all(30),
+                margin: const EdgeInsets.all(15),
                 width: 330,
                 height: 120,
                 decoration: BoxDecoration(
@@ -114,8 +114,11 @@ class _PurchaseCredistsState extends State<PurchaseCredists> {
                   ],
                 ),
               ),
+              const Divider(
+                color: Colors.black,
+              ),
               Container(
-                margin: const EdgeInsets.all(30),
+                margin: const EdgeInsets.all(15),
                 width: 330,
                 height: 120,
                 decoration: BoxDecoration(
@@ -156,8 +159,11 @@ class _PurchaseCredistsState extends State<PurchaseCredists> {
                   ],
                 ),
               ),
+              const Divider(
+                color: Colors.black,
+              ),
               Container(
-                margin: const EdgeInsets.all(30),
+                margin: const EdgeInsets.all(15),
                 width: 330,
                 height: 120,
                 decoration: BoxDecoration(

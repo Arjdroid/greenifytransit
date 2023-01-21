@@ -126,6 +126,7 @@ class _StatusPageState extends State<StatusPage> {
               ],
             ),
             ElevatedButton(
+              style: ButtonStyle(),
               onPressed: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
@@ -136,10 +137,10 @@ class _StatusPageState extends State<StatusPage> {
                 );
               },
               child: const Text(
-                'Purchase Carbon credits',
+                'Purchase Carbon Credits',
                 style: TextStyle(
                   color: Color.fromARGB(255, 214, 247, 246),
-                  fontSize: 15,
+                  fontSize: 28,
                 ),
               ),
             )

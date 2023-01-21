@@ -43,6 +43,7 @@ class _RootPageState extends State<RootPage> {
     return Scaffold(
       body: pages[currentPage],
       bottomNavigationBar: NavigationBar(
+        backgroundColor: Color.fromARGB(255, 214, 247, 246),
         destinations: const [
           NavigationDestination(
             icon: Icon(
