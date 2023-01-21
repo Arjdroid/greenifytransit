@@ -11,8 +11,17 @@ class _SocialsPageState extends State<SocialsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Title(
-        title: 'Socials Page',
+      appBar: AppBar(
+        title: const Text('socials page'),
+      ),
+     floatingActionButton: FloatingActionButton(
+        onPressed: (){},
+        child: const Icon(Icons.accessibility),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
+        },
+      
+      
   }
-}
+
