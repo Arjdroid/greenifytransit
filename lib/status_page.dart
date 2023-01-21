@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:greenifytransitcodefest/purchasecredits_page.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 class StatusPage extends StatefulWidget {
@@ -59,60 +60,76 @@ class _StatusPageState extends State<StatusPage> {
                 ],
               ),
             ),
-            Container(
-              margin: const EdgeInsets.fromLTRB(5, 50, 180, 50),
-              width: 150,
-              height: 250,
-              alignment: Alignment.centerLeft,
-              color: const Color.fromARGB(255, 115, 226, 119),
-              child: SfCartesianChart(
-                title: ChartTitle(
-                    text: 'carbon emssions saved this month',
-                    textStyle: const TextStyle(
-                      color: Colors.white,
-                      fontStyle: FontStyle.normal,
-                    )),
-                series: <ChartSeries>[
-                  LineSeries<CarbonEmsissionData, int>(
-                      pointColorMapper:
-                          (CarbonEmsissionData carbonEmissions, _) =>
-                              carbonEmissions.color,
-                      dataSource: chartData,
-                      xValueMapper: (CarbonEmsissionData carbonEmissions, _) =>
-                          carbonEmissions.weeks,
-                      yValueMapper: (CarbonEmsissionData carbonEmissions, _) =>
-                          carbonEmissions.carbonEmisions)
-                ],
-              ),
-            ),
-            Container(
-              margin: const EdgeInsets.fromLTRB(180, 0, 5, 50),
-              width: 150,
-              height: 250,
-              alignment: Alignment.centerLeft,
-              color: const Color.fromARGB(255, 115, 226, 119),
-              child: SfCartesianChart(
-                title: ChartTitle(
-                    text: 'carbon emssions saved this month',
-                    textStyle: const TextStyle(
-                      color: Colors.white,
-                      fontStyle: FontStyle.normal,
-                    )),
-                series: <ChartSeries>[
-                  LineSeries<CarbonEmsissionData, int>(
-                      pointColorMapper:
-                          (CarbonEmsissionData carbonEmissions, _) =>
-                              carbonEmissions.color,
-                      dataSource: chartData,
-                      xValueMapper: (CarbonEmsissionData carbonEmissions, _) =>
-                          carbonEmissions.weeks,
-                      yValueMapper: (CarbonEmsissionData carbonEmissions, _) =>
-                          carbonEmissions.carbonEmisions)
-                ],
-              ),
+            Row(
+              children: [
+                Container(
+                  margin: const EdgeInsets.fromLTRB(20, 25, 5, 25),
+                  width: 150,
+                  height: 250,
+                  alignment: Alignment.centerLeft,
+                  color: const Color.fromARGB(255, 115, 226, 119),
+                  child: SfCartesianChart(
+                    title: ChartTitle(
+                        text: 'carbon emssions saved this month',
+                        textStyle: const TextStyle(
+                          color: Colors.white,
+                          fontStyle: FontStyle.normal,
+                        )),
+                    series: <ChartSeries>[
+                      LineSeries<CarbonEmsissionData, int>(
+                          pointColorMapper:
+                              (CarbonEmsissionData carbonEmissions, _) =>
+                                  carbonEmissions.color,
+                          dataSource: chartData,
+                          xValueMapper:
+                              (CarbonEmsissionData carbonEmissions, _) =>
+                                  carbonEmissions.weeks,
+                          yValueMapper:
+                              (CarbonEmsissionData carbonEmissions, _) =>
+                                  carbonEmissions.carbonEmisions)
+                    ],
+                  ),
+                ),
+                Container(
+                  margin: const EdgeInsets.fromLTRB(50, 25, 10, 25),
+                  width: 150,
+                  height: 250,
+                  alignment: Alignment.centerLeft,
+                  color: const Color.fromARGB(255, 115, 226, 119),
+                  child: SfCartesianChart(
+                    title: ChartTitle(
+                        text: 'carbon emssions saved this month',
+                        textStyle: const TextStyle(
+                          color: Colors.white,
+                          fontStyle: FontStyle.normal,
+                        )),
+                    series: <ChartSeries>[
+                      LineSeries<CarbonEmsissionData, int>(
+                          pointColorMapper:
+                              (CarbonEmsissionData carbonEmissions, _) =>
+                                  carbonEmissions.color,
+                          dataSource: chartData,
+                          xValueMapper:
+                              (CarbonEmsissionData carbonEmissions, _) =>
+                                  carbonEmissions.weeks,
+                          yValueMapper:
+                              (CarbonEmsissionData carbonEmissions, _) =>
+                                  carbonEmissions.carbonEmisions)
+                    ],
+                  ),
+                ),
+              ],
             ),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return const PurchaseCredists();
+                    },
+                  ),
+                );
+              },
               child: const Text('Purchase Carbon credits'),
             )
           ],
