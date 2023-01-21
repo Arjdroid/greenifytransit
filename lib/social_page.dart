@@ -28,7 +28,7 @@ class _SocialsPageState extends State<SocialsPage> {
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 214, 247, 246),
       appBar: AppBar(
-        title: const Text('Socials page'),
+        title: const Text(' Profile'),
       ),
       body: SingleChildScrollView(
           child: Column(
@@ -37,51 +37,71 @@ class _SocialsPageState extends State<SocialsPage> {
             children: const [Text(' ')],
           ), //Empty row
 
-          TextFormField(
-            decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: 'Full Name',
-              hintText: 'Enter your name - First Name   Last Name',
-            ),
-            validator: (String? value) {
-              if (value == null || value.isEmpty) {
-                return 'Please enter some text';
-              }
+          Container(
+              height: 70,
+              width: 200,
+              alignment: Alignment.topLeft,
+              decoration:
+                  BoxDecoration(borderRadius: BorderRadius.circular(15)),
+              child: Column(children: [
+                TextFormField(
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    prefixIcon: Icon(Icons.people),
+                    labelText: 'Full Name',
+                    hintText: 'First & Last Name',
+                  ),
+                  validator: (String? value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter some text';
+                    }
 
-              return null;
-            },
-            controller: firstNameController,
-            keyboardType: TextInputType.name,
-            onSaved: (value) {
-              firstNameController.text = value!;
-            },
-            textInputAction: TextInputAction.done,
-          ),
+                    return null;
+                  },
+                  controller: firstNameController,
+                  keyboardType: TextInputType.name,
+                  onSaved: (value) {
+                    firstNameController.text = value!;
+                  },
+                  textInputAction: TextInputAction.done,
+                ),
+                Container(height: 10),
+              ])),
 
           Row(
             children: const [Text(' ')],
           ), //empty row
 
-          TextFormField(
-            decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: 'Location',
-              hintText: 'Enter your location - City, State, Country',
-            ),
-            validator: (String? value) {
-              if (value == null || value.isEmpty) {
-                return 'Please enter some text';
-              }
+          Container(
+              height: 70,
+              width: 200,
+              //alignment: Alignment.topLeft,
+              decoration:
+                  BoxDecoration(borderRadius: BorderRadius.circular(15)),
+              child: Column(children: [
+                TextFormField(
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    prefixIcon: Icon(Icons.add_location_rounded),
+                    labelText: 'Location',
+                    hintText: 'City, State, Country',
+                  ),
+                  validator: (String? value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter some text';
+                    }
 
-              return null;
-            },
-            controller: locationController,
-            keyboardType: TextInputType.name,
-            onSaved: (value) {
-              locationController.text = value!;
-            },
-            textInputAction: TextInputAction.done,
-          ),
+                    return null;
+                  },
+                  controller: locationController,
+                  keyboardType: TextInputType.name,
+                  onSaved: (value) {
+                    locationController.text = value!;
+                  },
+                  textInputAction: TextInputAction.done,
+                ),
+                Container(height: 10),
+              ])),
 
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 16.0),
