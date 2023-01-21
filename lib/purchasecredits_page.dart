@@ -21,6 +21,26 @@ class _PurchaseCredistsState extends State<PurchaseCredists> {
             icon: const Icon(Icons.arrow_back),
           ),
         ),
-        body: SingleChildScrollView());
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Container(
+                  color: Colors.green,
+                  margin: const EdgeInsets.all(30),
+                  child: Column(
+                    children: const [
+                      Text(
+                        'Purchase Carbon credits',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 50,
+                        ),
+                      ),
+                    ],
+                  ))
+            ],
+          ),
+        ));
   }
 }
