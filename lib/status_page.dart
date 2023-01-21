@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
 
 class StatusPage extends StatefulWidget {
   const StatusPage({super.key});
@@ -8,6 +9,12 @@ class StatusPage extends StatefulWidget {
 }
 
 class _StatusPageState extends State<StatusPage> {
+  final List<CarbonEmsissionData> chartData = [
+    CarbonEmsissionData(1, 500, Colors.red),
+    CarbonEmsissionData(2, 2000, Colors.blue),
+    CarbonEmsissionData(3, 400, Colors.green),
+    CarbonEmsissionData(4, 1000, Colors.yellow)
+  ];
   dynamic emissions = 1000000;
   @override
   Widget build(BuildContext context) {
@@ -25,34 +32,60 @@ class _StatusPageState extends State<StatusPage> {
       body: Column(
         children: [
           Container(
-              color: Colors.green,
-              margin: const EdgeInsets.all(30),
-              height: 200,
-              width: 400,
-              child: Column(
-                children: [
-                  const Text(
-                    'Total CO2 emissions this month',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 25,
-                    ),
+            color: Colors.green,
+            margin: const EdgeInsets.all(30),
+            height: 200,
+            width: 400,
+            child: Column(
+              children: [
+                const Text(
+                  'Total CO2 emissions this month',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 25,
                   ),
-                  Row(
-                    children: [
-                      Text('$emissions',
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 80,
-                          )),
-                    ],
-                  )
-                ],
-              )),
+                ),
+                Row(
+                  children: [
+                    Text('$emissions',
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 80,
+                        )),
+                  ],
+                )
+              ],
+            ),
+          ),
+          Container(
+            margin: const EdgeInsets.all(10),
+            child: SfCartesianChart(
+                title: ChartTitle(text: 'carbon emssions saved this month'),
+                series: <ChartSeries>[
+                  ColumnSeries<CarbonEmsissionData, int>(
+                      pointColorMapper:
+                          (CarbonEmsissionData carbonEmissions, _) =>
+                              carbonEmissions.color,
+                      legendItemText: 'CE',
+                      dataSource: chartData,
+                      xValueMapper: (CarbonEmsissionData carbonEmissions, _) =>
+                          carbonEmissions.weeks,
+                      yValueMapper: (CarbonEmsissionData carbonEmissions, _) =>
+                          carbonEmissions.carbonEmisions)
+                ]),
+          )
         ],
       ),
     );
   }
+}
+
+class CarbonEmsissionData {
+  final int weeks;
+  final double carbonEmisions;
+  final Color color;
+
+  CarbonEmsissionData(this.weeks, this.carbonEmisions, this.color);
 }

@@ -36,7 +36,7 @@ class _RootPageState extends State<RootPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: StatusPage(),
+      body: const StatusPage(),
       bottomNavigationBar: NavigationBar(
         destinations: const [
           NavigationDestination(
