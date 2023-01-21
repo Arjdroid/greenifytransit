@@ -70,15 +70,18 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
           return duration.toString();
           //After return everything else is ignored
         }*/
-        print('Traval Duration: $duration s');
+        // Call the getDistanceMatrix function
+        Future<List> dataList =
+            getDistanceMatrix(oLat, oLng, dLat, dLng, availMode, distMatrixKey);
+        //print('Traval Duration: $duration s');
       }
       // Debug
-      print('Weather is clear'); //, available modes are: $availableModes');
+      //print('Weather is clear'); //, available modes are: $availableModes');
     } else if (weatherClarity == false) {
       // Only Driving and Transit available as viable modes of Transport
       List<String> availableMode = ['transit', 'driving'];
       // Debug
-      print('Weather is not clear, available modes are: $availableMode');
+      //print('Weather is not clear, available modes are: $availableMode');
     }
   }
 
@@ -101,7 +104,7 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
   }
 
   // Function that makes the Distance Matrix API CAll
-  void getDistanceMatrix(
+  Future<List> getDistanceMatrix(
       originLat, originLng, destLat, destLng, mode, key) async {
     String baseURL = 'https://maps.googleapis.com/maps/api/distancematrix/json';
     String request =
@@ -119,12 +122,18 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
             data['rows'][0]['elements'][0]['duration']['value']; // Seconds
         distance =
             data['rows'][0]['elements'][0]['distance']['value']; // Meters
-        getCarbonEmissions(tMode, cTyp, cCls);
+        //getCarbonEmissions(tMode, cTyp, cCls);
       });
       */
-      var duration =
+      var iterativeDuration =
           data['rows'][0]['elements'][0]['duration']['value']; // Seconds
-      //print('$duration');
+      var iterativeDistance =
+          data['rows'][0]['elements'][0]['distance']['value']; // Meters
+      //getCarbonEmissions(mode, cTyp, cCls);
+      // Make a list of all the data
+      List iterativeData = [iterativeDuration, iterativeDistance];
+      print('$iterativeData');
+      return iterativeData;
     } else {
       throw Exception('Failed To Call API');
     }
