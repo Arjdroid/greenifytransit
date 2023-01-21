@@ -24,21 +24,40 @@ class _PurchaseCredistsState extends State<PurchaseCredists> {
         body: SingleChildScrollView(
           child: Column(
             children: [
+              const Text(
+                'Purchase Carbon credits',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 50,
+                ),
+              ),
               Container(
-                  color: Colors.green,
-                  margin: const EdgeInsets.all(30),
-                  child: Column(
-                    children: const [
-                      Text(
-                        'Purchase Carbon credits',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 50,
-                        ),
+                color: Colors.green,
+                margin: const EdgeInsets.all(30),
+                child: Column(
+                  children: [
+                    const Text(
+                      'Your total emissions',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 25,
                       ),
-                    ],
-                  ))
+                    ),
+                    Row(
+                      children: const [
+                        Text('1000000',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 80,
+                                fontFamily: 'arial')),
+                      ],
+                    )
+                  ],
+                ),
+              )
             ],
           ),
         ));
