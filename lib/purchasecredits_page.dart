@@ -66,34 +66,66 @@ class _PurchaseCredistsState extends State<PurchaseCredists> {
                   fontSize: 50,
                 ),
               ),
-              Container(
-                margin: const EdgeInsets.fromLTRB(30, 25, 240, 25),
-                width: 100,
-                height: 230,
-                color: Colors.green,
-                child: Column(
-                  children: [
-                    const Text(
-                      'Planting trees in Canada',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 25,
-                      ),
-                    ),
-                    Row(
-                      children: const [
-                        Text('Price:',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 80,
-                                fontFamily: 'arial')),
+              Row(
+                children: [
+                  Container(
+                    margin: const EdgeInsets.fromLTRB(30, 25, 240, 25),
+                    width: 100,
+                    height: 230,
+                    color: Colors.green,
+                    child: Column(
+                      children: [
+                        const Text(
+                          'Planting trees in Canada',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 25,
+                          ),
+                        ),
+                        Row(
+                          children: const [
+                            Text('Price:',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 30,
+                                    fontFamily: 'arial')),
+                          ],
+                        )
                       ],
-                    )
-                  ],
-                ),
-              )
+                    ),
+                  ),
+                  Container(
+                    margin: const EdgeInsets.fromLTRB(100, 25, 50, 25),
+                    width: 100,
+                    height: 230,
+                    color: Colors.green,
+                    child: Column(
+                      children: [
+                        const Text(
+                          'scheme 2',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 25,
+                          ),
+                        ),
+                        Row(
+                          children: const [
+                            Text('Price:',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 30,
+                                    fontFamily: 'arial')),
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ],
           ),
         ));
