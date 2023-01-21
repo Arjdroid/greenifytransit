@@ -77,7 +77,7 @@ class _StatusPageState extends State<StatusPage> {
           ),
           ElevatedButton(
             onPressed: () {},
-            child: const Text('Purchase Carbon credists'),
+            child: const Text('Purchase Carbon credits'),
           )
         ],
       ),
