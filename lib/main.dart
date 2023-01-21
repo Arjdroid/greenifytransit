@@ -1,8 +1,10 @@
+
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
 import 'package:greenifytransitcodefest/social_page.dart';
 import 'package:greenifytransitcodefest/routes_planner.dart';
+import 'package:greenifytransitcodefest/status_page.dart';
 void main() {
 
   runApp(const MyApp());
@@ -11,14 +13,67 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-        primarySwatch: Colors.green,
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(primarySwatch: Colors.green),
+      home: const RootPage(),
+    );
+  }
+}
+
+class RootPage extends StatefulWidget {
+  const RootPage({super.key});
+
+  @override
+  State<RootPage> createState() => _RootPageState();
+}
+
+class _RootPageState extends State<RootPage> {
+  int currentPage = 0;
+  /* List<Widget> pages = const [
+    SocialsPage(),
+    RoutesPlanner(),
+    StatusPage(),
+  ];
+  */
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: const StatusPage(),
+      bottomNavigationBar: NavigationBar(
+        destinations: const [
+          NavigationDestination(
+            icon: Icon(
+              Icons.route,
+              color: Colors.green,
+            ),
+            label: 'Status',
+          ),
+          NavigationDestination(
+            icon: Icon(
+              Icons.alt_route,
+              color: Colors.green,
+            ),
+            label: 'Routes',
+          ),
+          NavigationDestination(
+            icon: Icon(
+              Icons.person,
+              color: Colors.green,
+            ),
+            label: 'profile',
+          ),
+        ],
+        /*  onDestinationSelected: (int index) {
+          setState(() {
+            currentPage = index;
+          });
+        },
+        selectedIndex: currentPage,
+        */
       ),
-      home: RoutesPlanner(),
     );
   }
 }
