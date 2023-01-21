@@ -1,6 +1,12 @@
-import 'package:flutter/material.dart';
 
+// ignore_for_file: prefer_const_constructors
+
+import 'package:flutter/material.dart';
+import 'package:greenifytransitcodefest/social_page.dart';
+import 'package:greenifytransitcodefest/routes_planner.dart';
+import 'package:greenifytransitcodefest/status_page.dart';
 void main() {
+
   runApp(const MyApp());
 }
 
@@ -26,46 +32,47 @@ class RootPage extends StatefulWidget {
 
 class _RootPageState extends State<RootPage> {
   int currentPage = 0;
-  List<Widget> pages = const [SocialsPage(), RoutesPlanner()];
+  /* List<Widget> pages = const [
+    SocialsPage(),
+    RoutesPlanner(),
+    StatusPage(),
+  ];
+  */
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'greenifyTransit',
-        ),
-      ),
-      body: pages[currentPage],
+      body: const StatusPage(),
       bottomNavigationBar: NavigationBar(
         destinations: const [
           NavigationDestination(
             icon: Icon(
               Icons.route,
-              color: Colors.white,
+              color: Colors.green,
             ),
             label: 'Status',
           ),
           NavigationDestination(
             icon: Icon(
               Icons.alt_route,
-              color: Colors.white,
+              color: Colors.green,
             ),
             label: 'Routes',
           ),
           NavigationDestination(
             icon: Icon(
               Icons.person,
-              color: Colors.white,
+              color: Colors.green,
             ),
             label: 'profile',
           ),
         ],
-        onDestinationSelected: (int index) {
+        /*  onDestinationSelected: (int index) {
           setState(() {
             currentPage = index;
           });
         },
         selectedIndex: currentPage,
+        */
       ),
     );
   }
