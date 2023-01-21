@@ -25,6 +25,9 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
   String dLng = '-122.3790957425826';
   String tMode = 'bicycling';
   int duration = 0;
+  // Available cartypes: SUV,
+  String cartype = '';
+  String carclass = '';
   //List modes = ['walking', 'bicycling', 'transit', 'driving'];
   /*
   String originLat = '';
@@ -57,7 +60,7 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
 
   // Function that calculates the Carbon Emissions of A Journey
   void getCarbonEmissions(duration, mode, carType) async {
-    //asdf
+    String;
   }
 
   @override
