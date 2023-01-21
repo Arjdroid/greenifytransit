@@ -23,17 +23,21 @@ class _SocialsPageState extends State<SocialsPage> {
             Container(
               height: 50,
               width: 200,
-              decoration: BoxDecoration(
-                  border: Border.all(
-                color: Colors.black,
-                width: 2,
-              )),
+              color: Colors.black,
+
               child: Row(
                 // ignore: prefer_const_literals_to_create_immutables
-                children: [
-                  const Text(' FirstName'),
-                  const Text(' '),
-                  const Text(' LastName'),
+
+                children: const [
+                  Text(
+                    ' FirstName',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  Text(' '),
+                  Text(
+                    ' LastName',
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ],
               ), //Firstname and Lastname
             ), //Name container
@@ -44,15 +48,14 @@ class _SocialsPageState extends State<SocialsPage> {
             Container(
               height: 50,
               width: 200,
-              decoration: BoxDecoration(
-                  border: Border.all(
-                color: Colors.black,
-                width: 2,
-              )),
+              color: Colors.black,
               child: Row(
                 children: const [
                   // ignore: prefer_const_constructors
-                  Text(' Location'),
+                  Text(
+                    ' Location - City, State, Country',
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ],
               ),
             ),
@@ -64,17 +67,22 @@ class _SocialsPageState extends State<SocialsPage> {
             Container(
               height: 50,
               width: 200,
-              decoration: BoxDecoration(
-                  border: Border.all(
-                color: Colors.black,
-                width: 2,
-              )),
+              color: Colors.black,
               child: Row(
                 // ignore: prefer_const_literals_to_create_immutables
                 children: [
-                  const Text(' 10 following'),
-                  const Text(' '),
-                  const Text(' 20 followers'),
+                  const Text(
+                    ' 10 following',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  const Text(
+                    ' -- ',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  const Text(
+                    '20 followers',
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ],
               ),
             ),
