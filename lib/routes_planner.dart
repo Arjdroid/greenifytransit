@@ -63,7 +63,9 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
   }
 
   // Function that calculates the Carbon Emissions of A Journey
-  void getCarbonEmissions(duration, mode, carType, carClass) async {}
+  void getCarbonEmissions(duration, mode, carType, carClass) async {
+    //
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -90,7 +92,10 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
             Text('Travel Time: $duration seconds'),
             Text('Distance: $distance meters'),
             Text(' '),
-            Text('Emissions: kg'),
+            Text('Car Type: $cTyp'),
+            Text('Car Class: $cCls'),
+            Text(' '),
+            Text('Trip Emissions: kg'),
           ],
         ),
       ),
