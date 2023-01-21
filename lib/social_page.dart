@@ -18,6 +18,7 @@ class _SocialsPageState extends State<SocialsPage> {
 
   var text;
   @override
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -57,6 +58,18 @@ class _SocialsPageState extends State<SocialsPage> {
 
               return null;
             },
+          ),
+
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16.0),
+            child: ElevatedButton(
+              onPressed: () {
+                // Validate will return true if the form is valid, or false if
+                // the form is invalid.
+                setState(() {});
+              },
+              child: const Text('Submit'),
+            ),
           ),
 
           Row(
@@ -128,9 +141,13 @@ class _SocialsPageState extends State<SocialsPage> {
           ),
 
           Row(
+            children: const [Text(' ')],
+          ), //empty row
+
+          Row(
             children: [
               IconButton(
-                  icon: const Icon(Icons.account_circle), onPressed: () => {}), iconSize: 50,
+                  icon: const Icon(Icons.account_circle), onPressed: () => {}),
               IconButton(
                   icon: const Icon(Icons.account_circle), onPressed: () => {}),
               IconButton(
