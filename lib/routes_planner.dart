@@ -45,7 +45,7 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
   double emissions = 0;
   // Current Weather Condition (temporary standin for getWeatherCondition)
   // This means that the weather is clear, if false that means that the weather is not clear
-  bool isWeatherClear = true;
+  bool isWeatherClear = false;
 
   // Function that actually generates the suggestions
   void getSuggestions(
@@ -60,7 +60,6 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
         'transit',
         'driving'
       ];
-      //String availMode = '';
       // Manually iterate through each mode to eliminate randomness in output order
       List<Future<dynamic>> suggestionsData = [
         getDistanceMatrix(
@@ -74,25 +73,20 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
       ];
       List<dynamic> resultingData = await Future.wait(suggestionsData);
       print('RESULTING DATA: $resultingData');
-      // A for-in loop that goes through every available mode and extracts their travel times + carbon emissions
-      //
-      //
-      /*for (availMode in availableModes) {
-        //print('Mode: $availMode');
-        // Call the getDistanceMatrix function
-        Future<List> dataList =
-            getDistanceMatrix(oLat, oLng, dLat, dLng, availMode, distMatrixKey);
-        //print('Traval Duration: $duration s');
-        //print(' ');
-        //print('$dataList');
-      }*/
-      //
-      //
       // Debug
       //print('Weather is clear'); //, available modes are: $availableModes');
     } else if (weatherClarity == false) {
       // Only Driving and Transit available as viable modes of Transport
-      List<String> availableMode = ['transit', 'driving'];
+      List<String> availableModes = ['transit', 'driving'];
+      // Manually iterate through each mode in order to eliminate randonmness
+      List<Future<dynamic>> suggestionsData = [
+        getDistanceMatrix(
+            oLat, oLng, dLat, dLng, availableModes[0], distMatrixKey),
+        getDistanceMatrix(
+            oLat, oLng, dLat, dLng, availableModes[1], distMatrixKey),
+      ];
+      List<dynamic> resultingData = await Future.wait(suggestionsData);
+      print('RESULTING DATA: $resultingData');
       // Debug
       //print('Weather is not clear, available modes are: $availableMode');
     }
