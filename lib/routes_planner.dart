@@ -118,7 +118,7 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
           // Debug
           debugstatement = 'ZERO EMISSIONS EV';
           baseEmissions = baseCarEmission;
-        });
+        }); // EV is always 0 emissions
       } else if (carType == 'petrol') {
         // Nest car types
         if (carClass == 'hatch') {
@@ -141,7 +141,28 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
             debugstatement = 'SUV is base * 1.14';
             baseEmissions = baseCarEmission;
           });
-        }
+        } // Done with all Petrol Cases
+      } else if (carType == 'diesel') {
+        // What have I done
+        setState(() {
+          emissions = baseCarEmission * 0.8;
+          // Debug
+          debugstatement = 'base * 0.6';
+          baseEmissions = baseCarEmission;
+        });
+      } else if (carClass == 'sedan') {
+        setState(() {
+          emissions = baseCarEmission * 1.05 * 0.8;
+          // Debug
+          debugstatement = 'base * 1.05 * 0.6';
+          baseEmissions = baseCarEmission;
+        });
+      } else if (carClass == 'suv') {
+        setState(() {
+          emissions = baseCarEmission * 1.14 * 0.8;
+          debugstatement = 'base * 1.14 * 0.6';
+          baseEmissions = baseCarEmission;
+        }); // Done with all Diesel Cases
       } else if (carType == 'hybrid') {
         // What have I done
         setState(() {
@@ -163,7 +184,7 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
           debugstatement = 'base * 1.14 * 0.6';
           baseEmissions = baseCarEmission;
         });
-      }
+      } // Done with all Hybrid Cases
     } // End of IF DRIVING
   }
 
