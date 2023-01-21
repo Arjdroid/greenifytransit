@@ -21,10 +21,10 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
   // MOST of these should move to globals.dart and or just rely on user input.
   String debugstatement = '';
   // Defining the distance matrix parameters
-  double oLat = 37.74144781559247;
-  double oLng = -122.50524108120509;
-  double dLat = 37.92185635671533;
-  double dLng = -122.3790957425826;
+  double oLat = 37.75754213760453;
+  double oLng = -122.43768627187049;
+  double dLat = 37.75923433988162;
+  double dLng = -122.43573362376672;
   List modes = ['walking', 'bicycling', 'transit', 'driving'];
   String tMode = 'driving';
   int duration = 0;
@@ -45,7 +45,7 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
   double emissions = 0;
   // Current Weather Condition (temporary standin for getWeatherCondition)
   // This means that the weather is clear, if false that means that the weather is not clear
-  bool isWeatherClear = false;
+  bool isWeatherClear = true;
 
   // Function that gives a ranked suggestions list
   Future<List> getRankedSuggestions(weatherClariy) async {
