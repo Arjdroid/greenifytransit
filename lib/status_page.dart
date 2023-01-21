@@ -109,7 +109,7 @@ class _StatusPageState extends State<StatusPage> {
                           fontStyle: FontStyle.normal,
                         )),
                     series: <ChartSeries>[
-                      LineSeries<CarbonEmsissionData, int>(
+                      ColumnSeries<CarbonEmsissionData, int>(
                           pointColorMapper:
                               (CarbonEmsissionData carbonEmissions, _) =>
                                   carbonEmissions.color,

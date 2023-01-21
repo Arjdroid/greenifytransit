@@ -47,7 +47,7 @@ class _RootPageState extends State<RootPage> {
         destinations: const [
           NavigationDestination(
             icon: Icon(
-              Icons.route,
+              Icons.bar_chart,
               color: Colors.green,
             ),
             label: 'Status',
