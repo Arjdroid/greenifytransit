@@ -75,7 +75,8 @@ class _StatusPageState extends State<StatusPage> {
               ],
             ),
           ),
-          ElevatedButton(
+          OutlinedButton(
+            style: OutlinedButton.styleFrom(),
             onPressed: () {},
             child: const Text('Purchase Carbon credits'),
           )
