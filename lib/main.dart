@@ -25,6 +25,8 @@ class RootPage extends StatefulWidget {
 }
 
 class _RootPageState extends State<RootPage> {
+  int currentPage = 0;
+  List<Widget> pages = const [SocialsPage(), RoutesPlanner()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,7 +35,7 @@ class _RootPageState extends State<RootPage> {
           'GreenifyTransit',
         ),
       ),
-      body: const Center(child: Text('greenifyTranist')),
+      body: pages[currentPage],
       bottomNavigationBar: NavigationBar(
         destinations: const [
           NavigationDestination(
@@ -58,6 +60,12 @@ class _RootPageState extends State<RootPage> {
             label: 'profile',
           ),
         ],
+        onDestinationSelected: (int index) {
+          setState(() {
+            currentPage = index;
+          });
+        },
+        selectedIndex: currentPage,
       ),
     );
   }
