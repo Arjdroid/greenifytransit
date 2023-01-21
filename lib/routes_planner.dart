@@ -45,7 +45,7 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
   double emissions = 0;
   // Current Weather Condition (temporary standin for getWeatherCondition)
   // This means that the weather is clear, if false that means that the weather is not clear
-  bool isWeatherClear = false;
+  bool isWeatherClear = true;
 
   // Function that actually generates the suggestions
   void getSuggestions(
@@ -73,6 +73,8 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
       ];
       List<dynamic> resultingData = await Future.wait(suggestionsData);
       print('RESULTING DATA: $resultingData');
+      var walkDur = resultingData[0][1];
+      print('WALK DURATION from RESULTING DATA: $walkDur');
       // Debug
       //print('Weather is clear'); //, available modes are: $availableModes');
     } else if (weatherClarity == false) {
@@ -135,7 +137,7 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
         iterativeDistance,
         emissions
       ];
-      print('$iterativeData');
+      //print('$iterativeData');
       return iterativeData;
     } else {
       throw Exception('Failed To Call API');
