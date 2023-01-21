@@ -116,22 +116,13 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
     //print('$response');
     if (response.statusCode == 200) {
       print('Request Successfull!'); // For Debug
-      /*
-      setState(() {
-        duration =
-            data['rows'][0]['elements'][0]['duration']['value']; // Seconds
-        distance =
-            data['rows'][0]['elements'][0]['distance']['value']; // Meters
-        //getCarbonEmissions(tMode, cTyp, cCls);
-      });
-      */
       var iterativeDuration =
           data['rows'][0]['elements'][0]['duration']['value']; // Seconds
       var iterativeDistance =
           data['rows'][0]['elements'][0]['distance']['value']; // Meters
-      //getCarbonEmissions(mode, cTyp, cCls);
+      getCarbonEmissions(mode, cTyp, cCls);
       // Make a list of all the data
-      List iterativeData = [iterativeDuration, iterativeDistance];
+      List iterativeData = [iterativeDuration, iterativeDistance, emissions];
       print('$iterativeData');
       return iterativeData;
     } else {
@@ -140,20 +131,9 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
   }
 
   // Function that calculates the Carbon Emissions of A Journey
-  Future<double> getCarbonEmissions(mode, carType, carClass) async {
+  double getCarbonEmissions(mode, carType, carClass) {
     // Source: https://www.eea.europa.eu/highlights/average-co2-emissions-from-new-cars-vans-2019
     // Average car emits 122.4 grams of CO2 per kilometre
-    /*var modeIndex = 0;
-    if (mode == 'walking') {
-      var modeIndex = 0;
-    } else if (mode == 'bicycling') {
-      var modeIndex = 1;
-    } else if (mode == 'transit') {
-      var modeIndex = 2;
-    } else if (mode == 'driving') {
-      var modeIndex = 3;
-    }*/
-    ;
     var baseCarEmission = distance * 122.4 * 0.001;
     double baseTypeEmission = 0;
     /*setState(() {
@@ -269,19 +249,19 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
             Text('Dest. LatLng: $dLat, $dLng'),
             Text(' '),
             //Text('Mode: ' + modes.elementAt(0)),
-            Text('Mode: $tMode'),
-            Text(' '),
+            //Text('Mode: $tMode'),
+            //Text(' '),
             //Text('$distMatrixKey'),
-            Text('Travel Time: $duration seconds'),
-            Text('Distance: $distance meters'),
-            Text(' '),
+            //Text('Travel Time: $duration seconds'),
+            //Text('Distance: $distance meters'),
+            //Text(' '),
             Text('Car Type: $cTyp'),
             Text('Car Class: $cCls'),
-            Text(' '),
-            Text('Trip Emissions: $emissions g'),
-            Text(' '),
-            Text('Debug Statement: $debugstatement'),
-            Text('Debug Base Emissions (Petrol Hatch Car): $baseEmissions g'),
+            //Text(' '),
+            //Text('Trip Emissions: $emissions g'),
+            //Text(' '),
+            //Text('Debug Statement: $debugstatement'),
+            //Text('Debug Base Emissions (Petrol Hatch Car): $baseEmissions g'),
           ],
         ),
       ),
