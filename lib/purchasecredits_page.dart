@@ -97,7 +97,7 @@ class _PurchaseCredistsState extends State<PurchaseCredists> {
                     ),
                   ),
                   Container(
-                    margin: const EdgeInsets.fromLTRB(100, 25, 50, 25),
+                    margin: const EdgeInsets.fromLTRB(0.01, 25, 0.01, 25),
                     width: 100,
                     height: 230,
                     color: Colors.green,
