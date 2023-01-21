@@ -63,17 +63,13 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
       String availMode = '';
       // A for-in loop that goes through every available mode and extracts their travel times + carbon emissions
       for (availMode in availableModes) {
-        //getDistanceMatrix(oLat, oLng, dLat, dLng, availMode, distMatrixKey);
-        print('Mode: $availMode');
-        /*String getDistanceMatrix(
-            oLat, oLng, dLat, dLng, availMode, distMatrixKey) {
-          return duration.toString();
-          //After return everything else is ignored
-        }*/
+        //print('Mode: $availMode');
         // Call the getDistanceMatrix function
         Future<List> dataList =
             getDistanceMatrix(oLat, oLng, dLat, dLng, availMode, distMatrixKey);
         //print('Traval Duration: $duration s');
+        print(' ');
+        //print('$dataList');
       }
       // Debug
       //print('Weather is clear'); //, available modes are: $availableModes');
@@ -115,7 +111,7 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
     var data = jsonDecode(jsonString);
     //print('$response');
     if (response.statusCode == 200) {
-      print('Request Successfull!'); // For Debug
+      //print('Request Successfull!'); // For Debug
       var iterativeDuration =
           data['rows'][0]['elements'][0]['duration']['value']; // Seconds
       var iterativeDistance =
@@ -139,19 +135,19 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
       //emissions = baseCarEmission;
     });*/
     if (mode == 'walking') {
-      print('ZERO EMISSIONS WALK');
+      //print('ZERO EMISSIONS WALK');
       return emissions = 0;
       // Debug
       //debugstatement = 'ZERO EMISSIONS WALK';
       //baseEmissions = baseCarEmission;
     } else if (mode == 'bicycling') {
-      print('ZERO EMISSIONS BICYCLE');
+      //print('ZERO EMISSIONS BICYCLE');
       return emissions = 0;
       // Debug
       //debugstatement = 'ZERO EMISSIONS BICYCLE';
       //baseEmissions = baseCarEmission;
     } else if (mode == 'transit') {
-      print('TRANSIT EMISSIONS ARE WEIRD');
+      //print('TRANSIT EMISSIONS ARE WEIRD');
       return emissions = baseCarEmission * 0.10;
       // Debug
       //debugstatement = 'TRANSIT EMISSIONS NEED REFINEMENT';
@@ -159,19 +155,19 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
     } else if (mode == 'driving') {
       // Nest conditions for car types
       if (carType == 'ev') {
-        print('ZERO EMISSIONS EV');
+        //print('ZERO EMISSIONS EV');
         return emissions = 0;
         // EV is always 0 emissions
       } else if (carType == 'petrol') {
         // Nest car classes
         if (carClass == 'hatch') {
-          print('SAME AS BASE EMISSIONS');
+          //print('SAME AS BASE EMISSIONS');
           return emissions = baseCarEmission;
         } else if (carClass == 'sedan') {
-          print('SEDAN is base * 1.05');
+          //print('SEDAN is base * 1.05');
           return emissions = baseCarEmission * 1.05;
         } else if (carClass == 'suv') {
-          print('SUV is base * 1.14');
+          //print('SUV is base * 1.14');
           return emissions = baseCarEmission * 1.14;
         } // Done with all Petrol Cases
         //
@@ -180,13 +176,13 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
       } else if (carType == 'diesel') {
         // Nest car classes
         if (carClass == 'hatch') {
-          print('Diesel hatch is base * 0.8');
+          //print('Diesel hatch is base * 0.8');
           return emissions = baseCarEmission * 0.8;
         } else if (carClass == 'sedan') {
-          print('Diesel SEDAN is base * 1.05 * 0.8');
+          //print('Diesel SEDAN is base * 1.05 * 0.8');
           return emissions = baseCarEmission * 1.05 * 0.8;
         } else if (carClass == 'suv') {
-          print('Diesel SUV is base * 1.14 * 0.8');
+          //print('Diesel SUV is base * 1.14 * 0.8');
           return emissions = baseCarEmission * 1.14 * 0.8;
         } // Done with all Diesel Cases
         //
@@ -195,13 +191,13 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
       } else if (carType == 'hybrid') {
         // Nest car classes
         if (carClass == 'hatch') {
-          print('Hybrid hatch is base * 0.6');
+          //print('Hybrid hatch is base * 0.6');
           return emissions = baseCarEmission * 0.6;
         } else if (carClass == 'sedan') {
-          print('Hybrid SEDAN is base * 1.05 * 0.6');
+          //print('Hybrid SEDAN is base * 1.05 * 0.6');
           return emissions = baseCarEmission * 1.05 * 0.6;
         } else if (carClass == 'suv') {
-          print('Hybrid SUV is base * 1.14 * 0.6');
+          //print('Hybrid SUV is base * 1.14 * 0.6');
           return emissions = baseCarEmission * 1.14 * 0.6;
         } // Done with all Hybrid Cases
         /*// What have I done
