@@ -158,7 +158,10 @@ class _SocialsPageState extends State<SocialsPage> {
 
           Row(
             children: const [
-              Text(' Friends: ', style: TextStyle(color: Colors.deepOrange))
+              Text(
+                ' Friends: ',
+                style: TextStyle(color: Colors.deepOrange),
+              )
             ],
           ),
 
