@@ -60,9 +60,24 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
         'transit',
         'driving'
       ];
-      String availMode = '';
+      //String availMode = '';
+      // Manually iterate through each mode to eliminate randomness in output order
+      List<Future<dynamic>> suggestionsData = [
+        getDistanceMatrix(
+            oLat, oLng, dLat, dLng, availableModes[0], distMatrixKey),
+        getDistanceMatrix(
+            oLat, oLng, dLat, dLng, availableModes[1], distMatrixKey),
+        getDistanceMatrix(
+            oLat, oLng, dLat, dLng, availableModes[2], distMatrixKey),
+        getDistanceMatrix(
+            oLat, oLng, dLat, dLng, availableModes[3], distMatrixKey),
+      ];
+      List<dynamic> resultingData = await Future.wait(suggestionsData);
+      print('RESULTING DATA: $resultingData');
       // A for-in loop that goes through every available mode and extracts their travel times + carbon emissions
-      for (availMode in availableModes) {
+      //
+      //
+      /*for (availMode in availableModes) {
         //print('Mode: $availMode');
         // Call the getDistanceMatrix function
         Future<List> dataList =
@@ -70,7 +85,9 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
         //print('Traval Duration: $duration s');
         //print(' ');
         //print('$dataList');
-      }
+      }*/
+      //
+      //
       // Debug
       //print('Weather is clear'); //, available modes are: $availableModes');
     } else if (weatherClarity == false) {
