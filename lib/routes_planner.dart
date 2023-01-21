@@ -23,13 +23,9 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
   String oLng = '-122.50524108120509';
   String dLat = '37.92185635671533';
   String dLng = '-122.3790957425826';
-  String tMode = 'bicyling';
-  late int duration;
-  dynamic _testlist = [];
-  dynamic _testlist2 = [];
-  dynamic _testlist3 = [];
-  dynamic _testlist4 = [];
-  //List modes = ['walking', 'bicycle', 'transit', 'driving'];
+  String tMode = 'bicycling';
+  int duration = 0;
+  //List modes = ['walking', 'bicycling', 'transit', 'driving'];
   /*
   String originLat = '';
   String originLng = '';
@@ -43,20 +39,17 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
     String baseURL = 'https://maps.googleapis.com/maps/api/distancematrix/json';
     String request =
         '$baseURL?origins=$originLat,$originLng&destinations=$destLat,$destLng&mode=$mode&units=metric&key=$key';
-    print(request);
+    //print(request); // For Debug
     var response = await http.get(Uri.parse(request));
     var jsonString = response.body.toString();
     var data = jsonDecode(jsonString);
     //print('$response');
     if (response.statusCode == 200) {
-      print('Request Successfull!');
+      //print('Request Successfull!'); // For Debug
       setState(() {
-        //_testlist = jsonDecode(jsonResponse.body.toString())['rows'];
-        //_testlist2 = jsonDecode(_testlist[0].toString())['duration'];
         duration = data['rows'][0]['elements'][0]['duration']['value'];
       });
-      //print(_testlist[0] /*['elements'].toString()*/);
-      print('$duration');
+      //print('$duration');
     } else {
       throw Exception('Failed To Call API');
     }
@@ -81,7 +74,7 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
             //Text('Mode: ' + modes.elementAt(0)),
             Text('Mode: $tMode'),
             //Text('$distMatrixKey'),
-            Text('Travel Time:'),
+            Text('Travel Time: $duration'),
           ],
         ),
       ),
