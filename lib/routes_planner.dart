@@ -37,8 +37,8 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
   // SUV emits 14% more than hatch, Sedan emits 5% more
   // Source: https://www.theguardian.com/us-news/2020/sep/01/suv-conquered-america-climate-change-emissions
   String cCls = 'suv';
-  // Carbon Emissions
-  int emissions = 0;
+  // Carbon Emissions (in grams)
+  double emissions = 0;
 
   // Function that makes the Distance Matrix API CAll
   void getDistanceMatrix(
@@ -58,6 +58,7 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
             data['rows'][0]['elements'][0]['duration']['value']; // Seconds
         distance =
             data['rows'][0]['elements'][0]['distance']['value']; // Meters
+        getCarbonEmissions(duration, tMode, cTyp, cCls);
       });
       //print('$duration');
     } else {
@@ -80,6 +81,9 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
     }
     ;
     var baseCarEmission = distance * 122.4 * 0.001;
+    setState(() {
+      emissions = baseCarEmission;
+    });
     //if (mode ) {}
   }
 
@@ -111,14 +115,14 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
             Text('Car Type: $cTyp'),
             Text('Car Class: $cCls'),
             Text(' '),
-            Text('Trip Emissions: kg'),
+            Text('Trip Emissions: $emissions kg'),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           getDistanceMatrix(oLat, oLng, dLat, dLng, tMode, distMatrixKey);
-          getCarbonEmissions(duration, tMode, cTyp, cCls);
+          //getCarbonEmissions(duration, tMode, cTyp, cCls);
         },
         child: const Icon(Icons.filter_center_focus_outlined),
       ),
