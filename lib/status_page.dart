@@ -58,10 +58,37 @@ class _StatusPageState extends State<StatusPage> {
             ),
           ),
           Container(
-            width: 200,
+            margin: const EdgeInsets.fromLTRB(5, 50, 180, 50),
+            width: 150,
             height: 250,
             alignment: Alignment.centerLeft,
-            color: Color.fromARGB(255, 115, 226, 119),
+            color: const Color.fromARGB(255, 115, 226, 119),
+            child: SfCartesianChart(
+              title: ChartTitle(
+                  text: 'carbon emssions saved this month',
+                  textStyle: const TextStyle(
+                    color: Colors.white,
+                    fontStyle: FontStyle.normal,
+                  )),
+              series: <ChartSeries>[
+                LineSeries<CarbonEmsissionData, int>(
+                    pointColorMapper:
+                        (CarbonEmsissionData carbonEmissions, _) =>
+                            carbonEmissions.color,
+                    dataSource: chartData,
+                    xValueMapper: (CarbonEmsissionData carbonEmissions, _) =>
+                        carbonEmissions.weeks,
+                    yValueMapper: (CarbonEmsissionData carbonEmissions, _) =>
+                        carbonEmissions.carbonEmisions)
+              ],
+            ),
+          ),
+          Container(
+            margin: const EdgeInsets.fromLTRB(5, 50, 180, 50),
+            width: 150,
+            height: 250,
+            alignment: Alignment.centerLeft,
+            color: const Color.fromARGB(255, 115, 226, 119),
             child: SfCartesianChart(
               title: ChartTitle(
                   text: 'carbon emssions saved this month',
