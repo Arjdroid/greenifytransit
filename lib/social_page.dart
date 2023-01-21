@@ -16,6 +16,11 @@ class _SocialsPageState extends State<SocialsPage> {
     CarbonEmsissionData(4, 1000, Colors.yellow)
   ];
 
+  final TextEditingController locationController = TextEditingController();
+  final TextEditingController firstNameController = TextEditingController();
+  String? firstName;
+  String? location;
+
   var text;
   @override
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -41,6 +46,12 @@ class _SocialsPageState extends State<SocialsPage> {
               }
               return null;
             },
+            controller: firstNameController,
+            keyboardType: TextInputType.name,
+            onSaved: (value) {
+              firstNameController.text = value!;
+            },
+            textInputAction: TextInputAction.done,
           ),
 
           Row(
@@ -58,6 +69,12 @@ class _SocialsPageState extends State<SocialsPage> {
 
               return null;
             },
+            controller: locationController,
+            keyboardType: TextInputType.name,
+            onSaved: (value) {
+              locationController.text = value!;
+            },
+            textInputAction: TextInputAction.done,
           ),
 
           Padding(
@@ -66,7 +83,12 @@ class _SocialsPageState extends State<SocialsPage> {
               onPressed: () {
                 // Validate will return true if the form is valid, or false if
                 // the form is invalid.
-                setState(() {});
+                setState(() {
+                  location = locationController.text;
+                  firstName = firstNameController.text;
+                  print(location); // Location
+                  print(firstName); //Name
+                });
               },
               child: const Text('Submit'),
             ),
