@@ -62,7 +62,7 @@ class _StatusPageState extends State<StatusPage> {
             Row(
               children: [
                 Container(
-                  margin: const EdgeInsets.fromLTRB(0.1, 25, 0.1, 25),
+                  margin: const EdgeInsets.fromLTRB(20, 25, 5, 25),
                   width: 150,
                   height: 250,
                   alignment: Alignment.centerLeft,
@@ -90,7 +90,7 @@ class _StatusPageState extends State<StatusPage> {
                   ),
                 ),
                 Container(
-                  margin: const EdgeInsets.fromLTRB(90, 25, 2.5, 25),
+                  margin: const EdgeInsets.fromLTRB(50, 25, 10, 25),
                   width: 150,
                   height: 250,
                   alignment: Alignment.centerLeft,
