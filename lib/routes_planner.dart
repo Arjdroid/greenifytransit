@@ -311,7 +311,8 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
           //getCarbonEmissions(duration, tMode, cTyp, cCls);
           //getWeatherCondition(oLat, oLng, dLat, dLng, openWeatherMapKey);
           //getAllData(isWeatherClear);
-          getRankedSuggestions();
+          List<dynamic> rankedSuggestionsList = await getRankedSuggestions();
+          print('$rankedSuggestionsList');
         },
         child: const Icon(Icons.filter_center_focus_outlined),
       ),
