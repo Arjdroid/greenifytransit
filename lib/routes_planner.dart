@@ -47,7 +47,9 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
   // This means that the weather is clear, if false that means that the weather is not clear
   bool isWeatherClear = true;
 
-  // Function that actually generates the suggestions
+  // Function that gives a ranked suggestions list
+
+  // Function that aggregates data for suggestions
   Future<List> getAllData(weatherClarity) async {
     // Consider whether the weather is clear or not
     if (weatherClarity == true) {
@@ -270,8 +272,8 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
             //Text(' '),
             Text('Car Type: $cTyp'),
             Text('Car Class: $cCls'),
-            //Text(' '),
-            //Text('Trip Emissions: $emissions g'),
+            Text(' '),
+            Text('Is Weather Clear: $isWeatherClear'),
             //Text(' '),
             //Text('Debug Statement: $debugstatement'),
             //Text('Debug Base Emissions (Petrol Hatch Car): $baseEmissions g'),
