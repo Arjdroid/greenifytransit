@@ -182,53 +182,34 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
       if (carType == 'ev') {
         print('ZERO EMISSIONS EV');
         return emissions = 0;
-        // Debug
-        //debugstatement = 'ZERO EMISSIONS EV';
-        //baseEmissions = baseCarEmission;
         // EV is always 0 emissions
       } else if (carType == 'petrol') {
-        // Nest car types
+        // Nest car classes
         if (carClass == 'hatch') {
           print('SAME AS BASE EMISSIONS');
           return emissions = baseCarEmission;
-          // Debug
-          //debugstatement = 'SAME AS BASE EMISSIONS';
-          //baseEmissions = baseCarEmission;
         } else if (carClass == 'sedan') {
-          print('SEDAN is base * 1.05')
+          print('SEDAN is base * 1.05');
           return emissions = baseCarEmission * 1.05;
-          // Debug
-          //debugstatement = 'Sedan * 1.05';
-          //baseEmissions = baseCarEmission;
         } else if (carClass == 'suv') {
-            print('SUV is base * 1.14');
-            return emissions = baseCarEmission * 1.14;
-            //debugstatement = 'SUV is base * 1.14';
-            //baseEmissions = baseCarEmission;
+          print('SUV is base * 1.14');
+          return emissions = baseCarEmission * 1.14;
         } // Done with all Petrol Cases
-        // HOLUP
         //
+        // Moving to Diesel
         //
       } else if (carType == 'diesel') {
-        // What have I done bruhhh
-          print('Diesel Hatch is base * 0.8');
+        // Nest car classes
+        if (carClass == 'hatch') {
+          print('Diesel hatch is base * 0.8');
           return emissions = baseCarEmission * 0.8;
-          // Debug
-          //debugstatement = 'base * 0.8';
-          //baseEmissions = baseCarEmission;
-      } else if (carClass == 'sedan') {
-        setState(() {
-          emissions = baseCarEmission * 1.05 * 0.8;
-          // Debug
-          debugstatement = 'base * 1.05 * 0.6';
-          baseEmissions = baseCarEmission;
-        });
-      } else if (carClass == 'suv') {
-        setState(() {
-          emissions = baseCarEmission * 1.14 * 0.8;
-          debugstatement = 'base * 1.14 * 0.6';
-          baseEmissions = baseCarEmission;
-        }); // Done with all Diesel Cases
+        } else if (carClass == 'sedan') {
+          print('Diesel SEDAN is base * 1.05 * 0.8');
+          return emissions = baseCarEmission * 1.05 * 0.8;
+        } else if (carClass == 'suv') {
+          print('Diesel SUV is base * 1.14 * 0.8');
+          return emissions = baseCarEmission * 1.14 * 0.8;
+        } // Done with all Diesel Cases
       } else if (carType == 'hybrid') {
         // What have I done
         setState(() {
