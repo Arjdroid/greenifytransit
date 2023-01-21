@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
 
 class SocialsPage extends StatefulWidget {
   const SocialsPage({super.key});
@@ -8,6 +9,12 @@ class SocialsPage extends StatefulWidget {
 }
 
 class _SocialsPageState extends State<SocialsPage> {
+  final List<CarbonEmsissionData> chartData = [
+    CarbonEmsissionData(1, 500, Colors.red),
+    CarbonEmsissionData(2, 2000, Colors.blue),
+    CarbonEmsissionData(3, 400, Colors.green),
+    CarbonEmsissionData(4, 1000, Colors.yellow)
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,7 +30,7 @@ class _SocialsPageState extends State<SocialsPage> {
             Container(
               height: 50,
               width: 200,
-              color: Colors.black,
+              color: Colors.blueGrey,
 
               child: Row(
                 // ignore: prefer_const_literals_to_create_immutables
@@ -48,7 +55,7 @@ class _SocialsPageState extends State<SocialsPage> {
             Container(
               height: 50,
               width: 200,
-              color: Colors.black,
+              color: Colors.blueGrey,
               child: Row(
                 children: const [
                   // ignore: prefer_const_constructors
@@ -67,7 +74,7 @@ class _SocialsPageState extends State<SocialsPage> {
             Container(
               height: 50,
               width: 200,
-              color: Colors.black,
+              color: Colors.blueGrey,
               child: Row(
                 // ignore: prefer_const_literals_to_create_immutables
                 children: [
@@ -86,7 +93,46 @@ class _SocialsPageState extends State<SocialsPage> {
                 ],
               ),
             ),
+
+            Row(
+              children: const [Text(' ')],
+            ), //empty row
+
+            Row(
+              children: const [Text(' Statistics: ')],
+            ),
+
+            Row(
+              children: const [Text(' ')],
+            ), //empty row
+
+            Container(
+              height: 200,
+              width: 200,
+              child: SfCartesianChart(
+                title: ChartTitle(text: 'carbon emssions saved this month'),
+                series: <ChartSeries>[
+                  LineSeries<CarbonEmsissionData, int>(
+                      pointColorMapper:
+                          (CarbonEmsissionData carbonEmissions, _) =>
+                              carbonEmissions.color,
+                      dataSource: chartData,
+                      xValueMapper: (CarbonEmsissionData carbonEmissions, _) =>
+                          carbonEmissions.weeks,
+                      yValueMapper: (CarbonEmsissionData carbonEmissions, _) =>
+                          carbonEmissions.carbonEmisions)
+                ],
+              ),
+            ),
           ],
         ));
   }
+}
+
+class CarbonEmsissionData {
+  final int weeks;
+  final double carbonEmisions;
+  final Color color;
+
+  CarbonEmsissionData(this.weeks, this.carbonEmisions, this.color);
 }
