@@ -19,11 +19,11 @@ class RoutesPlanner extends StatefulWidget {
 
 class _RoutesPlannerState extends State<RoutesPlanner> {
   // Defining the distance matrix parameters
-  String originLat = '37.74144781559247';
-  String originLng = '-122.50524108120509';
-  String destLat = '37.92185635671533';
-  String destLng = '-122.3790957425826';
-  String mode = 'bicyling';
+  String oLat = '37.74144781559247';
+  String oLng = '-122.50524108120509';
+  String dLat = '37.92185635671533';
+  String dLng = '-122.3790957425826';
+  String tMode = 'bicyling';
   String duration = '';
   //List modes = ['walking', 'bicycle', 'transit', 'driving'];
   /*
@@ -35,10 +35,10 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
 
   // Function that makes the Distance Matrix API CAll
   void getDistanceMatrix(
-      originLat, originLng, destLat, destLng, mode, distMatrixKey) async {
+      originLat, originLng, destLat, destLng, mode, key) async {
     String baseURL = 'https://maps.googleapis.com/maps/api/distancematrix/json';
     String request =
-        '$baseURL?origins=$originLat,$originLng&destinations=$destLat,$destLng&mode=$mode&units=metric&key=$distMatrixKey';
+        '$baseURL?origins=$originLat,$originLng&destinations=$destLat,$destLng&mode=$mode&units=metric&key=$key';
     var response = await http.get(Uri.parse(request));
     var data = response.body.toString();
     print(data);
@@ -66,17 +66,20 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text('Distance Matrix Details'),
-            Text('Origin LatLng: $originLat, $originLng'),
-            Text('Dest. LatLng: $destLat, $destLng'),
+            Text('Origin LatLng: $oLat, $oLng'),
+            Text('Dest. LatLng: $dLat, $dLng'),
             //Text('Mode: ' + modes.elementAt(0)),
-            Text('Mode: $mode'),
+            Text('Mode: $tMode'),
             //Text('$distMatrixKey'),
             Text('Travel Time:'),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: onPressed,
+        onPressed: () async {
+          getDistanceMatrix(oLat, oLng, dLat, dLng, tMode, distMatrixKey);
+        },
+        child: const Icon(Icons.filter_center_focus_outlined),
       ),
     );
   }
