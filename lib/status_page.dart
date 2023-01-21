@@ -29,6 +29,14 @@ class _StatusPageState extends State<StatusPage> {
               margin: const EdgeInsets.all(30),
               height: 200,
               width: 400,
+              child: const Text(
+                'Total CO2 emissions this month',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 25,
+                ),
+              ),
             )
           ],
         ),
