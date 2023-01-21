@@ -12,14 +12,27 @@ class _StatusPageState extends State<StatusPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: const Text('Status'),
-          automaticallyImplyLeading: false,
+        title: const Text('greenifyTransit'),
+        /* automaticallyImplyLeading: false,
           leading: IconButton(
             onPressed: () {
               Navigator.of(context).pop();
             },
             icon: const Icon(Icons.arrow_back),
-          )),
+          )*/
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              color: Colors.green,
+              margin: const EdgeInsets.all(30),
+              height: 200,
+              width: 400,
+            )
+          ],
+        ),
+      ),
     );
   }
 }
