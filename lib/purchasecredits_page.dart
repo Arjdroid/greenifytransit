@@ -11,10 +11,15 @@ class _PurchaseCredistsState extends State<PurchaseCredists> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ElevatedButton(
-        onPressed: () {},
-        child: const Text('purchase credits'),
-      ),
+      appBar: AppBar(
+          title: const Text('greenifyTransit'),
+          automaticallyImplyLeading: false,
+          leading: IconButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            icon: const Icon(Icons.arrow_back),
+          )),
     );
   }
 }
