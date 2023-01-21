@@ -94,7 +94,6 @@ class _StatusPageState extends State<StatusPage> {
                   margin: const EdgeInsets.fromLTRB(50, 25, 10, 25),
                   width: 150,
                   height: 250,
-                  alignment: Alignment.centerLeft,
                   color: const Color.fromARGB(255, 115, 226, 119),
                   child: SfCartesianChart(
                     title: ChartTitle(
