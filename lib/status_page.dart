@@ -34,8 +34,6 @@ class _StatusPageState extends State<StatusPage> {
           Container(
             color: Colors.green,
             margin: const EdgeInsets.all(30),
-            height: 200,
-            width: 400,
             child: Column(
               children: [
                 const Text(
@@ -60,21 +58,26 @@ class _StatusPageState extends State<StatusPage> {
             ),
           ),
           Container(
-            margin: const EdgeInsets.all(10),
+            height: 300,
+            width: 200,
             child: SfCartesianChart(
-                title: ChartTitle(text: 'carbon emssions saved this month'),
-                series: <ChartSeries>[
-                  ColumnSeries<CarbonEmsissionData, int>(
-                      pointColorMapper:
-                          (CarbonEmsissionData carbonEmissions, _) =>
-                              carbonEmissions.color,
-                      legendItemText: 'CE',
-                      dataSource: chartData,
-                      xValueMapper: (CarbonEmsissionData carbonEmissions, _) =>
-                          carbonEmissions.weeks,
-                      yValueMapper: (CarbonEmsissionData carbonEmissions, _) =>
-                          carbonEmissions.carbonEmisions)
-                ]),
+              title: ChartTitle(text: 'carbon emssions saved this month'),
+              series: <ChartSeries>[
+                LineSeries<CarbonEmsissionData, int>(
+                    pointColorMapper:
+                        (CarbonEmsissionData carbonEmissions, _) =>
+                            carbonEmissions.color,
+                    dataSource: chartData,
+                    xValueMapper: (CarbonEmsissionData carbonEmissions, _) =>
+                        carbonEmissions.weeks,
+                    yValueMapper: (CarbonEmsissionData carbonEmissions, _) =>
+                        carbonEmissions.carbonEmisions)
+              ],
+            ),
+          ),
+          ElevatedButton(
+            onPressed: () {},
+            child: const Text('Purchase Carbon credists'),
           )
         ],
       ),
