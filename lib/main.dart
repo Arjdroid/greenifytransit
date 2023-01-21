@@ -1,12 +1,11 @@
-
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
 import 'package:greenifytransitcodefest/social_page.dart';
 import 'package:greenifytransitcodefest/routes_planner.dart';
 import 'package:greenifytransitcodefest/status_page.dart';
-void main() {
 
+void main() {
   runApp(const MyApp());
 }
 
@@ -30,18 +29,19 @@ class RootPage extends StatefulWidget {
   State<RootPage> createState() => _RootPageState();
 }
 
+//sanitycheck
 class _RootPageState extends State<RootPage> {
   int currentPage = 0;
-  /* List<Widget> pages = const [
-    SocialsPage(),
-    RoutesPlanner(),
+  List<Widget> pages = const [
     StatusPage(),
+    RoutesPlanner(),
+    SocialsPage(),
   ];
-  */
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: const StatusPage(),
+      body: pages[currentPage],
       bottomNavigationBar: NavigationBar(
         destinations: const [
           NavigationDestination(
@@ -66,13 +66,12 @@ class _RootPageState extends State<RootPage> {
             label: 'profile',
           ),
         ],
-        /*  onDestinationSelected: (int index) {
+        onDestinationSelected: (int index) {
           setState(() {
             currentPage = index;
           });
         },
         selectedIndex: currentPage,
-        */
       ),
     );
   }
