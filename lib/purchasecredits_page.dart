@@ -14,6 +14,7 @@ class _PurchaseCredistsState extends State<PurchaseCredists> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Color.fromARGB(255, 214, 247, 246),
         appBar: AppBar(
           title: const Text('greenifyTransit'),
           automaticallyImplyLeading: false,
@@ -28,7 +29,7 @@ class _PurchaseCredistsState extends State<PurchaseCredists> {
           child: Column(
             children: [
               const Text(
-                'Purchase Carbon credits',
+                'Purchase Carbon Credits',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.green,
@@ -36,8 +37,10 @@ class _PurchaseCredistsState extends State<PurchaseCredists> {
                 ),
               ),
               Container(
-                color: Colors.green,
                 margin: const EdgeInsets.all(30),
+                decoration: BoxDecoration(
+                    color: Colors.green,
+                    borderRadius: BorderRadius.circular(15)),
                 child: Column(
                   children: [
                     const Text(
@@ -73,7 +76,9 @@ class _PurchaseCredistsState extends State<PurchaseCredists> {
                 margin: const EdgeInsets.all(30),
                 width: 330,
                 height: 120,
-                color: Colors.green,
+                decoration: BoxDecoration(
+                    color: Colors.green,
+                    borderRadius: BorderRadius.circular(15)),
                 child: Column(
                   children: [
                     const Text(
@@ -112,7 +117,9 @@ class _PurchaseCredistsState extends State<PurchaseCredists> {
                 margin: const EdgeInsets.all(30),
                 width: 330,
                 height: 120,
-                color: Colors.green,
+                decoration: BoxDecoration(
+                    color: Colors.green,
+                    borderRadius: BorderRadius.circular(15)),
                 child: Column(
                   children: [
                     const Text(
@@ -151,7 +158,9 @@ class _PurchaseCredistsState extends State<PurchaseCredists> {
                 margin: const EdgeInsets.all(30),
                 width: 330,
                 height: 120,
-                color: Colors.green,
+                decoration: BoxDecoration(
+                    color: Colors.green,
+                    borderRadius: BorderRadius.circular(15)),
                 child: Column(
                   children: [
                     const Text(
