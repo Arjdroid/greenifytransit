@@ -36,7 +36,7 @@ class _RootPageState extends State<RootPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'GreenifyTransit',
+          'greenifyTransit',
         ),
       ),
       body: pages[currentPage],
