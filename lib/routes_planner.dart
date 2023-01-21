@@ -69,6 +69,18 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
   void getCarbonEmissions(duration, mode, carType, carClass) async {
     // Source: https://www.eea.europa.eu/highlights/average-co2-emissions-from-new-cars-vans-2019
     // Average car emits 122.4 grams of CO2 per kilometre
+    if (mode == 'walking') {
+      var modeIndex = 0;
+    } else if (mode == 'bicycling') {
+      var modeIndex = 1;
+    } else if (mode == 'transit') {
+      var modeIndex = 2;
+    } else if (mode == 'driving') {
+      var modeIndex = 3;
+    }
+    ;
+    var baseCarEmission = distance * 122.4 * 0.001;
+    //if (mode ) {}
   }
 
   @override
@@ -106,6 +118,7 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           getDistanceMatrix(oLat, oLng, dLat, dLng, tMode, distMatrixKey);
+          getCarbonEmissions(duration, tMode, cTyp, cCls);
         },
         child: const Icon(Icons.filter_center_focus_outlined),
       ),
