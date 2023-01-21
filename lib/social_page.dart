@@ -15,6 +15,8 @@ class _SocialsPageState extends State<SocialsPage> {
     CarbonEmsissionData(3, 400, Colors.green),
     CarbonEmsissionData(4, 1000, Colors.yellow)
   ];
+
+  var text;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,6 +54,7 @@ class _SocialsPageState extends State<SocialsPage> {
               if (value == null || value.isEmpty) {
                 return 'Please enter some text';
               }
+
               return null;
             },
           ),
@@ -124,7 +127,16 @@ class _SocialsPageState extends State<SocialsPage> {
             ],
           ),
 
-          IconButton(icon: Icon(Icons.account_circle), onPressed: () => {})
+          Row(
+            children: [
+              IconButton(
+                  icon: const Icon(Icons.account_circle), onPressed: () => {}), iconSize: 50,
+              IconButton(
+                  icon: const Icon(Icons.account_circle), onPressed: () => {}),
+              IconButton(
+                  icon: const Icon(Icons.account_circle), onPressed: () => {})
+            ],
+          )
         ],
       )),
     );
