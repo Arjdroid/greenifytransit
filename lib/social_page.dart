@@ -26,28 +26,18 @@ class _SocialsPageState extends State<SocialsPage> {
           children: const [Text(' ')],
         ), //Empty row
 
-        Container(
-          // margin: const EdgeInsets.fromLTRB(50, 50, 50, 50),
-          height: 50,
-          width: 200,
-          color: Colors.blueGrey,
+        TextFormField(
+          decoration: const InputDecoration(
+            hintText: 'Enter your full name',
+          ),
+          validator: (String? value) {
+            if (value == null || value.isEmpty) {
+              return 'Please enter some text';
+            }
+            return null;
+          },
+        ),
 
-          child: Row(
-            // ignore: prefer_const_literals_to_create_immutables
-
-            children: const [
-              Text(
-                ' FirstName',
-                style: TextStyle(color: Colors.white),
-              ),
-              Text(' '),
-              Text(
-                ' LastName',
-                style: TextStyle(color: Colors.white),
-              ),
-            ],
-          ), //Firstname and Lastname
-        ), //Name container
         Row(
           children: const [Text(' ')],
         ), //empty row
