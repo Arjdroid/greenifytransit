@@ -9,6 +9,8 @@ class PurchaseCredists extends StatefulWidget {
 
 class _PurchaseCredistsState extends State<PurchaseCredists> {
   bool isSwitch = false;
+  bool isSwitch2 = false;
+  bool isSwitch3 = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -67,109 +69,123 @@ class _PurchaseCredistsState extends State<PurchaseCredists> {
                   fontSize: 50,
                 ),
               ),
-              Row(
-                children: [
-                  Container(
-                    margin: const EdgeInsets.all(30),
-                    width: 330,
-                    height: 400,
-                    color: Colors.green,
-                    child: Column(
-                      children: [
-                        const Text(
-                          'Planting trees in Canada',
-                          textAlign: TextAlign.start,
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        Row(
-                          children: const [
-                            Text('Price:',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 25,
-                                    fontFamily: 'arial')),
-                          ],
-                        ),
-                        Switch(
-                            value: isSwitch,
-                            activeColor: Colors.blue,
-                            onChanged: (bool newBool) {
-                              setState(() {
-                                isSwitch = newBool;
-                              });
-                            }),
-                        const Text(
-                          'Scheme 2',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        Row(
-                          children: const [
-                            Text('Price:',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 25,
-                                    fontFamily: 'arial')),
-                          ],
-                        ),
-                        Switch(
-                            value: isSwitch,
-                            activeColor: Colors.blue,
-                            onChanged: (bool newBool) {
-                              setState(() {
-                                isSwitch = newBool;
-                              });
-                            }),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        const Text(
-                          'scheme 3',
-                          textAlign: TextAlign.start,
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        Row(
-                          children: const [
-                            Text('Price:',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 25,
-                                    fontFamily: 'arial')),
-                          ],
-                        ),
-                        Switch(
-                            value: isSwitch,
-                            activeColor: Colors.blue,
-                            onChanged: (bool newBool) {
-                              setState(() {
-                                isSwitch = newBool;
-                              });
-                            }),
+              Container(
+                margin: const EdgeInsets.all(30),
+                width: 330,
+                height: 120,
+                color: Colors.green,
+                child: Column(
+                  children: [
+                    const Text(
+                      'Planting trees in Canada',
+                      textAlign: TextAlign.start,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Row(
+                      children: const [
+                        Text('Price:',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 25,
+                                fontFamily: 'arial')),
                       ],
                     ),
-                  ),
-                ],
+                    Switch(
+                        value: isSwitch,
+                        activeColor: Colors.blue,
+                        onChanged: (bool newBool) {
+                          setState(() {
+                            isSwitch = newBool;
+                          });
+                        }),
+                  ],
+                ),
               ),
+              Container(
+                margin: const EdgeInsets.all(30),
+                width: 330,
+                height: 120,
+                color: Colors.green,
+                child: Column(
+                  children: [
+                    const Text(
+                      'Scheme 2',
+                      textAlign: TextAlign.start,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Row(
+                      children: const [
+                        Text('Price:',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 25,
+                                fontFamily: 'arial')),
+                      ],
+                    ),
+                    Switch(
+                        value: isSwitch2,
+                        activeColor: Colors.blue,
+                        onChanged: (bool newBool) {
+                          setState(() {
+                            isSwitch2 = newBool;
+                          });
+                        }),
+                  ],
+                ),
+              ),
+              Container(
+                margin: const EdgeInsets.all(30),
+                width: 330,
+                height: 120,
+                color: Colors.green,
+                child: Column(
+                  children: [
+                    const Text(
+                      'Scheme 3',
+                      textAlign: TextAlign.start,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Row(
+                      children: const [
+                        Text('Price:',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 25,
+                                fontFamily: 'arial')),
+                      ],
+                    ),
+                    Switch(
+                        value: isSwitch3,
+                        activeColor: Colors.blue,
+                        onChanged: (bool newBool) {
+                          setState(() {
+                            isSwitch3 = newBool;
+                          });
+                        }),
+                  ],
+                ),
+              )
             ],
           ),
         ));
