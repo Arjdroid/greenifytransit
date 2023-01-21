@@ -45,7 +45,7 @@ class _StatusPageState extends State<StatusPage> {
                     'Total CO2 emissions this month',
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      color: Colors.white,
+                      color: Color.fromARGB(255, 214, 247, 246),
                       fontSize: 25,
                     ),
                   ),
@@ -54,7 +54,7 @@ class _StatusPageState extends State<StatusPage> {
                       Text('$emissions',
                           textAlign: TextAlign.center,
                           style: const TextStyle(
-                              color: Colors.white,
+                              color: Color.fromARGB(255, 214, 247, 246),
                               fontSize: 80,
                               fontFamily: 'arial')),
                     ],
@@ -76,7 +76,7 @@ class _StatusPageState extends State<StatusPage> {
                     title: ChartTitle(
                         text: 'carbon emssions saved this month',
                         textStyle: const TextStyle(
-                          color: Colors.white,
+                          color: Color.fromARGB(255, 214, 247, 246),
                           fontStyle: FontStyle.normal,
                         )),
                     series: <ChartSeries>[
@@ -103,9 +103,9 @@ class _StatusPageState extends State<StatusPage> {
                       borderRadius: BorderRadius.circular(15)),
                   child: SfCartesianChart(
                     title: ChartTitle(
-                        text: 'carbon emssions saved this month',
+                        text: 'Total number of trips this month',
                         textStyle: const TextStyle(
-                          color: Colors.white,
+                          color: Color.fromARGB(255, 214, 247, 246),
                           fontStyle: FontStyle.normal,
                         )),
                     series: <ChartSeries>[
@@ -135,7 +135,13 @@ class _StatusPageState extends State<StatusPage> {
                   ),
                 );
               },
-              child: const Text('Purchase Carbon credits'),
+              child: const Text(
+                'Purchase Carbon credits',
+                style: TextStyle(
+                  color: Color.fromARGB(255, 214, 247, 246),
+                  fontSize: 15,
+                ),
+              ),
             )
           ],
         ),

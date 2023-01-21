@@ -32,9 +32,9 @@ class _PurchaseCredistsState extends State<PurchaseCredists> {
                 'Purchase Carbon Credits',
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  color: Colors.green,
-                  fontSize: 50,
-                ),
+                    color: Colors.green,
+                    fontSize: 47,
+                    fontWeight: FontWeight.bold),
               ),
               Container(
                 margin: const EdgeInsets.all(30),
@@ -47,7 +47,7 @@ class _PurchaseCredistsState extends State<PurchaseCredists> {
                       'Your total emissions',
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        color: Colors.white,
+                        color: Color.fromARGB(255, 214, 247, 246),
                         fontSize: 25,
                       ),
                     ),
@@ -56,7 +56,7 @@ class _PurchaseCredistsState extends State<PurchaseCredists> {
                         Text('1000000',
                             textAlign: TextAlign.center,
                             style: TextStyle(
-                                color: Colors.white,
+                                color: Color.fromARGB(255, 214, 247, 246),
                                 fontSize: 80,
                                 fontFamily: 'arial')),
                       ],
@@ -65,12 +65,12 @@ class _PurchaseCredistsState extends State<PurchaseCredists> {
                 ),
               ),
               const Text(
-                'Choose your prefered scheme',
+                'Choose Your Prefered Scheme',
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  color: Colors.green,
-                  fontSize: 50,
-                ),
+                    color: Colors.green,
+                    fontSize: 47,
+                    fontWeight: FontWeight.bold),
               ),
               Container(
                 margin: const EdgeInsets.all(30),
@@ -85,7 +85,7 @@ class _PurchaseCredistsState extends State<PurchaseCredists> {
                       'Planting trees in Canada',
                       textAlign: TextAlign.start,
                       style: TextStyle(
-                        color: Colors.white,
+                        color: Color.fromARGB(255, 214, 247, 246),
                         fontSize: 20,
                       ),
                     ),
@@ -97,14 +97,14 @@ class _PurchaseCredistsState extends State<PurchaseCredists> {
                         Text('Price:',
                             textAlign: TextAlign.center,
                             style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 25,
+                                color: Color.fromARGB(255, 214, 247, 246),
+                                fontSize: 20,
                                 fontFamily: 'arial')),
                       ],
                     ),
                     Switch(
                         value: isSwitch,
-                        activeColor: Colors.blue,
+                        activeColor: Color.fromARGB(255, 214, 247, 246),
                         onChanged: (bool newBool) {
                           setState(() {
                             isSwitch = newBool;
@@ -126,7 +126,7 @@ class _PurchaseCredistsState extends State<PurchaseCredists> {
                       'Scheme 2',
                       textAlign: TextAlign.start,
                       style: TextStyle(
-                        color: Colors.white,
+                        color: Color.fromARGB(255, 214, 247, 246),
                         fontSize: 20,
                       ),
                     ),
@@ -136,16 +136,15 @@ class _PurchaseCredistsState extends State<PurchaseCredists> {
                     Row(
                       children: const [
                         Text('Price:',
-                            textAlign: TextAlign.center,
                             style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 25,
+                                color: Color.fromARGB(255, 214, 247, 246),
+                                fontSize: 20,
                                 fontFamily: 'arial')),
                       ],
                     ),
                     Switch(
                         value: isSwitch2,
-                        activeColor: Colors.blue,
+                        activeColor: Color.fromARGB(255, 214, 247, 246),
                         onChanged: (bool newBool) {
                           setState(() {
                             isSwitch2 = newBool;
@@ -165,9 +164,9 @@ class _PurchaseCredistsState extends State<PurchaseCredists> {
                   children: [
                     const Text(
                       'Scheme 3',
-                      textAlign: TextAlign.start,
+                      textAlign: TextAlign.left,
                       style: TextStyle(
-                        color: Colors.white,
+                        color: Color.fromARGB(255, 214, 247, 246),
                         fontSize: 20,
                       ),
                     ),
@@ -179,14 +178,14 @@ class _PurchaseCredistsState extends State<PurchaseCredists> {
                         Text('Price:',
                             textAlign: TextAlign.center,
                             style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 25,
+                                color: Color.fromARGB(255, 214, 247, 246),
+                                fontSize: 20,
                                 fontFamily: 'arial')),
                       ],
                     ),
                     Switch(
                         value: isSwitch3,
-                        activeColor: Colors.blue,
+                        activeColor: Color.fromARGB(255, 214, 247, 246),
                         onChanged: (bool newBool) {
                           setState(() {
                             isSwitch3 = newBool;
