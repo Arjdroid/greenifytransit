@@ -20,10 +20,10 @@ class RoutesPlanner extends StatefulWidget {
 class _RoutesPlannerState extends State<RoutesPlanner> {
   String debugstatement = '';
   // Defining the distance matrix parameters
-  String oLat = '37.74144781559247';
-  String oLng = '-122.50524108120509';
-  String dLat = '37.92185635671533';
-  String dLng = '-122.3790957425826';
+  double oLat = 37.74144781559247;
+  double oLng = -122.50524108120509;
+  double dLat = 37.92185635671533;
+  double dLng = -122.3790957425826;
   List modes = ['walking', 'bicycling', 'transit', 'driving'];
   String tMode = 'driving';
   int duration = 0;
@@ -44,7 +44,13 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
   double emissions = 0;
 
   // Function that checks the weather for the Average between the 2 Coordinates
-  void getWeatherCondition(originLat, originLng, destLat, destLng, mode, key) {}
+  void getWeatherCondition(originLat, originLng, destLat, destLng /*, key*/) {
+    // Get the mean latitude and longitude to check the weather of
+    var averageLat = (originLat + destLat) / 2;
+    var averageLng = (originLng + originLng) / 2;
+    // Debug
+    print("Average LatLng is $averageLat,$averageLng");
+  }
 
   // Function that makes the Distance Matrix API CAll
   void getDistanceMatrix(
@@ -230,6 +236,7 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
         onPressed: () async {
           getDistanceMatrix(oLat, oLng, dLat, dLng, tMode, distMatrixKey);
           //getCarbonEmissions(duration, tMode, cTyp, cCls);
+          getWeatherCondition(oLat, oLng, dLat, dLng);
         },
         child: const Icon(Icons.filter_center_focus_outlined),
       ),
