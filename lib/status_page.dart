@@ -8,6 +8,7 @@ class StatusPage extends StatefulWidget {
 }
 
 class _StatusPageState extends State<StatusPage> {
+  dynamic emissions = 1000000;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,25 +22,36 @@ class _StatusPageState extends State<StatusPage> {
             icon: const Icon(Icons.arrow_back),
           )*/
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Container(
+      body: Column(
+        children: [
+          Container(
               color: Colors.green,
               margin: const EdgeInsets.all(30),
               height: 200,
               width: 400,
-              child: const Text(
-                'Total CO2 emissions this month',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 25,
-                ),
-              ),
-            )
-          ],
-        ),
+              child: Column(
+                children: [
+                  const Text(
+                    'Total CO2 emissions this month',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 25,
+                    ),
+                  ),
+                  Row(
+                    children: [
+                      Text('$emissions',
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 80,
+                          )),
+                    ],
+                  )
+                ],
+              )),
+        ],
       ),
     );
   }
