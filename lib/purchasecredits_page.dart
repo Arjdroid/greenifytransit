@@ -72,7 +72,7 @@ class _PurchaseCredistsState extends State<PurchaseCredists> {
                   Container(
                     margin: const EdgeInsets.all(30),
                     width: 330,
-                    height: 500,
+                    height: 400,
                     color: Colors.green,
                     child: Column(
                       children: [
