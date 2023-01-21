@@ -38,6 +38,8 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
   // SUV emits 14% more than hatch, Sedan emits 5% more
   // Source: https://www.theguardian.com/us-news/2020/sep/01/suv-conquered-america-climate-change-emissions
   String cCls = 'suv';
+  // Base Emissions (Assuming petrol hatchback car)
+  double baseEmissions = 0;
   // Carbon Emissions (in grams)
   double emissions = 0;
 
@@ -59,7 +61,7 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
             data['rows'][0]['elements'][0]['duration']['value']; // Seconds
         distance =
             data['rows'][0]['elements'][0]['distance']['value']; // Meters
-        getCarbonEmissions(duration, tMode, cTyp, cCls);
+        getCarbonEmissions(tMode, cTyp, cCls);
       });
       //print('$duration');
     } else {
@@ -68,10 +70,10 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
   }
 
   // Function that calculates the Carbon Emissions of A Journey
-  void getCarbonEmissions(duration, mode, carType, carClass) async {
+  void getCarbonEmissions(mode, carType, carClass) async {
     // Source: https://www.eea.europa.eu/highlights/average-co2-emissions-from-new-cars-vans-2019
     // Average car emits 122.4 grams of CO2 per kilometre
-    var modeIndex = 0;
+    /*var modeIndex = 0;
     if (mode == 'walking') {
       var modeIndex = 0;
     } else if (mode == 'bicycling') {
@@ -80,21 +82,35 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
       var modeIndex = 2;
     } else if (mode == 'driving') {
       var modeIndex = 3;
-    }
+    }*/
     ;
     var baseCarEmission = distance * 122.4 * 0.001;
     /*setState(() {
       //emissions = baseCarEmission;
     });*/
-    if (modeIndex == 0 | 1) {
+    if (mode == 'walking') {
       setState(() {
         emissions = 0;
-        debugstatement = 'ZERO EMISSIONS BABY!';
+        // Debug
+        debugstatement = 'ZERO EMISSIONS WALK';
+        baseEmissions = baseCarEmission;
       });
-    } else if (modeIndex == 2) {
+    } else if (mode == 'bicycling') {
       setState(() {
-        debugstatement = 'TRANSIT EMISSIONS UNDEFINED';
+        emissions = 0;
+        // Debug
+        debugstatement = 'ZERO EMISSIONS BICYCLE';
+        baseEmissions = baseCarEmission;
       });
+    } else if (mode == 'transit') {
+      setState(() {
+        emissions = baseCarEmission * 0.10;
+        // Debug
+        debugstatement = 'TRANSIT EMISSIONS NEED REFINEMENT';
+        baseEmissions = baseCarEmission;
+      });
+    } else if (mode == 'driving') {
+      // Need to nest conditions for car types and classes
     }
   }
 
@@ -126,9 +142,10 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
             Text('Car Type: $cTyp'),
             Text('Car Class: $cCls'),
             Text(' '),
-            Text('Trip Emissions: $emissions kg'),
+            Text('Trip Emissions: $emissions g'),
             Text(' '),
-            Text('Debug Statement: $debugstatement')
+            Text('Debug Statement: $debugstatement'),
+            Text('Debug Base Emissions (Petrol Hatch Car): $baseEmissions g'),
           ],
         ),
       ),
