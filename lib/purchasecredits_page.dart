@@ -28,7 +28,7 @@ class _PurchaseCredistsState extends State<PurchaseCredists> {
                 'Purchase Carbon credits',
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  color: Colors.white,
+                  color: Colors.green,
                   fontSize: 50,
                 ),
               ),
@@ -48,6 +48,42 @@ class _PurchaseCredistsState extends State<PurchaseCredists> {
                     Row(
                       children: const [
                         Text('1000000',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 80,
+                                fontFamily: 'arial')),
+                      ],
+                    )
+                  ],
+                ),
+              ),
+              const Text(
+                'Choose your prefered scheme',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.green,
+                  fontSize: 50,
+                ),
+              ),
+              Container(
+                margin: const EdgeInsets.fromLTRB(30, 25, 240, 25),
+                width: 100,
+                height: 230,
+                color: Colors.green,
+                child: Column(
+                  children: [
+                    const Text(
+                      'Planting trees in Canada',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 25,
+                      ),
+                    ),
+                    Row(
+                      children: const [
+                        Text('Price:',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 color: Colors.white,
