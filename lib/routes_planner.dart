@@ -18,6 +18,7 @@ class RoutesPlanner extends StatefulWidget {
 }
 
 class _RoutesPlannerState extends State<RoutesPlanner> {
+  // MOST of these should move to globals.dart and or just rely on user input.
   String debugstatement = '';
   // Defining the distance matrix parameters
   double oLat = 37.74144781559247;
@@ -58,9 +59,13 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
     //print("Average LatLng is $averageLat,$averageLng");
     // Make the weather API Call (bruh Google deprecated everything for this so I gotta sail out into the unknown)
     // Open Weather Map Says it'll take 2 hours for my damn API key to activate but I'll create the request so that I don't have to wait for it later (around 11.50 rn)
-    // Docs: https://openweathermap.org/current
+    /*
     String baseURL = 'https://api.openweathermap.org/data/2.5/weather';
     String request = '$baseURL?lat=$averageLat&lon=$averageLng&appid=$key';
+    var response = await http.get(Uri.parse(request));
+    var jsonString = response.body.toString();
+    var data = jsonDecode(jsonString);
+    */
   }
 
   // Function that makes the Distance Matrix API CAll
