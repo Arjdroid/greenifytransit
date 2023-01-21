@@ -49,19 +49,24 @@ class _StatusPageState extends State<StatusPage> {
                     Text('$emissions',
                         textAlign: TextAlign.center,
                         style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 80,
-                        )),
+                            color: Colors.white,
+                            fontSize: 80,
+                            fontFamily: 'arial')),
                   ],
                 )
               ],
             ),
           ),
           Container(
-            height: 300,
             width: 200,
+            height: 250,
             child: SfCartesianChart(
-              title: ChartTitle(text: 'carbon emssions saved this month'),
+              title: ChartTitle(
+                  text: 'carbon emssions saved this month',
+                  textStyle: TextStyle(
+                    color: Colors.green,
+                    fontStyle: FontStyle.normal,
+                  )),
               series: <ChartSeries>[
                 LineSeries<CarbonEmsissionData, int>(
                     pointColorMapper:
@@ -75,8 +80,7 @@ class _StatusPageState extends State<StatusPage> {
               ],
             ),
           ),
-          OutlinedButton(
-            style: OutlinedButton.styleFrom(),
+          ElevatedButton(
             onPressed: () {},
             child: const Text('Purchase Carbon credits'),
           )
