@@ -2,6 +2,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 // Variable Stores
 import 'package:greenifytransitcodefest/api_keys.dart';
@@ -16,15 +17,28 @@ class RoutesPlanner extends StatefulWidget {
 
 class _RoutesPlannerState extends State<RoutesPlanner> {
   // Defining the distance matrix parameters
-  String originLat = '37.74144781559247';
+  /*String originLat = '37.74144781559247';
   String originLng = '-122.50524108120509';
   String destLat = '37.92185635671533';
   String destLng = '-122.3790957425826';
-  String mode = 'bicyling';
+  String mode = 'bicyling';*/
   //List modes = ['walking', 'bicycle', 'transit', 'driving'];
 
+  String originLat = '';
+  String originLng = '';
+  String destLat = '';
+  String destLng = '';
+  String mode = '';
+
   // Function that makes the Distance Matrix API CAll
-  void getDistanceMatrix (originLat, originLng, destLat, destLng)
+  void getDistanceMatrix(
+      originLat, originLng, destLat, destLng, mode, distMatrixKey) async {
+    String baseURL = 'https://maps.googleapis.com/maps/api/distancematrix/json';
+    String request =
+        '$baseURL?origins=$originLat,$originLng&destinations=$destLat,$destLng&mode=$mode&units=metric&key=$distMatrixKey';
+    var response = await http.get(Uri.parse(request));
+    var data = response.body.toString();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,8 +56,9 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
               Text('Distance Matrix Details'),
               Text('Origin LatLng: $originLat, $originLng'),
               Text('Dest. LatLng: $destLat, $destLng'),
-              Text('Mode: ' + modes.elementAt(0)),
-              Text('')
+              //Text('Mode: ' + modes.elementAt(0)),
+              Text('Mode: $mode'),
+              //Text('$distMatrixKey')
             ],
           ),
         ));
