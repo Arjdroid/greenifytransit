@@ -10,13 +10,13 @@ class SocialsPage extends StatefulWidget {
 class _SocialsPageState extends State<SocialsPage> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       appBar: AppBar(
-        title: Text('socials page'),
+        title: const Text('Socials page'),
       ),
+      body: const Center(
+          child: Text('User\'s name ',
+              style: TextStyle(fontSize: 22), textAlign: TextAlign.left)),
     );
-        },
-      
-      
   }
-
+}
