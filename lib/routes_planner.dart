@@ -1,5 +1,5 @@
 // Starting the Routes Planner Stuff
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, avoid_print
 
 import 'dart:convert';
 
@@ -210,8 +210,22 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
           print('Diesel SUV is base * 1.14 * 0.8');
           return emissions = baseCarEmission * 1.14 * 0.8;
         } // Done with all Diesel Cases
+        //
+        // Moving to Hybrids
+        //
       } else if (carType == 'hybrid') {
-        // What have I done
+        // Nest car classes
+        if (carClass == 'hatch') {
+          print('Hybrid hatch is base * 0.6');
+          return emissions = baseCarEmission * 0.6;
+        } else if (carClass == 'sedan') {
+          print('Hybrid SEDAN is base * 1.05 * 0.6');
+          return emissions = baseCarEmission * 1.05 * 0.6;
+        } else if (carClass == 'suv') {
+          print('Hybrid SUV is base * 1.14 * 0.6');
+          return emissions = baseCarEmission * 1.14 * 0.6;
+        } // Done with all Hybrid Cases
+        /*// What have I done
         setState(() {
           emissions = baseCarEmission * 0.6;
           // Debug
@@ -230,10 +244,10 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
           emissions = baseCarEmission * 1.14 * 0.6;
           debugstatement = 'base * 1.14 * 0.6';
           baseEmissions = baseCarEmission;
-        });
+        });*/
       } // Done with all Hybrid Cases
     } // End of IF DRIVING
-    throw Exception('Yeet');
+    throw Exception('God Damn This');
   } // I'm sorry to whoever has to review & read this, primarily myself
 
   @override
