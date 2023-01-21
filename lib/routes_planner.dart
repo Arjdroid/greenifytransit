@@ -24,24 +24,27 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
   String oLng = '-122.50524108120509';
   String dLat = '37.92185635671533';
   String dLng = '-122.3790957425826';
-  //List modes = ['walking', 'bicycling', 'transit', 'driving'];
+  List modes = ['walking', 'bicycling', 'transit', 'driving'];
   String tMode = 'driving';
   int duration = 0;
   int distance = 0;
-  //List carTypes = ['petrol', 'diesel', 'hybrid', 'ev']
   // diesel cars emit only 80% emissions of avg. car
   // hybrids emit only 60% emissions of avg.car
   // evs emit 0 emissions
   // Source: https://www.lightfoot.co.uk/news/2017/10/04/how-much-co2-does-a-car-emit-per-year/
   String cTyp = 'hybrid';
-  //List carTypes = ['suv', 'sedan', 'hatch']
+  List carTypes = ['petrol', 'diesel', 'hybrid', 'ev'];
   // SUV emits 14% more than hatch, Sedan emits 5% more
   // Source: https://www.theguardian.com/us-news/2020/sep/01/suv-conquered-america-climate-change-emissions
   String cCls = 'sedan';
+  List carClasses = ['suv', 'sedan', 'hatch'];
   // Base Emissions (Assuming petrol hatchback car)
   double baseEmissions = 0;
   // Carbon Emissions (in grams)
   double emissions = 0;
+
+  // Function that checks the weather for the Average between the 2 Coordinates
+  void getWeatherCondition(originLat, originLng, destLat, destLng, mode, key) {}
 
   // Function that makes the Distance Matrix API CAll
   void getDistanceMatrix(
