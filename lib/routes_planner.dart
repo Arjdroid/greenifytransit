@@ -73,8 +73,18 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
       ];
       List<dynamic> resultingData = await Future.wait(suggestionsData);
       print('RESULTING DATA: $resultingData');
-      var walkDur = resultingData[0][1];
-      print('WALK DURATION from RESULTING DATA: $walkDur');
+      // Testing how to extract data from List resultingData var walkDur = resultingData[0][1];
+      // print('WALK DURATION from RESULTING DATA: $walkDur');
+      //
+      //
+      // Actual suggestions algorithm coming into play now
+      if (resultingData[0][1] <= 600) {
+        print('Walking duration is under 601s');
+      } else {
+        print('Walking duration is over 10 mins');
+      }
+      //
+      //
       // Debug
       //print('Weather is clear'); //, available modes are: $availableModes');
     } else if (weatherClarity == false) {
