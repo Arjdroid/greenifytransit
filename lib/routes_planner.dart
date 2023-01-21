@@ -55,6 +55,11 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
     }
   }
 
+  // Function that calculates the Carbon Emissions of A Journey
+  void getCarbonEmissions(duration, mode, carType) async {
+    //asdf
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
