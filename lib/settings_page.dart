@@ -8,6 +8,8 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
+  String cTyp = 'Petrol';
+  var items = ['petrol', 'diesel', 'hybrid'];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,6 +23,29 @@ class _SettingsPageState extends State<SettingsPage> {
           },
           icon: const Icon(Icons.arrow_back),
         ),
+      ),
+      body: SingleChildScrollView(
+        child: Column(children: [
+          DropdownButton(
+            value: cTyp,
+
+            // Down Arrow Icon
+            icon: const Icon(Icons.keyboard_arrow_down),
+
+            // Array list of items
+            items: items.map((String items) {
+              return DropdownMenuItem(
+                value: items,
+                child: Text(items),
+              );
+            }).toList(),
+            onChanged: (String? newValue) {
+              setState(() {
+                cTyp = newValue!;
+              });
+            },
+          )
+        ]),
       ),
     );
   }
