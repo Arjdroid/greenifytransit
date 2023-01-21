@@ -48,6 +48,12 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
   bool isWeatherClear = true;
 
   // Function that gives a ranked suggestions list
+  Future<List> getRankedSuggestions() async {
+    // Get allNeededData from getAllData()
+    List<dynamic> allNeededData = await getAllData(isWeatherClear);
+    print('ALL NEEDED DATA: $allNeededData');
+    return allNeededData;
+  }
 
   // Function that aggregates data for suggestions
   Future<List> getAllData(weatherClarity) async {
@@ -72,7 +78,7 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
             oLat, oLng, dLat, dLng, availableModes[3], distMatrixKey),
       ];
       List<dynamic> resultingData = await Future.wait(suggestionsData);
-      print('RESULTING DATA: $resultingData');
+      //print('RESULTING DATA: $resultingData');
       return resultingData;
       // Debug
       //print('Weather is clear'); //, available modes are: $availableModes');
@@ -87,7 +93,7 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
             oLat, oLng, dLat, dLng, availableModes[1], distMatrixKey),
       ];
       List<dynamic> resultingData = await Future.wait(suggestionsData);
-      print('RESULTING DATA: $resultingData');
+      //print('RESULTING DATA: $resultingData');
       return resultingData;
       // Debug
       //print('Weather is not clear, available modes are: $availableMode');
@@ -285,7 +291,8 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
           //getDistanceMatrix(oLat, oLng, dLat, dLng, tMode, distMatrixKey);
           //getCarbonEmissions(duration, tMode, cTyp, cCls);
           //getWeatherCondition(oLat, oLng, dLat, dLng, openWeatherMapKey);
-          getAllData(isWeatherClear);
+          //getAllData(isWeatherClear);
+          getRankedSuggestions();
         },
         child: const Icon(Icons.filter_center_focus_outlined),
       ),
