@@ -18,6 +18,7 @@ class RoutesPlanner extends StatefulWidget {
 }
 
 class _RoutesPlannerState extends State<RoutesPlanner> {
+  String debugstatement = '';
   // Defining the distance matrix parameters
   String oLat = '37.74144781559247';
   String oLng = '-122.50524108120509';
@@ -70,6 +71,7 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
   void getCarbonEmissions(duration, mode, carType, carClass) async {
     // Source: https://www.eea.europa.eu/highlights/average-co2-emissions-from-new-cars-vans-2019
     // Average car emits 122.4 grams of CO2 per kilometre
+    var modeIndex = 0;
     if (mode == 'walking') {
       var modeIndex = 0;
     } else if (mode == 'bicycling') {
@@ -81,10 +83,19 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
     }
     ;
     var baseCarEmission = distance * 122.4 * 0.001;
-    setState(() {
-      emissions = baseCarEmission;
-    });
-    //if (mode ) {}
+    /*setState(() {
+      //emissions = baseCarEmission;
+    });*/
+    if (modeIndex == 0 | 1) {
+      setState(() {
+        emissions = 0;
+        debugstatement = 'ZERO EMISSIONS BABY!';
+      });
+    } else if (modeIndex == 2) {
+      setState(() {
+        debugstatement = 'TRANSIT EMISSIONS UNDEFINED';
+      });
+    }
   }
 
   @override
@@ -116,6 +127,8 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
             Text('Car Class: $cCls'),
             Text(' '),
             Text('Trip Emissions: $emissions kg'),
+            Text(' '),
+            Text('Debug Statement: $debugstatement')
           ],
         ),
       ),
