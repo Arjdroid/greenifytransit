@@ -25,6 +25,7 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
   String dLng = '-122.3790957425826';
   String tMode = 'bicyling';
   String duration = '';
+  dynamic _testlist = [];
   //List modes = ['walking', 'bicycle', 'transit', 'driving'];
   /*
   String originLat = '';
@@ -39,14 +40,16 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
     String baseURL = 'https://maps.googleapis.com/maps/api/distancematrix/json';
     String request =
         '$baseURL?origins=$originLat,$originLng&destinations=$destLat,$destLng&mode=$mode&units=metric&key=$key';
+    print(request);
     var response = await http.get(Uri.parse(request));
     var data = response.body.toString();
-    print(data);
+    //print('$response');
     if (response.statusCode == 200) {
+      print('Request Successfull!');
       setState(() {
-        //_placesList = jsonDecode(response.body.toString())['predictions'];
-        duration = jsonDecode(data);
+        _testlist = jsonDecode(response.body.toString())['rows'];
       });
+      print(_testlist['elements']);
     } else {
       throw Exception('Failed To Call API');
     }
