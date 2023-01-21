@@ -26,6 +26,7 @@ class _SocialsPageState extends State<SocialsPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromARGB(255, 214, 247, 246),
       appBar: AppBar(
         title: const Text('Socials page'),
       ),
@@ -101,12 +102,14 @@ class _SocialsPageState extends State<SocialsPage> {
           Container(
             height: 50,
             width: 200,
-            color: Colors.blueGrey,
+            decoration: BoxDecoration(
+                color: Colors.orangeAccent,
+                borderRadius: BorderRadius.circular(15)),
             child: Row(
               // ignore: prefer_const_literals_to_create_immutables
               children: [
                 const Text(
-                  ' 10 following',
+                  '     10 following',
                   style: TextStyle(color: Colors.white),
                 ),
                 const Text(
