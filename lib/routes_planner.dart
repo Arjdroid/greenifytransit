@@ -132,7 +132,7 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
   }
 
   // Function that calculates the Carbon Emissions of A Journey
-  double getCarbonEmissions(distance, mode, carType, carClass) {
+  Future<double> getCarbonEmissions(distance, mode, carType, carClass) async {
     // Source: https://www.eea.europa.eu/highlights/average-co2-emissions-from-new-cars-vans-2019
     // Average car emits 122.4 grams of CO2 per kilometre
     var baseCarEmission = distance * 122.4 * 0.001;
