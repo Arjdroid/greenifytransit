@@ -15,11 +15,29 @@ class _SocialsPageState extends State<SocialsPage> {
           title: const Text('Socials page'),
         ),
         body: Column(
-          // ignore: prefer_const_literals_to_create_immutables
           children: [
-            const Text('User\'s name ',
-                style: TextStyle(fontSize: 16), textAlign: TextAlign.left),
+            Row(
+              children: [
+                Text('FirstName'),
+                Spacer(),
+                Text('LastName'),
+              ],
+            ),
+            Row(
+              children: [
+                Text('Location'),
+              ],
+            )
           ],
+          // ignore: prefer_const_literals_to_create_immutables
+          /*children: [
+              Row(
+                children: [
+                  // ignore: prefer_const_constructors
+                  Text('User\'s name '),
+                ],
+              ),
+            ]));*/
         ));
   }
 }
