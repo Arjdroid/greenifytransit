@@ -18,7 +18,7 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
           elevation: 0,
           title: Text('Route Planner'),
         ),
-        body: Padding
+        body: Padding(
           padding: EdgeInsets.all(16.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
