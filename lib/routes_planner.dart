@@ -33,11 +33,11 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
   // hybrids emit only 60% emissions of avg.car
   // evs emit 0 emissions
   // Source: https://www.lightfoot.co.uk/news/2017/10/04/how-much-co2-does-a-car-emit-per-year/
-  String cTyp = 'petrol';
+  String cTyp = 'hybrid';
   //List carTypes = ['suv', 'sedan', 'hatch']
   // SUV emits 14% more than hatch, Sedan emits 5% more
   // Source: https://www.theguardian.com/us-news/2020/sep/01/suv-conquered-america-climate-change-emissions
-  String cCls = 'suv';
+  String cCls = 'sedan';
   // Base Emissions (Assuming petrol hatchback car)
   double baseEmissions = 0;
   // Carbon Emissions (in grams)
@@ -186,7 +186,7 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
         });
       } // Done with all Hybrid Cases
     } // End of IF DRIVING
-  }
+  } // I'm sorry to whoever has to review & read this, primarily myself
 
   @override
   Widget build(BuildContext context) {
