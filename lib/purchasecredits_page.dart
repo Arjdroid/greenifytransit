@@ -10,8 +10,8 @@ class PurchaseCredists extends StatefulWidget {
 class _PurchaseCredistsState extends State<PurchaseCredists> {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: ElevatedButton(
+    return Scaffold(
+      body: ElevatedButton(
         onPressed: () {},
         child: const Text('purchase credits'),
       ),

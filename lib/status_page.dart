@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:greenifytransitcodefest/purchasecredits_page.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 class StatusPage extends StatefulWidget {
@@ -120,7 +121,15 @@ class _StatusPageState extends State<StatusPage> {
               ],
             ),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return const PurchaseCredists();
+                    },
+                  ),
+                );
+              },
               child: const Text('Purchase Carbon credits'),
             )
           ],
