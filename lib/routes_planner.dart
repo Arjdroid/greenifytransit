@@ -68,7 +68,7 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
         Future<List> dataList =
             getDistanceMatrix(oLat, oLng, dLat, dLng, availMode, distMatrixKey);
         //print('Traval Duration: $duration s');
-        print(' ');
+        //print(' ');
         //print('$dataList');
       }
       // Debug
@@ -118,7 +118,12 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
           data['rows'][0]['elements'][0]['distance']['value']; // Meters
       getCarbonEmissions(iterativeDistance, mode, cTyp, cCls);
       // Make a list of all the data
-      List iterativeData = [iterativeDuration, iterativeDistance, emissions];
+      List iterativeData = [
+        mode,
+        iterativeDuration,
+        iterativeDistance,
+        emissions
+      ];
       print('$iterativeData');
       return iterativeData;
     } else {
@@ -147,7 +152,7 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
       //debugstatement = 'ZERO EMISSIONS BICYCLE';
       //baseEmissions = baseCarEmission;
     } else if (mode == 'transit') {
-      //print('TRANSIT EMISSIONS ARE WEIRD');
+      //print('TRANSIT EMISSIONS ARE WEIRD: base = $baseCarEmission');
       return emissions = baseCarEmission * 0.10;
       // Debug
       //debugstatement = 'TRANSIT EMISSIONS NEED REFINEMENT';
