@@ -120,7 +120,7 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
           data['rows'][0]['elements'][0]['duration']['value']; // Seconds
       var iterativeDistance =
           data['rows'][0]['elements'][0]['distance']['value']; // Meters
-      getCarbonEmissions(mode, cTyp, cCls);
+      getCarbonEmissions(iterativeDistance, mode, cTyp, cCls);
       // Make a list of all the data
       List iterativeData = [iterativeDuration, iterativeDistance, emissions];
       print('$iterativeData');
@@ -131,11 +131,10 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
   }
 
   // Function that calculates the Carbon Emissions of A Journey
-  double getCarbonEmissions(mode, carType, carClass) {
+  double getCarbonEmissions(distance, mode, carType, carClass) {
     // Source: https://www.eea.europa.eu/highlights/average-co2-emissions-from-new-cars-vans-2019
     // Average car emits 122.4 grams of CO2 per kilometre
     var baseCarEmission = distance * 122.4 * 0.001;
-    double baseTypeEmission = 0;
     /*setState(() {
       //emissions = baseCarEmission;
     });*/
