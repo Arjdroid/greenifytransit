@@ -21,108 +21,112 @@ class _SocialsPageState extends State<SocialsPage> {
       appBar: AppBar(
         title: const Text('Socials page'),
       ),
-      body: Column(children: [
-        Row(
-          children: const [Text(' ')],
-        ), //Empty row
+      body: SingleChildScrollView(
+          child: Column(
+        children: [
+          Row(
+            children: const [Text(' ')],
+          ), //Empty row
 
-        TextFormField(
-          decoration: const InputDecoration(
-            hintText: 'Enter your full name',
+          TextFormField(
+            decoration: const InputDecoration(
+              hintText: 'Enter your full name',
+            ),
+            validator: (String? value) {
+              if (value == null || value.isEmpty) {
+                return 'Please enter some text';
+              }
+              return null;
+            },
           ),
-          validator: (String? value) {
-            if (value == null || value.isEmpty) {
-              return 'Please enter some text';
-            }
-            return null;
-          },
-        ),
 
-        Row(
-          children: const [Text(' ')],
-        ), //empty row
+          Row(
+            children: const [Text(' ')],
+          ), //empty row
 
-        TextFormField(
-          decoration: const InputDecoration(
-            hintText: 'Enter your location - City, State, Country',
+          TextFormField(
+            decoration: const InputDecoration(
+              hintText: 'Enter your location - City, State, Country',
+            ),
+            validator: (String? value) {
+              if (value == null || value.isEmpty) {
+                return 'Please enter some text';
+              }
+              return null;
+            },
           ),
-          validator: (String? value) {
-            if (value == null || value.isEmpty) {
-              return 'Please enter some text';
-            }
-            return null;
-          },
-        ),
 
-        Row(
-          children: const [Text(' ')],
-        ), //empty row
+          Row(
+            children: const [Text(' ')],
+          ), //empty row
 
-        Container(
-          height: 50,
-          width: 200,
-          color: Colors.blueGrey,
-          child: Row(
-            // ignore: prefer_const_literals_to_create_immutables
-            children: [
-              const Text(
-                ' 10 following',
-                style: TextStyle(color: Colors.white),
-              ),
-              const Text(
-                ' -- ',
-                style: TextStyle(color: Colors.white),
-              ),
-              const Text(
-                '20 followers',
-                style: TextStyle(color: Colors.white),
-              ),
+          Container(
+            height: 50,
+            width: 200,
+            color: Colors.blueGrey,
+            child: Row(
+              // ignore: prefer_const_literals_to_create_immutables
+              children: [
+                const Text(
+                  ' 10 following',
+                  style: TextStyle(color: Colors.white),
+                ),
+                const Text(
+                  ' -- ',
+                  style: TextStyle(color: Colors.white),
+                ),
+                const Text(
+                  '20 followers',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ],
+            ),
+          ),
+
+          Row(
+            children: const [Text(' ')],
+          ), //empty row
+
+          Row(
+            children: const [Text(' Statistics: ')],
+          ),
+
+          Row(
+            children: const [Text(' ')],
+          ), //empty row
+
+          Container(
+            height: 200,
+            width: 200,
+            child: SfCartesianChart(
+              title: ChartTitle(text: 'carbon emssions saved this month'),
+              series: <ChartSeries>[
+                LineSeries<CarbonEmsissionData, int>(
+                    pointColorMapper:
+                        (CarbonEmsissionData carbonEmissions, _) =>
+                            carbonEmissions.color,
+                    dataSource: chartData,
+                    xValueMapper: (CarbonEmsissionData carbonEmissions, _) =>
+                        carbonEmissions.weeks,
+                    yValueMapper: (CarbonEmsissionData carbonEmissions, _) =>
+                        carbonEmissions.carbonEmisions)
+              ],
+            ),
+          ),
+
+          Row(
+            children: const [Text(' ')],
+          ), //empty row
+
+          Row(
+            children: const [
+              Text(' Friends: ', style: TextStyle(color: Colors.deepOrange))
             ],
           ),
-        ),
 
-        Row(
-          children: const [Text(' ')],
-        ), //empty row
-
-        Row(
-          children: const [Text(' Statistics: ')],
-        ),
-
-        Row(
-          children: const [Text(' ')],
-        ), //empty row
-
-        Container(
-          height: 200,
-          width: 200,
-          child: SfCartesianChart(
-            title: ChartTitle(text: 'carbon emssions saved this month'),
-            series: <ChartSeries>[
-              LineSeries<CarbonEmsissionData, int>(
-                  pointColorMapper: (CarbonEmsissionData carbonEmissions, _) =>
-                      carbonEmissions.color,
-                  dataSource: chartData,
-                  xValueMapper: (CarbonEmsissionData carbonEmissions, _) =>
-                      carbonEmissions.weeks,
-                  yValueMapper: (CarbonEmsissionData carbonEmissions, _) =>
-                      carbonEmissions.carbonEmisions)
-            ],
-          ),
-        ),
-
-        Row(
-          children: const [Text(' ')],
-        ), //empty row
-
-        Row(
-          children: const [
-            Text(' Friends: ', style: TextStyle(color: Colors.deepOrange))
-          ],
-        ),
-
-        IconButton(icon: Icon(Icons.account_circle), onPressed: () => {})
-      ]),
+          IconButton(icon: Icon(Icons.account_circle), onPressed: () => {})
+        ],
+      )),
     );
   }
 }
