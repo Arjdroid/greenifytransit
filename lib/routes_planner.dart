@@ -54,19 +54,24 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
     List suggestedModes = [];
     // Actual suggestions algorithm coming into play now
     if (allNeededData[0][1] <= 600) {
+      // Walking is best when duration is under 10 minutes
       // Index 0 is the top choice then it goes in ascending order of CO2 emissions
-      print('Walking duration is under 601s');
+      //print('Walking duration is under 601s');
       return suggestedModes = ['walking', 'bicycling', 'transit', 'driving'];
+    } else if (allNeededData[1][1] <= 1200) {
+      // When bicycling duration is under 20 minutes, its most preferable
+      return suggestedModes = ['bicycling', 'walking', 'transit', 'driving'];
+    } else if (cTyp == 'ev') {
+      // If the car is an EV, its preferred for longer journeys as zero emissions but bike & walk are chosen before because excercise is important
+      return suggestedModes = ['driving', 'transit', 'bicycling', 'walking'];
+    } else if (allNeededData[2][1] <= 3600) {
+      // Public transit is still convenient when its under 1 hour
+      return suggestedModes = ['transit', 'driving', 'bicycling', 'walking'];
     } else {
-      print('Walking duration is more than 10 minutes');
-      return suggestedModes = [''];
+      // If even public transit is taking over an hour, cars are preferred as that is the tipping point of comfort & convenience
+      return suggestedModes = ['driving', 'transit', 'bicycling', 'walking'];
     }
-    /*} else if (allNeededData[1][1] <= 1200) {
-      print('Walking duration is over 10 mins');
-    } else {
-      return suggestedModes = [];
-    }*/
-    return suggestedModes = []; // Dart can be weird sometimes
+    //return suggestedModes = []; // Dart can be weird sometimes
   }
 
   // Function that aggregates data for suggestions
