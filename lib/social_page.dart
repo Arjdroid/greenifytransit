@@ -10,15 +10,10 @@ class SocialsPage extends StatefulWidget {
 class _SocialsPageState extends State<SocialsPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       appBar: AppBar(
-        title: const Text('socials page'),
+        title: Text('socials page'),
       ),
-     floatingActionButton: FloatingActionButton(
-        onPressed: (){},
-        child: const Icon(Icons.accessibility),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
         },
       
