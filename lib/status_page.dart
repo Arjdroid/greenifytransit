@@ -24,13 +24,16 @@ class _StatusPageState extends State<StatusPage> {
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: const Text('greenifyTransit'),
-        /* automaticallyImplyLeading: false,
-          leading: IconButton(
+        actions: [
+          IconButton(
             onPressed: () {
-              Navigator.of(context).pop();
+              debugPrint('Settings');
             },
-            icon: const Icon(Icons.arrow_back),
-          )*/
+            icon: const Icon(
+              Icons.settings,
+            ),
+          )
+        ],
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -126,7 +129,6 @@ class _StatusPageState extends State<StatusPage> {
               ],
             ),
             ElevatedButton(
-              style: ButtonStyle(),
               onPressed: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(

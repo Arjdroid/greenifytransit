@@ -24,6 +24,16 @@ class _PurchaseCredistsState extends State<PurchaseCredists> {
             },
             icon: const Icon(Icons.arrow_back),
           ),
+          actions: [
+            IconButton(
+              onPressed: () {
+                debugPrint('Settings');
+              },
+              icon: const Icon(
+                Icons.settings,
+              ),
+            )
+          ],
         ),
         body: SingleChildScrollView(
           child: Column(
