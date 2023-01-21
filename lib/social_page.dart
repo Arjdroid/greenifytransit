@@ -37,16 +37,25 @@ class _SocialsPageState extends State<SocialsPage> {
             children: const [Text(' ')],
           ), //Empty row
 
-          const Padding(
-            padding: EdgeInsets.all(15),
-            child: TextField(
-              obscureText: true,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: 'Location',
-                hintText: 'Enter your location - City, State, Country',
-              ),
+          TextFormField(
+            decoration: InputDecoration(
+              border: OutlineInputBorder(),
+              labelText: 'Full Name',
+              hintText: 'Enter your name - First Name   Last Name',
             ),
+            validator: (String? value) {
+              if (value == null || value.isEmpty) {
+                return 'Please enter some text';
+              }
+
+              return null;
+            },
+            controller: firstNameController,
+            keyboardType: TextInputType.name,
+            onSaved: (value) {
+              firstNameController.text = value!;
+            },
+            textInputAction: TextInputAction.done,
           ),
 
           Row(
@@ -54,7 +63,9 @@ class _SocialsPageState extends State<SocialsPage> {
           ), //empty row
 
           TextFormField(
-            decoration: const InputDecoration(
+            decoration: InputDecoration(
+              border: OutlineInputBorder(),
+              labelText: 'Location',
               hintText: 'Enter your location - City, State, Country',
             ),
             validator: (String? value) {
