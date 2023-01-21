@@ -32,16 +32,16 @@ class RootPage extends StatefulWidget {
 //sanitycheck
 class _RootPageState extends State<RootPage> {
   int currentPage = 0;
-  /* List<Widget> pages = const [
-    SocialsPage(),
-    RoutesPlanner(),
+  List<Widget> pages = const [
     StatusPage(),
+    RoutesPlanner(),
+    SocialsPage(),
   ];
-  */
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: const StatusPage(),
+      body: pages[currentPage],
       bottomNavigationBar: NavigationBar(
         destinations: const [
           NavigationDestination(
@@ -66,13 +66,12 @@ class _RootPageState extends State<RootPage> {
             label: 'profile',
           ),
         ],
-        /*  onDestinationSelected: (int index) {
+        onDestinationSelected: (int index) {
           setState(() {
             currentPage = index;
           });
         },
         selectedIndex: currentPage,
-        */
       ),
     );
   }
