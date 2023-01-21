@@ -312,6 +312,7 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
           List<dynamic> rankedSuggestionsList =
               await getRankedSuggestions(isWeatherClear);
           print('$rankedSuggestionsList');
+          getWeatherCondition(oLat, oLng, dLat, dLng, openWeatherMapKey);
         },
         child: const Icon(Icons.filter_center_focus_outlined),
       ),
