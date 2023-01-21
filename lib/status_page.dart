@@ -19,6 +19,7 @@ class _StatusPageState extends State<StatusPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: const Text('greenifyTransit'),
         /* automaticallyImplyLeading: false,
@@ -29,91 +30,93 @@ class _StatusPageState extends State<StatusPage> {
             icon: const Icon(Icons.arrow_back),
           )*/
       ),
-      body: Column(
-        children: [
-          Container(
-            color: Colors.green,
-            margin: const EdgeInsets.all(30),
-            child: Column(
-              children: [
-                const Text(
-                  'Total CO2 emissions this month',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 25,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              color: Colors.green,
+              margin: const EdgeInsets.all(30),
+              child: Column(
+                children: [
+                  const Text(
+                    'Total CO2 emissions this month',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 25,
+                    ),
                   ),
-                ),
-                Row(
-                  children: [
-                    Text('$emissions',
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 80,
-                            fontFamily: 'arial')),
-                  ],
-                )
-              ],
+                  Row(
+                    children: [
+                      Text('$emissions',
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 80,
+                              fontFamily: 'arial')),
+                    ],
+                  )
+                ],
+              ),
             ),
-          ),
-          Container(
-            margin: const EdgeInsets.fromLTRB(5, 50, 180, 50),
-            width: 150,
-            height: 250,
-            alignment: Alignment.centerLeft,
-            color: const Color.fromARGB(255, 115, 226, 119),
-            child: SfCartesianChart(
-              title: ChartTitle(
-                  text: 'carbon emssions saved this month',
-                  textStyle: const TextStyle(
-                    color: Colors.white,
-                    fontStyle: FontStyle.normal,
-                  )),
-              series: <ChartSeries>[
-                LineSeries<CarbonEmsissionData, int>(
-                    pointColorMapper:
-                        (CarbonEmsissionData carbonEmissions, _) =>
-                            carbonEmissions.color,
-                    dataSource: chartData,
-                    xValueMapper: (CarbonEmsissionData carbonEmissions, _) =>
-                        carbonEmissions.weeks,
-                    yValueMapper: (CarbonEmsissionData carbonEmissions, _) =>
-                        carbonEmissions.carbonEmisions)
-              ],
+            Container(
+              margin: const EdgeInsets.fromLTRB(5, 50, 180, 50),
+              width: 150,
+              height: 250,
+              alignment: Alignment.centerLeft,
+              color: const Color.fromARGB(255, 115, 226, 119),
+              child: SfCartesianChart(
+                title: ChartTitle(
+                    text: 'carbon emssions saved this month',
+                    textStyle: const TextStyle(
+                      color: Colors.white,
+                      fontStyle: FontStyle.normal,
+                    )),
+                series: <ChartSeries>[
+                  LineSeries<CarbonEmsissionData, int>(
+                      pointColorMapper:
+                          (CarbonEmsissionData carbonEmissions, _) =>
+                              carbonEmissions.color,
+                      dataSource: chartData,
+                      xValueMapper: (CarbonEmsissionData carbonEmissions, _) =>
+                          carbonEmissions.weeks,
+                      yValueMapper: (CarbonEmsissionData carbonEmissions, _) =>
+                          carbonEmissions.carbonEmisions)
+                ],
+              ),
             ),
-          ),
-          Container(
-            margin: const EdgeInsets.fromLTRB(5, 50, 180, 50),
-            width: 150,
-            height: 250,
-            alignment: Alignment.centerLeft,
-            color: const Color.fromARGB(255, 115, 226, 119),
-            child: SfCartesianChart(
-              title: ChartTitle(
-                  text: 'carbon emssions saved this month',
-                  textStyle: const TextStyle(
-                    color: Colors.white,
-                    fontStyle: FontStyle.normal,
-                  )),
-              series: <ChartSeries>[
-                LineSeries<CarbonEmsissionData, int>(
-                    pointColorMapper:
-                        (CarbonEmsissionData carbonEmissions, _) =>
-                            carbonEmissions.color,
-                    dataSource: chartData,
-                    xValueMapper: (CarbonEmsissionData carbonEmissions, _) =>
-                        carbonEmissions.weeks,
-                    yValueMapper: (CarbonEmsissionData carbonEmissions, _) =>
-                        carbonEmissions.carbonEmisions)
-              ],
+            Container(
+              margin: const EdgeInsets.fromLTRB(180, 0, 5, 50),
+              width: 150,
+              height: 250,
+              alignment: Alignment.centerLeft,
+              color: const Color.fromARGB(255, 115, 226, 119),
+              child: SfCartesianChart(
+                title: ChartTitle(
+                    text: 'carbon emssions saved this month',
+                    textStyle: const TextStyle(
+                      color: Colors.white,
+                      fontStyle: FontStyle.normal,
+                    )),
+                series: <ChartSeries>[
+                  LineSeries<CarbonEmsissionData, int>(
+                      pointColorMapper:
+                          (CarbonEmsissionData carbonEmissions, _) =>
+                              carbonEmissions.color,
+                      dataSource: chartData,
+                      xValueMapper: (CarbonEmsissionData carbonEmissions, _) =>
+                          carbonEmissions.weeks,
+                      yValueMapper: (CarbonEmsissionData carbonEmissions, _) =>
+                          carbonEmissions.carbonEmisions)
+                ],
+              ),
             ),
-          ),
-          ElevatedButton(
-            onPressed: () {},
-            child: const Text('Purchase Carbon credits'),
-          )
-        ],
+            ElevatedButton(
+              onPressed: () {},
+              child: const Text('Purchase Carbon credits'),
+            )
+          ],
+        ),
       ),
     );
   }
