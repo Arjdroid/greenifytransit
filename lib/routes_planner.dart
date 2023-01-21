@@ -23,18 +23,19 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
   String oLng = '-122.50524108120509';
   String dLat = '37.92185635671533';
   String dLng = '-122.3790957425826';
+  //List modes = ['walking', 'bicycling', 'transit', 'driving'];
   String tMode = 'bicycling';
   int duration = 0;
-  // Available cartypes: SUV,
-  String cartype = '';
-  String carclass = '';
-  //List modes = ['walking', 'bicycling', 'transit', 'driving'];
-  /*
-  String originLat = '';
-  String originLng = '';
-  String destLat = '';
-  String destLng = '';
-  String mode = '';*/
+  int distance = 0;
+  //List carTypes = ['petrol', 'diesel', 'hybrid', 'ev']
+  // diesel cars emit only 80% emissions of petrol
+  // hybrids emit only 60% emissions of petrol
+  // evs emit 0 emissions
+  String cTyp = 'petrol';
+  //List carTypes = ['suv', 'sedan', 'hatch']
+  String cCls = 'suv';
+  // Carbon Emissions
+  int emissions = 0;
 
   // Function that makes the Distance Matrix API CAll
   void getDistanceMatrix(
@@ -50,7 +51,10 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
     if (response.statusCode == 200) {
       //print('Request Successfull!'); // For Debug
       setState(() {
-        duration = data['rows'][0]['elements'][0]['duration']['value'];
+        duration =
+            data['rows'][0]['elements'][0]['duration']['value']; // Seconds
+        distance =
+            data['rows'][0]['elements'][0]['distance']['value']; // Meters
       });
       //print('$duration');
     } else {
@@ -59,9 +63,7 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
   }
 
   // Function that calculates the Carbon Emissions of A Journey
-  void getCarbonEmissions(duration, mode, carType) async {
-    String;
-  }
+  void getCarbonEmissions(duration, mode, carType, carClass) async {}
 
   @override
   Widget build(BuildContext context) {
@@ -77,12 +79,18 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text('Distance Matrix Details'),
+            Text(' '),
             Text('Origin LatLng: $oLat, $oLng'),
             Text('Dest. LatLng: $dLat, $dLng'),
+            Text(' '),
             //Text('Mode: ' + modes.elementAt(0)),
             Text('Mode: $tMode'),
+            Text(' '),
             //Text('$distMatrixKey'),
-            Text('Travel Time: $duration'),
+            Text('Travel Time: $duration seconds'),
+            Text('Distance: $distance meters'),
+            Text(' '),
+            Text('Emissions: kg'),
           ],
         ),
       ),
