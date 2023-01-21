@@ -24,8 +24,11 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
   String dLat = '37.92185635671533';
   String dLng = '-122.3790957425826';
   String tMode = 'bicyling';
-  String duration = '';
+  late int duration;
   dynamic _testlist = [];
+  dynamic _testlist2 = [];
+  dynamic _testlist3 = [];
+  dynamic _testlist4 = [];
   //List modes = ['walking', 'bicycle', 'transit', 'driving'];
   /*
   String originLat = '';
@@ -42,14 +45,18 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
         '$baseURL?origins=$originLat,$originLng&destinations=$destLat,$destLng&mode=$mode&units=metric&key=$key';
     print(request);
     var response = await http.get(Uri.parse(request));
-    var data = response.body.toString();
+    var jsonString = response.body.toString();
+    var data = jsonDecode(jsonString);
     //print('$response');
     if (response.statusCode == 200) {
       print('Request Successfull!');
       setState(() {
-        _testlist = jsonDecode(response.body.toString())['rows'];
+        //_testlist = jsonDecode(jsonResponse.body.toString())['rows'];
+        //_testlist2 = jsonDecode(_testlist[0].toString())['duration'];
+        duration = data['rows'][0]['elements'][0]['duration']['value'];
       });
-      print(_testlist['elements']);
+      //print(_testlist[0] /*['elements'].toString()*/);
+      print('$duration');
     } else {
       throw Exception('Failed To Call API');
     }
