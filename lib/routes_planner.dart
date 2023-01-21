@@ -28,12 +28,14 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
   int duration = 0;
   int distance = 0;
   //List carTypes = ['petrol', 'diesel', 'hybrid', 'ev']
-  // diesel cars emit only 80% emissions of petrol
-  // hybrids emit only 60% emissions of petrol
+  // diesel cars emit only 80% emissions of avg. car
+  // hybrids emit only 60% emissions of avg.car
   // evs emit 0 emissions
   // Source: https://www.lightfoot.co.uk/news/2017/10/04/how-much-co2-does-a-car-emit-per-year/
   String cTyp = 'petrol';
   //List carTypes = ['suv', 'sedan', 'hatch']
+  // SUV emits 14% more than hatch, Sedan emits 5% more
+  // Source: https://www.theguardian.com/us-news/2020/sep/01/suv-conquered-america-climate-change-emissions
   String cCls = 'suv';
   // Carbon Emissions
   int emissions = 0;
@@ -65,7 +67,8 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
 
   // Function that calculates the Carbon Emissions of A Journey
   void getCarbonEmissions(duration, mode, carType, carClass) async {
-    //
+    // Source: https://www.eea.europa.eu/highlights/average-co2-emissions-from-new-cars-vans-2019
+    // Average car emits 122.4 grams of CO2 per kilometre
   }
 
   @override
