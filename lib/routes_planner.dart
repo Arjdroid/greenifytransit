@@ -45,33 +45,47 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
   double emissions = 0;
   // Current Weather Condition (temporary standin for getWeatherCondition)
   // This means that the weather is clear, if false that means that the weather is not clear
-  bool isWeatherClear = true;
+  bool isWeatherClear = false;
 
   // Function that gives a ranked suggestions list
-  Future<List> getRankedSuggestions() async {
+  Future<List> getRankedSuggestions(weatherClariy) async {
     // Get allNeededData from getAllData()
     List<dynamic> allNeededData = await getAllData(isWeatherClear);
     List suggestedModes = [];
     // Actual suggestions algorithm coming into play now
-    if (allNeededData[0][1] <= 600) {
-      // Walking is best when duration is under 10 minutes
-      // Index 0 is the top choice then it goes in ascending order of CO2 emissions
-      //print('Walking duration is under 601s');
-      return suggestedModes = ['walking', 'bicycling', 'transit', 'driving'];
-    } else if (allNeededData[1][1] <= 1200) {
-      // When bicycling duration is under 20 minutes, its most preferable
-      return suggestedModes = ['bicycling', 'walking', 'transit', 'driving'];
-    } else if (cTyp == 'ev') {
-      // If the car is an EV, its preferred for longer journeys as zero emissions but bike & walk are chosen before because excercise is important
-      return suggestedModes = ['driving', 'transit', 'bicycling', 'walking'];
-    } else if (allNeededData[2][1] <= 3600) {
-      // Public transit is still convenient when its under 1 hour
-      return suggestedModes = ['transit', 'driving', 'bicycling', 'walking'];
+    if (isWeatherClear == true) {
+      if (allNeededData[0][1] <= 600) {
+        // Walking is best when duration is under 10 minutes
+        // Index 0 is the top choice then it goes in ascending order of CO2 emissions
+        //print('Walking duration is under 601s');
+        return suggestedModes = ['walking', 'bicycling', 'transit', 'driving'];
+      } else if (allNeededData[1][1] <= 1200) {
+        // When bicycling duration is under 20 minutes, its most preferable
+        return suggestedModes = ['bicycling', 'walking', 'transit', 'driving'];
+      } else if (cTyp == 'ev') {
+        // If the car is an EV, its preferred for longer journeys as zero emissions but bike & walk are chosen before because excercise is important
+        return suggestedModes = ['driving', 'transit', 'bicycling', 'walking'];
+      } else if (allNeededData[2][1] <= 3600) {
+        // Public transit is still convenient when its under 1 hour
+        return suggestedModes = ['transit', 'driving', 'bicycling', 'walking'];
+      } else {
+        // If even public transit is taking over an hour, cars are preferred as that is the tipping point of comfort & convenience
+        return suggestedModes = ['driving', 'transit', 'bicycling', 'walking'];
+      }
+      //return suggestedModes = []; // Dart can be weird sometimes
+    } else if (isWeatherClear == false) {
+      if (allNeededData[0][1] <= 3600) {
+        // Transit is bearable under one hour even when its raining
+        //print(allNeededData[0][1]);
+        return suggestedModes = ['transit', 'driving'];
+      } else {
+        // Beyond one hour of public transit, driving is preferable
+        //print(allNeededData[0][1]);
+        return suggestedModes = ['driving', 'transit'];
+      }
     } else {
-      // If even public transit is taking over an hour, cars are preferred as that is the tipping point of comfort & convenience
-      return suggestedModes = ['driving', 'transit', 'bicycling', 'walking'];
+      throw Exception('Error');
     }
-    //return suggestedModes = []; // Dart can be weird sometimes
   }
 
   // Function that aggregates data for suggestions
@@ -245,27 +259,7 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
           //print('Hybrid SUV is base * 1.14 * 0.6');
           return emissions = baseCarEmission * 1.14 * 0.6;
         } // Done with all Hybrid Cases
-        /*// What have I done
-        setState(() {
-          emissions = baseCarEmission * 0.6;
-          // Debug
-          debugstatement = 'base * 0.6';
-          baseEmissions = baseCarEmission;
-        });
-      } else if (carClass == 'sedan') {
-        setState(() {
-          emissions = baseCarEmission * 1.05 * 0.6;
-          // Debug
-          debugstatement = 'base * 1.05 * 0.6';
-          baseEmissions = baseCarEmission;
-        });
-      } else if (carClass == 'suv') {
-        setState(() {
-          emissions = baseCarEmission * 1.14 * 0.6;
-          debugstatement = 'base * 1.14 * 0.6';
-          baseEmissions = baseCarEmission;
-        });*/
-      } // Done with all Hybrid Cases
+      }
     } // End of IF DRIVING
     throw Exception('God Damn This');
   } // I'm sorry to whoever has to review & read this, primarily myself
@@ -311,7 +305,8 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
           //getCarbonEmissions(duration, tMode, cTyp, cCls);
           //getWeatherCondition(oLat, oLng, dLat, dLng, openWeatherMapKey);
           //getAllData(isWeatherClear);
-          List<dynamic> rankedSuggestionsList = await getRankedSuggestions();
+          List<dynamic> rankedSuggestionsList =
+              await getRankedSuggestions(isWeatherClear);
           print('$rankedSuggestionsList');
         },
         child: const Icon(Icons.filter_center_focus_outlined),
