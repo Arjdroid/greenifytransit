@@ -51,8 +51,22 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
   Future<List> getRankedSuggestions() async {
     // Get allNeededData from getAllData()
     List<dynamic> allNeededData = await getAllData(isWeatherClear);
-    print('ALL NEEDED DATA: $allNeededData');
-    return allNeededData;
+    List suggestedModes = [];
+    // Actual suggestions algorithm coming into play now
+    if (allNeededData[0][1] <= 600) {
+      // Index 0 is the top choice then it goes in ascending order of CO2 emissions
+      print('Walking duration is under 601s');
+      return suggestedModes = ['walking', 'bicycling', 'transit', 'driving'];
+    } else {
+      print('Walking duration is more than 10 minutes');
+      return suggestedModes = [''];
+    }
+    /*} else if (allNeededData[1][1] <= 1200) {
+      print('Walking duration is over 10 mins');
+    } else {
+      return suggestedModes = [];
+    }*/
+    return suggestedModes = []; // Dart can be weird sometimes
   }
 
   // Function that aggregates data for suggestions
