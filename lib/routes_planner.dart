@@ -48,9 +48,7 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
   bool isWeatherClear = true;
 
   // Function that actually generates the suggestions
-  void getSuggestions(
-    weatherClarity,
-  ) async {
+  Future<List> getAllData(weatherClarity) async {
     // Consider whether the weather is clear or not
     if (weatherClarity == true) {
       // All modes of transport applicable
@@ -73,18 +71,7 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
       ];
       List<dynamic> resultingData = await Future.wait(suggestionsData);
       print('RESULTING DATA: $resultingData');
-      // Testing how to extract data from List resultingData var walkDur = resultingData[0][1];
-      // print('WALK DURATION from RESULTING DATA: $walkDur');
-      //
-      //
-      // Actual suggestions algorithm coming into play now
-      if (resultingData[0][1] <= 600) {
-        print('Walking duration is under 601s');
-      } else {
-        print('Walking duration is over 10 mins');
-      }
-      //
-      //
+      return resultingData;
       // Debug
       //print('Weather is clear'); //, available modes are: $availableModes');
     } else if (weatherClarity == false) {
@@ -99,8 +86,11 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
       ];
       List<dynamic> resultingData = await Future.wait(suggestionsData);
       print('RESULTING DATA: $resultingData');
+      return resultingData;
       // Debug
       //print('Weather is not clear, available modes are: $availableMode');
+    } else {
+      throw Exception('Failure');
     }
   }
 
@@ -293,7 +283,7 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
           //getDistanceMatrix(oLat, oLng, dLat, dLng, tMode, distMatrixKey);
           //getCarbonEmissions(duration, tMode, cTyp, cCls);
           //getWeatherCondition(oLat, oLng, dLat, dLng, openWeatherMapKey);
-          getSuggestions(isWeatherClear);
+          getAllData(isWeatherClear);
         },
         child: const Icon(Icons.filter_center_focus_outlined),
       ),
