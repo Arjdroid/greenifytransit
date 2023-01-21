@@ -85,6 +85,7 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
     }*/
     ;
     var baseCarEmission = distance * 122.4 * 0.001;
+    double baseTypeEmission = 0;
     /*setState(() {
       //emissions = baseCarEmission;
     });*/
@@ -110,7 +111,36 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
         baseEmissions = baseCarEmission;
       });
     } else if (mode == 'driving') {
-      // Need to nest conditions for car types and classes
+      // Nest conditions for car types
+      if (carType == 'ev') {
+        setState(() {
+          emissions = 0;
+          // Debug
+          debugstatement = 'ZERO EMISSIONS EV';
+          baseEmissions = baseCarEmission;
+        });
+      } else if (carType == 'petrol') {
+        // Nest car types
+        if (carClass == 'hatch') {
+          setState(() {
+            emissions = baseCarEmission;
+            // Debug
+            debugstatement = 'SAME AS BASE EMISSIONS';
+            baseEmissions = baseCarEmission;
+          });
+        } else if (carClass == 'sedan') {
+          setState(() {
+            emissions = baseCarEmission * 1.05;
+            // Debug
+            debugstatement = 'Sedan * 1.05';
+            baseEmissions = baseCarEmission;
+          });
+        } else if (carClass == 'suv') {
+          setState(() {
+            emissions = baseCarEmission * 1.14;
+          });
+        }
+      }
     }
   }
 
