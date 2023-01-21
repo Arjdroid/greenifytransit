@@ -18,20 +18,30 @@ class RoutesPlanner extends StatefulWidget {
 }
 
 class _RoutesPlannerState extends State<RoutesPlanner> {
+  String debugstatement = '';
   // Defining the distance matrix parameters
   String oLat = '37.74144781559247';
   String oLng = '-122.50524108120509';
   String dLat = '37.92185635671533';
   String dLng = '-122.3790957425826';
   //List modes = ['walking', 'bicycling', 'transit', 'driving'];
-  String tMode = 'bicycling';
+  String tMode = 'driving';
   int duration = 0;
   int distance = 0;
   //List carTypes = ['petrol', 'diesel', 'hybrid', 'ev']
-  // diesel cars emit only 80% the
-  String carType = 'petrol';
+  // diesel cars emit only 80% emissions of avg. car
+  // hybrids emit only 60% emissions of avg.car
+  // evs emit 0 emissions
+  // Source: https://www.lightfoot.co.uk/news/2017/10/04/how-much-co2-does-a-car-emit-per-year/
+  String cTyp = 'hybrid';
   //List carTypes = ['suv', 'sedan', 'hatch']
-  String carClass = 'suv';
+  // SUV emits 14% more than hatch, Sedan emits 5% more
+  // Source: https://www.theguardian.com/us-news/2020/sep/01/suv-conquered-america-climate-change-emissions
+  String cCls = 'sedan';
+  // Base Emissions (Assuming petrol hatchback car)
+  double baseEmissions = 0;
+  // Carbon Emissions (in grams)
+  double emissions = 0;
 
   // Function that makes the Distance Matrix API CAll
   void getDistanceMatrix(
@@ -51,6 +61,7 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
             data['rows'][0]['elements'][0]['duration']['value']; // Seconds
         distance =
             data['rows'][0]['elements'][0]['distance']['value']; // Meters
+        getCarbonEmissions(tMode, cTyp, cCls);
       });
       //print('$duration');
     } else {
@@ -59,9 +70,123 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
   }
 
   // Function that calculates the Carbon Emissions of A Journey
-  void getCarbonEmissions(duration, mode, carType) async {
-    //asdf
-  }
+  void getCarbonEmissions(mode, carType, carClass) async {
+    // Source: https://www.eea.europa.eu/highlights/average-co2-emissions-from-new-cars-vans-2019
+    // Average car emits 122.4 grams of CO2 per kilometre
+    /*var modeIndex = 0;
+    if (mode == 'walking') {
+      var modeIndex = 0;
+    } else if (mode == 'bicycling') {
+      var modeIndex = 1;
+    } else if (mode == 'transit') {
+      var modeIndex = 2;
+    } else if (mode == 'driving') {
+      var modeIndex = 3;
+    }*/
+    ;
+    var baseCarEmission = distance * 122.4 * 0.001;
+    double baseTypeEmission = 0;
+    /*setState(() {
+      //emissions = baseCarEmission;
+    });*/
+    if (mode == 'walking') {
+      setState(() {
+        emissions = 0;
+        // Debug
+        debugstatement = 'ZERO EMISSIONS WALK';
+        baseEmissions = baseCarEmission;
+      });
+    } else if (mode == 'bicycling') {
+      setState(() {
+        emissions = 0;
+        // Debug
+        debugstatement = 'ZERO EMISSIONS BICYCLE';
+        baseEmissions = baseCarEmission;
+      });
+    } else if (mode == 'transit') {
+      setState(() {
+        emissions = baseCarEmission * 0.10;
+        // Debug
+        debugstatement = 'TRANSIT EMISSIONS NEED REFINEMENT';
+        baseEmissions = baseCarEmission;
+      });
+    } else if (mode == 'driving') {
+      // Nest conditions for car types
+      if (carType == 'ev') {
+        setState(() {
+          emissions = 0;
+          // Debug
+          debugstatement = 'ZERO EMISSIONS EV';
+          baseEmissions = baseCarEmission;
+        }); // EV is always 0 emissions
+      } else if (carType == 'petrol') {
+        // Nest car types
+        if (carClass == 'hatch') {
+          setState(() {
+            emissions = baseCarEmission;
+            // Debug
+            debugstatement = 'SAME AS BASE EMISSIONS';
+            baseEmissions = baseCarEmission;
+          });
+        } else if (carClass == 'sedan') {
+          setState(() {
+            emissions = baseCarEmission * 1.05;
+            // Debug
+            debugstatement = 'Sedan * 1.05';
+            baseEmissions = baseCarEmission;
+          });
+        } else if (carClass == 'suv') {
+          setState(() {
+            emissions = baseCarEmission * 1.14;
+            debugstatement = 'SUV is base * 1.14';
+            baseEmissions = baseCarEmission;
+          });
+        } // Done with all Petrol Cases
+      } else if (carType == 'diesel') {
+        // What have I done
+        setState(() {
+          emissions = baseCarEmission * 0.8;
+          // Debug
+          debugstatement = 'base * 0.6';
+          baseEmissions = baseCarEmission;
+        });
+      } else if (carClass == 'sedan') {
+        setState(() {
+          emissions = baseCarEmission * 1.05 * 0.8;
+          // Debug
+          debugstatement = 'base * 1.05 * 0.6';
+          baseEmissions = baseCarEmission;
+        });
+      } else if (carClass == 'suv') {
+        setState(() {
+          emissions = baseCarEmission * 1.14 * 0.8;
+          debugstatement = 'base * 1.14 * 0.6';
+          baseEmissions = baseCarEmission;
+        }); // Done with all Diesel Cases
+      } else if (carType == 'hybrid') {
+        // What have I done
+        setState(() {
+          emissions = baseCarEmission * 0.6;
+          // Debug
+          debugstatement = 'base * 0.6';
+          baseEmissions = baseCarEmission;
+        });
+      } else if (carClass == 'sedan') {
+        setState(() {
+          emissions = baseCarEmission * 1.05 * 0.6;
+          // Debug
+          debugstatement = 'base * 1.05 * 0.6';
+          baseEmissions = baseCarEmission;
+        });
+      } else if (carClass == 'suv') {
+        setState(() {
+          emissions = baseCarEmission * 1.14 * 0.6;
+          debugstatement = 'base * 1.14 * 0.6';
+          baseEmissions = baseCarEmission;
+        });
+      } // Done with all Hybrid Cases
+    } // End of IF DRIVING
+  } // I'm sorry to whoever has to review & read this, primarily myself
 
   @override
   Widget build(BuildContext context) {
@@ -88,13 +213,20 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
             Text('Travel Time: $duration seconds'),
             Text('Distance: $distance meters'),
             Text(' '),
-            Text('Emissions: kg'),
+            Text('Car Type: $cTyp'),
+            Text('Car Class: $cCls'),
+            Text(' '),
+            Text('Trip Emissions: $emissions g'),
+            Text(' '),
+            Text('Debug Statement: $debugstatement'),
+            Text('Debug Base Emissions (Petrol Hatch Car): $baseEmissions g'),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           getDistanceMatrix(oLat, oLng, dLat, dLng, tMode, distMatrixKey);
+          //getCarbonEmissions(duration, tMode, cTyp, cCls);
         },
         child: const Icon(Icons.filter_center_focus_outlined),
       ),
