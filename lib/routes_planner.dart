@@ -31,6 +31,7 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
   // diesel cars emit only 80% emissions of petrol
   // hybrids emit only 60% emissions of petrol
   // evs emit 0 emissions
+  // Source: https://www.lightfoot.co.uk/news/2017/10/04/how-much-co2-does-a-car-emit-per-year/
   String cTyp = 'petrol';
   //List carTypes = ['suv', 'sedan', 'hatch']
   String cCls = 'suv';
