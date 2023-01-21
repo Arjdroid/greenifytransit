@@ -13,6 +13,18 @@ class RoutesPlanner extends StatefulWidget {
 class _RoutesPlannerState extends State<RoutesPlanner> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+        appBar: AppBar(
+          elevation: 0,
+          title: Text('Route Planner'),
+        ),
+        body: Padding
+          padding: EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [],
+          ),
+        ));
   }
 }
