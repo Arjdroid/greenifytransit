@@ -54,12 +54,29 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
     // Consider whether the weather is clear or not
     if (weatherClarity == true) {
       // All modes of transport applicable
-      List availableModes = ['walking', 'bicycling', 'transit', 'driving'];
+      List<String> availableModes = [
+        'walking',
+        'bicycling',
+        'transit',
+        'driving'
+      ];
+      String availMode = '';
+      // A for-in loop that goes through every available mode and extracts their travel times + carbon emissions
+      for (availMode in availableModes) {
+        //getDistanceMatrix(oLat, oLng, dLat, dLng, availMode, distMatrixKey);
+        print('Mode: $availMode');
+        /*String getDistanceMatrix(
+            oLat, oLng, dLat, dLng, availMode, distMatrixKey) {
+          return duration.toString();
+          //After return everything else is ignored
+        }*/
+        print('Traval Duration: $duration s');
+      }
       // Debug
-      print('Weather is clear, available modes are: $availableModes');
+      print('Weather is clear'); //, available modes are: $availableModes');
     } else if (weatherClarity == false) {
       // Only Driving and Transit available as viable modes of Transport
-      List availableMode = ['transit', 'driving'];
+      List<String> availableMode = ['transit', 'driving'];
       // Debug
       print('Weather is not clear, available modes are: $availableMode');
     }
@@ -95,7 +112,8 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
     var data = jsonDecode(jsonString);
     //print('$response');
     if (response.statusCode == 200) {
-      //print('Request Successfull!'); // For Debug
+      print('Request Successfull!'); // For Debug
+      /*
       setState(() {
         duration =
             data['rows'][0]['elements'][0]['duration']['value']; // Seconds
@@ -103,6 +121,9 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
             data['rows'][0]['elements'][0]['distance']['value']; // Meters
         getCarbonEmissions(tMode, cTyp, cCls);
       });
+      */
+      var duration =
+          data['rows'][0]['elements'][0]['duration']['value']; // Seconds
       //print('$duration');
     } else {
       throw Exception('Failed To Call API');
@@ -265,7 +286,7 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          getDistanceMatrix(oLat, oLng, dLat, dLng, tMode, distMatrixKey);
+          //getDistanceMatrix(oLat, oLng, dLat, dLng, tMode, distMatrixKey);
           //getCarbonEmissions(duration, tMode, cTyp, cCls);
           //getWeatherCondition(oLat, oLng, dLat, dLng, openWeatherMapKey);
           getSuggestions(isWeatherClear);
