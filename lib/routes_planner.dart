@@ -43,9 +43,14 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
   // Carbon Emissions (in grams)
   double emissions = 0;
   // Current Weather Condition (temporary standin for getWeatherCondition)
+  // This means that the weather is clear, if false that means that the weather is not clear
+  bool isWeatherClear = true;
+
+  // Function that actually generates the suggestions
+  void getSuggestions() async {}
 
   // Function that checks the weather for the Average between the 2 Coordinates
-  void getWeatherCondition(originLat, originLng, destLat, destLng, key) {
+  void getWeatherCondition(originLat, originLng, destLat, destLng, key) async {
     // Get the mean latitude and longitude to check the weather of
     var averageLat = (originLat + destLat) / 2;
     var averageLng = (originLng + originLng) / 2;
