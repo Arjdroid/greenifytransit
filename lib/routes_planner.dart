@@ -21,10 +21,16 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
   // MOST of these should move to globals.dart and or just rely on user input.
   String debugstatement = '';
   // Defining the distance matrix parameters
+  // This one is just one block so it'll say biking is the best way
   double oLat = 37.75754213760453;
   double oLng = -122.43768627187049;
   double dLat = 37.75923433988162;
   double dLng = -122.43573362376672;
+  // This one is a very long distance ~40+ km so it'll always say driving is best
+  /*double oLat = 37.74144781559247;
+  double oLng = -122.50524108120509;
+  double dLat = 37.92185635671533;
+  double dLng = -122.3790957425826;*/
   List modes = ['walking', 'bicycling', 'transit', 'driving'];
   String tMode = 'driving';
   int duration = 0;
@@ -144,7 +150,9 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
     // Debug
     //print("Average LatLng is $averageLat,$averageLng");
     // Make the weather API Call (bruh Google deprecated everything for this so I gotta sail out into the unknown)
-    // Open Weather Map Says it'll take 2 hours for my damn API key to activate but I'll create the request so that I don't have to wait for it later (around 11.50 rn)
+    // Possible values for weatherMain that can come from the API
+    // "Thunderstorm" "Drizzle" "Rain" "Snow" "Clear" "Clouds" "Mist" "Smoke" "Haze" "Dust" "Fog" "Sand" "Ash" "Squall" "Tornado"
+    // We will say that isWeatherClear is true if weatherMain is either Clear, Clouds, or Mist
     String baseURL = 'https://api.openweathermap.org/data/2.5/weather';
     String request = '$baseURL?lat=$averageLat&lon=$averageLng&appid=$key';
     var response = await http.get(Uri.parse(request));
@@ -153,7 +161,14 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
     if (response.statusCode == 200) {
       var weatherMain = data['weather'][0]['main'];
       print('$weatherMain');
-      return true;
+      if (weatherMain == 'Clear') {
+        return true;
+      } else if (weatherMain == 'Clouds') {
+        return true;
+      } else if (weatherMain == 'Mist') {
+        return true;
+      } else
+        return false;
     } else {
       throw Exception('Failed to call API');
     }
@@ -314,7 +329,9 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
           List<dynamic> rankedSuggestionsList =
               await getRankedSuggestions(isWeatherClear);
           print('$rankedSuggestionsList');
-          getWeatherCondition(oLat, oLng, dLat, dLng, openWeatherMapKey);
+          bool tempWeatherClearTest = await getWeatherCondition(
+              oLat, oLng, dLat, dLng, openWeatherMapKey);
+          print('TempWeatherCleart Test: $tempWeatherClearTest');
         },
         child: const Icon(Icons.filter_center_focus_outlined),
       ),
