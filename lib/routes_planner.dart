@@ -2,6 +2,7 @@
 // ignore_for_file: prefer_const_constructors, avoid_print
 
 import 'dart:convert';
+import 'package:greenifytransitcodefest/globals.dart';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -39,11 +40,11 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
   // hybrids emit only 60% emissions of avg.car
   // evs emit 0 emissions
   // Source: https://www.lightfoot.co.uk/news/2017/10/04/how-much-co2-does-a-car-emit-per-year/
-  String cTyp = 'hybrid';
+  //String cTyp = 'hybrid';
   List carTypes = ['petrol', 'diesel', 'hybrid', 'ev'];
   // SUV emits 14% more than hatch, Sedan emits 5% more
   // Source: https://www.theguardian.com/us-news/2020/sep/01/suv-conquered-america-climate-change-emissions
-  String cCls = 'sedan';
+  //String cCls = 'sedan';
   List carClasses = ['suv', 'sedan', 'hatch'];
   // Base Emissions (Assuming petrol hatchback car)
   double baseEmissions = 0;
