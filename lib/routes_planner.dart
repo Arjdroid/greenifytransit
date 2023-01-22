@@ -390,15 +390,12 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
                     // Validate will return true if the form is valid, or false if
                     // the form is invalid.
                     setState(() {
-                      var originAddress = originController.text;
-                      var destinAddress = destinationController.text;
+                      originAddress = originController.text;
+                      destinAddress = destinationController.text;
 
                       // Debug
                       print('$originAddress');
                       print('$destinAddress');
-
-                      /*List<Location> locations =
-                    await locationFromAddress("$originAddress");*/
                     });
                   },
                   child: const Text('Submit'),
@@ -411,8 +408,11 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           // Convert origin name to origin coords
-          List<Location> locations =
+          List<Location> originLocations =
               await locationFromAddress("$originAddress");
+          // debug
+          print(
+              '${originLocations.last.longitude} ${originLocations.last.latitude}');
           // Get Weather Conditions
           isWeatherClear = await getWeatherCondition(
               oLat, oLng, dLat, dLng, openWeatherMapKey);
