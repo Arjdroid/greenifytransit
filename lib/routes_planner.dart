@@ -142,7 +142,8 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
   }
 
   // Function that checks the weather for the Average between the 2 Coordinates
-  void getWeatherCondition(originLat, originLng, destLat, destLng, key) async {
+  Future<bool> getWeatherCondition(
+      originLat, originLng, destLat, destLng, key) async {
     // Get the mean latitude and longitude to check the weather of
     var averageLat = (originLat + destLat) / 2;
     var averageLng = (originLng + originLng) / 2;
@@ -159,29 +160,15 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
     var data = jsonDecode(jsonString);
     if (response.statusCode == 200) {
       var weatherMain = data['weather'][0]['main'];
-      //print('$weatherMain');
+      print('WEATHER TYPE: $weatherMain');
       if (weatherMain == 'Clear') {
-        //return true;
-        setState(() {
-          isWeatherClear = true;
-        });
+        return true;
       } else if (weatherMain == 'Clouds') {
-        //return true;
-        setState(() {
-          isWeatherClear = true;
-        });
+        return true;
       } else if (weatherMain == 'Mist') {
-        //eturn true;
-        setState(() {
-          isWeatherClear = true;
-        });
-      } else {
-        setState(() {
-          isWeatherClear = true;
-        });
-      }
-      ;
-      //return false;
+        return true;
+      } else
+        return false;
     } else {
       throw Exception('Failed to call API');
     }
@@ -205,8 +192,6 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
       var iterativeDistance =
           data['rows'][0]['elements'][0]['distance']['value']; // Meters
       getCarbonEmissions(iterativeDistance, mode, cTyp, cCls);
-      getWeatherCondition(
-          originLat, originLng, destLat, destLng, openWeatherMapKey);
       // Make a list of all the data
       List iterativeData = [
         mode,
@@ -327,8 +312,6 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
             //Text(' '),
             Text('Car Type: $cTyp'),
             Text('Car Class: $cCls'),
-            Text(' '),
-            Text('Is Weather Clear: $isWeatherClear'),
             //Text(' '),
             //Text('Debug Statement: $debugstatement'),
             //Text('Debug Base Emissions (Petrol Hatch Car): $baseEmissions g'),
@@ -337,12 +320,13 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
+          isWeatherClear = await getWeatherCondition(
+              oLat, oLng, dLat, dLng, openWeatherMapKey);
           //getDistanceMatrix(oLat, oLng, dLat, dLng, tMode, distMatrixKey);
           //getCarbonEmissions(duration, tMode, cTyp, cCls);
           //getWeatherCondition(oLat, oLng, dLat, dLng, openWeatherMapKey);
-          //getAllData(isWeatherClear);
           List<dynamic> rankedSuggestionsList = await getRankedSuggestions();
-          //print('$rankedSuggestionsList');
+          print('RANKED SUGGESTIONS LIST: $rankedSuggestionsList');
           //bool tempWeatherClearTest = await getWeatherCondition(
           //    oLat, oLng, dLat, dLng, openWeatherMapKey);
           //print('TempWeatherCleart Test: $tempWeatherClearTest');
