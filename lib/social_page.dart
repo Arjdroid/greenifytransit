@@ -39,7 +39,7 @@ class _SocialsPageState extends State<SocialsPage> {
 
           Row(children: [
             Container(
-                height: 55,
+                height: 59,
                 width: 200,
                 margin: EdgeInsets.fromLTRB(40, 10, 50, 0),
                 decoration:
@@ -68,7 +68,7 @@ class _SocialsPageState extends State<SocialsPage> {
                   ),
                 ])),
             Container(
-                height: 90,
+                height: 95,
                 width: 80,
                 margin: EdgeInsets.fromLTRB(0, 25, 500, 0),
                 decoration:
@@ -87,7 +87,7 @@ class _SocialsPageState extends State<SocialsPage> {
 
           Row(children: [
             Container(
-                height: 70,
+                height: 74,
                 width: 200,
                 margin: EdgeInsets.fromLTRB(39, 0, 460, 100),
                 decoration:
@@ -119,7 +119,7 @@ class _SocialsPageState extends State<SocialsPage> {
           ]),
 
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16.0),
+            padding: const EdgeInsets.symmetric(vertical: 12.0),
             child: ElevatedButton(
               onPressed: () {
                 // Validate will return true if the form is valid, or false if
@@ -141,7 +141,7 @@ class _SocialsPageState extends State<SocialsPage> {
 
           Container(
             margin: EdgeInsets.fromLTRB(0, 0, 0, 100),
-            height: 50,
+            height: 46,
             width: 200,
             decoration: BoxDecoration(
                 color: Colors.orangeAccent,
