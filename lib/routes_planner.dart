@@ -27,6 +27,8 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
   double oLng = 0.0;
   double dLat = 0.0;
   double dLng = 0.0;
+  String originAddress = '';
+  String destinAddress = '';
   //
   // DEMO COORDS 1
   //
@@ -351,11 +353,9 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
                       textInputAction: TextInputAction.done,
                     ),
                   ])),
-
               const SizedBox(
                 height: 20,
               ),
-
               Container(
                   height: 60,
                   width: 200,
@@ -404,30 +404,16 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
                   child: const Text('Submit'),
                 ),
               ),
-
-              // Text('Distance Matrix Details'),
-              // Text(' '),
-              // Text('Origin LatLng: $oLat, $oLng'),
-              //Text('Dest. LatLng: $dLat, $dLng'),
-              // Text(' '),
-              //Text('Mode: ' + modes.elementAt(0)),
-              //Text('Mode: $tMode'),
-              //Text(' '),
-              //Text('$distMatrixKey'),
-              //Text('Travel Time: $duration seconds'),
-              //Text('Distance: $distance meters'),
-              //Text(' '),
-              // Text('Car Type: $cTyp'),
-              // Text('Car Class: $cCls'),
-              //Text(' '),
-              //Text('Debug Statement: $debugstatement'),
-              //Text('Debug Base Emissions (Petrol Hatch Car): $baseEmissions g'),
             ],
           ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
+          // Convert origin name to origin coords
+          List<Location> locations =
+              await locationFromAddress("$originAddress");
+          // Get Weather Conditions
           isWeatherClear = await getWeatherCondition(
               oLat, oLng, dLat, dLng, openWeatherMapKey);
           //getDistanceMatrix(oLat, oLng, dLat, dLng, tMode, distMatrixKey);
