@@ -6,6 +6,7 @@ import 'package:greenifytransitcodefest/globals.dart';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:geocoding/geocoding.dart';
 
 // Variable Stores
 import 'package:greenifytransitcodefest/api_keys.dart';
@@ -317,7 +318,7 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 115, 226, 119),
+      backgroundColor: Color.fromARGB(255, 214, 247, 246),
       appBar: AppBar(
         elevation: 0,
         title: Text('Route Planner'),
@@ -336,8 +337,8 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
                     TextFormField(
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
-                        labelText: 'latitude',
-                        hintText: 'Origin Latitude',
+                        labelText: 'Origin',
+                        hintText: 'Starting Place',
                       ),
                       validator: (String? value) {
                         if (value == null || value.isEmpty) {
@@ -368,8 +369,8 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
                     TextFormField(
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
-                        labelText: 'longitude',
-                        hintText: 'Origin longitude',
+                        labelText: 'Destination',
+                        hintText: 'Destination Place',
                       ),
                       validator: (String? value) {
                         if (value == null || value.isEmpty) {
@@ -386,71 +387,6 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
                       textInputAction: TextInputAction.done,
                     ),
                   ])),
-
-              const SizedBox(
-                height: 20,
-              ),
-
-              Container(
-                  height: 60,
-                  width: 200,
-                  decoration:
-                      BoxDecoration(borderRadius: BorderRadius.circular(15)),
-                  child: Column(children: [
-                    TextFormField(
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: 'latitude',
-                        hintText: 'Destination laitude',
-                      ),
-                      validator: (String? value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter some text';
-                        }
-
-                        return null;
-                      },
-                      controller: destinationLatitudeController,
-                      keyboardType: TextInputType.name,
-                      onSaved: (value) {
-                        destinationLatitudeController.text = value!;
-                      },
-                      textInputAction: TextInputAction.done,
-                    ),
-                  ])),
-
-              const SizedBox(
-                height: 20,
-              ),
-
-              Container(
-                  height: 60,
-                  width: 200,
-                  decoration:
-                      BoxDecoration(borderRadius: BorderRadius.circular(15)),
-                  child: Column(children: [
-                    TextFormField(
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: 'longitude',
-                        hintText: 'Destination longitude',
-                      ),
-                      validator: (String? value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter some text';
-                        }
-
-                        return null;
-                      },
-                      controller: destinationLongitudeController,
-                      keyboardType: TextInputType.name,
-                      onSaved: (value) {
-                        destinationLongitudeController.text = value!;
-                      },
-                      textInputAction: TextInputAction.done,
-                    ),
-                  ])),
-
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 16.0),
                 child: ElevatedButton(
@@ -458,7 +394,7 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
                     // Validate will return true if the form is valid, or false if
                     // the form is invalid.
                     setState(() {
-                      originLatitde = latitudeController.text;
+                      /*originLatitde = latitudeController.text;
                       originLongitude = longitudeController.text;
                       destinationLatitude = destinationLatitudeController.text;
                       destinationLongitude =
@@ -467,7 +403,7 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
                       print(originLatitde); // Location
                       print(originLongitude);
                       print(destinationLongitude);
-                      print(destinationLatitude);
+                      print(destinationLatitude);*/
                       //Name
                     });
                   },
