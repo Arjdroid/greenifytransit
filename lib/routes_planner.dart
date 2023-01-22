@@ -22,14 +22,18 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
   // MOST of these should move to globals.dart and or just rely on user input.
   String debugstatement = '';
   // Defining the distance matrix parameters
+  double oLat = 0.0;
+  double oLng = 0.0;
+  double dLat = 0.0;
+  double dLng = 0.0;
   //
   // DEMO COORDS 1
   //
   // This one is just one block so it'll say walking is the best way
-  double oLat = 37.75754213760453;
+  /*double oLat = 37.75754213760453;
   double oLng = -122.43768627187049;
   double dLat = 37.75923433988162;
-  double dLng = -122.43573362376672;
+  double dLng = -122.43573362376672;*/
   //
   // DEMO COORDS 2
   //
@@ -300,27 +304,90 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
     throw Exception('God Damn This');
   } // I'm sorry to whoever has to review & read this, primarily myself
 
+  final TextEditingController latitudeController = TextEditingController();
+  final TextEditingController longitudeController = TextEditingController();
+  final TextEditingController destinationLatitudeController =
+      TextEditingController();
+  final TextEditingController destinationLongitudeController =
+      TextEditingController();
+  String? originLatitde;
+  String? originLongitude;
+  String? destinationLatitude;
+  String? destinationLongitude;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromARGB(255, 115, 226, 119),
       appBar: AppBar(
         elevation: 0,
         title: Text('Route Planner'),
-        //backgroundColor: Color.fromARGB(255, 115, 226, 119),
       ),
-      body: Container(
-        color: const Color.fromARGB(255, 214, 247, 246),
+      body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.all(16.0),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text('Distance Matrix Details'),
-              Text(' '),
-              Text('Origin LatLng: $oLat, $oLng'),
-              Text('Dest. LatLng: $dLat, $dLng'),
-              Text(' '),
+              Container(
+                  height: 60,
+                  width: 200,
+                  decoration:
+                      BoxDecoration(borderRadius: BorderRadius.circular(15)),
+                  child: Column(children: [
+                    TextFormField(
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'Origin latitude',
+                        hintText: 'Origin Latitude',
+                      ),
+                      validator: (String? value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter some text';
+                        }
+
+                        return null;
+                      },
+                      controller: latitudeController,
+                      keyboardType: TextInputType.name,
+                      onSaved: (value) {
+                        latitudeController.text = value!;
+                      },
+                      textInputAction: TextInputAction.done,
+                    ),
+                  ])),
+
+              Container(
+                  height: 60,
+                  width: 200,
+                  decoration:
+                      BoxDecoration(borderRadius: BorderRadius.circular(15)),
+                  child: Column(children: [
+                    TextFormField(
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'Origin longitude',
+                        hintText: 'Origin longitude',
+                      ),
+                      validator: (String? value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter some text';
+                        }
+
+                        return null;
+                      },
+                      controller: longitudeController,
+                      keyboardType: TextInputType.name,
+                      onSaved: (value) {
+                        longitudeController.text = value!;
+                      },
+                      textInputAction: TextInputAction.done,
+                    ),
+                  ])),
+
+              // Text('Distance Matrix Details'),
+              // Text(' '),
+              // Text('Origin LatLng: $oLat, $oLng'),
+              //Text('Dest. LatLng: $dLat, $dLng'),
+              // Text(' '),
               //Text('Mode: ' + modes.elementAt(0)),
               //Text('Mode: $tMode'),
               //Text(' '),
@@ -328,8 +395,8 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
               //Text('Travel Time: $duration seconds'),
               //Text('Distance: $distance meters'),
               //Text(' '),
-              Text('Car Type: $cTyp'),
-              Text('Car Class: $cCls'),
+              // Text('Car Type: $cTyp'),
+              // Text('Car Class: $cCls'),
               //Text(' '),
               //Text('Debug Statement: $debugstatement'),
               //Text('Debug Base Emissions (Petrol Hatch Car): $baseEmissions g'),
