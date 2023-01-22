@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:greenifytransitcodefest/purchasecredits_page.dart';
+import 'package:greenifytransitcodefest/settings_page.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 class StatusPage extends StatefulWidget {
@@ -20,30 +21,41 @@ class _StatusPageState extends State<StatusPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromARGB(255, 214, 247, 246),
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: const Text('greenifyTransit'),
-        /* automaticallyImplyLeading: false,
-          leading: IconButton(
+        actions: [
+          IconButton(
             onPressed: () {
-              Navigator.of(context).pop();
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (BuildContext context) {
+                    return const SettingsPage();
+                  },
+                ),
+              );
             },
-            icon: const Icon(Icons.arrow_back),
-          )*/
+            icon: const Icon(
+              Icons.settings,
+            ),
+          )
+        ],
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
             Container(
-              color: Colors.green,
               margin: const EdgeInsets.all(30),
+              decoration: BoxDecoration(
+                  color: Colors.green, borderRadius: BorderRadius.circular(15)),
               child: Column(
                 children: [
                   const Text(
                     'Total CO2 emissions this month',
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      color: Colors.white,
+                      color: Color.fromARGB(255, 214, 247, 246),
                       fontSize: 25,
                     ),
                   ),
@@ -52,7 +64,7 @@ class _StatusPageState extends State<StatusPage> {
                       Text('$emissions',
                           textAlign: TextAlign.center,
                           style: const TextStyle(
-                              color: Colors.white,
+                              color: Color.fromARGB(255, 214, 247, 246),
                               fontSize: 80,
                               fontFamily: 'arial')),
                     ],
@@ -66,13 +78,15 @@ class _StatusPageState extends State<StatusPage> {
                   margin: const EdgeInsets.fromLTRB(20, 25, 5, 25),
                   width: 150,
                   height: 250,
+                  decoration: BoxDecoration(
+                      color: const Color.fromARGB(255, 115, 226, 119),
+                      borderRadius: BorderRadius.circular(15)),
                   alignment: Alignment.centerLeft,
-                  color: const Color.fromARGB(255, 115, 226, 119),
                   child: SfCartesianChart(
                     title: ChartTitle(
                         text: 'carbon emssions saved this month',
                         textStyle: const TextStyle(
-                          color: Colors.white,
+                          color: Color.fromARGB(255, 214, 247, 246),
                           fontStyle: FontStyle.normal,
                         )),
                     series: <ChartSeries>[
@@ -94,17 +108,18 @@ class _StatusPageState extends State<StatusPage> {
                   margin: const EdgeInsets.fromLTRB(50, 25, 10, 25),
                   width: 150,
                   height: 250,
-                  alignment: Alignment.centerLeft,
-                  color: const Color.fromARGB(255, 115, 226, 119),
+                  decoration: BoxDecoration(
+                      color: const Color.fromARGB(255, 115, 226, 119),
+                      borderRadius: BorderRadius.circular(15)),
                   child: SfCartesianChart(
                     title: ChartTitle(
-                        text: 'carbon emssions saved this month',
+                        text: 'Total number of trips this month',
                         textStyle: const TextStyle(
-                          color: Colors.white,
+                          color: Color.fromARGB(255, 214, 247, 246),
                           fontStyle: FontStyle.normal,
                         )),
                     series: <ChartSeries>[
-                      LineSeries<CarbonEmsissionData, int>(
+                      ColumnSeries<CarbonEmsissionData, int>(
                           pointColorMapper:
                               (CarbonEmsissionData carbonEmissions, _) =>
                                   carbonEmissions.color,
@@ -130,7 +145,13 @@ class _StatusPageState extends State<StatusPage> {
                   ),
                 );
               },
-              child: const Text('Purchase Carbon credits'),
+              child: const Text(
+                'Purchase Carbon Credits',
+                style: TextStyle(
+                  color: Color.fromARGB(255, 214, 247, 246),
+                  fontSize: 28,
+                ),
+              ),
             )
           ],
         ),
