@@ -112,7 +112,7 @@ class _PurchaseCredistsState extends State<PurchaseCredists> {
                     ),
                     Row(
                       children: const [
-                        Text('Price: per kg CO2',
+                        Text('Price: \$2 per kg CO2',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 color: Color.fromARGB(255, 214, 247, 246),
