@@ -64,7 +64,7 @@ class _RootPageState extends State<RootPage> {
               Icons.person,
               color: Colors.green,
             ),
-            label: 'profile',
+            label: 'Profile',
           ),
         ],
         onDestinationSelected: (int index) {
