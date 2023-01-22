@@ -26,8 +26,9 @@ class _SocialsPageState extends State<SocialsPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromARGB(255, 214, 247, 246),
       appBar: AppBar(
-        title: const Text('Socials page'),
+        title: const Text(' Profile'),
       ),
       body: SingleChildScrollView(
           child: Column(
@@ -36,46 +37,86 @@ class _SocialsPageState extends State<SocialsPage> {
             children: const [Text(' ')],
           ), //Empty row
 
-          TextFormField(
-            decoration: const InputDecoration(
-              hintText: 'Enter your full name',
-            ),
-            validator: (String? value) {
-              if (value == null || value.isEmpty) {
-                return 'Please enter some text';
-              }
-              return null;
-            },
-            controller: firstNameController,
-            keyboardType: TextInputType.name,
-            onSaved: (value) {
-              firstNameController.text = value!;
-            },
-            textInputAction: TextInputAction.done,
-          ),
+          Row(children: [
+            Container(
+                height: 55,
+                width: 200,
+                margin: EdgeInsets.fromLTRB(40, 10, 100, 0),
+                decoration:
+                    BoxDecoration(borderRadius: BorderRadius.circular(15)),
+                child: Column(children: [
+                  TextFormField(
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      prefixIcon: Icon(Icons.people),
+                      labelText: 'Full Name',
+                      hintText: 'First & Last Name',
+                    ),
+                    validator: (String? value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter some text';
+                      }
+
+                      return null;
+                    },
+                    controller: firstNameController,
+                    keyboardType: TextInputType.name,
+                    onSaved: (value) {
+                      firstNameController.text = value!;
+                    },
+                    textInputAction: TextInputAction.done,
+                  ),
+                ])),
+            Container(
+                height: 120,
+                width: 200,
+                margin: EdgeInsets.fromLTRB(0, 25, 0, 0),
+                decoration:
+                    BoxDecoration(borderRadius: BorderRadius.circular(15)),
+                child: Column(children: [
+                  IconButton(
+                      iconSize: 100,
+                      icon: const Icon(Icons.account_box_rounded),
+                      onPressed: () {}),
+                ])),
+          ]),
 
           Row(
             children: const [Text(' ')],
           ), //empty row
 
-          TextFormField(
-            decoration: const InputDecoration(
-              hintText: 'Enter your location - City, State, Country',
-            ),
-            validator: (String? value) {
-              if (value == null || value.isEmpty) {
-                return 'Please enter some text';
-              }
+          Row(children: [
+            Container(
+                height: 70,
+                width: 200,
+                margin: EdgeInsets.fromLTRB(39, 0, 460, 100),
+                decoration:
+                    BoxDecoration(borderRadius: BorderRadius.circular(15)),
+                child: Column(children: [
+                  TextFormField(
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      prefixIcon: Icon(Icons.add_location_rounded),
+                      labelText: 'Location',
+                      hintText: 'City, State, Country',
+                    ),
+                    validator: (String? value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter some text';
+                      }
 
-              return null;
-            },
-            controller: locationController,
-            keyboardType: TextInputType.name,
-            onSaved: (value) {
-              locationController.text = value!;
-            },
-            textInputAction: TextInputAction.done,
-          ),
+                      return null;
+                    },
+                    controller: locationController,
+                    keyboardType: TextInputType.name,
+                    onSaved: (value) {
+                      locationController.text = value!;
+                    },
+                    textInputAction: TextInputAction.done,
+                  ),
+                  Container(height: 10),
+                ])),
+          ]),
 
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 16.0),
@@ -99,14 +140,17 @@ class _SocialsPageState extends State<SocialsPage> {
           ), //empty row
 
           Container(
+            margin: EdgeInsets.fromLTRB(0, 0, 0, 100),
             height: 50,
             width: 200,
-            color: Colors.blueGrey,
+            decoration: BoxDecoration(
+                color: Colors.orangeAccent,
+                borderRadius: BorderRadius.circular(15)),
             child: Row(
               // ignore: prefer_const_literals_to_create_immutables
               children: [
                 const Text(
-                  ' 10 following',
+                  '     10 following',
                   style: TextStyle(color: Colors.white),
                 ),
                 const Text(
@@ -158,7 +202,10 @@ class _SocialsPageState extends State<SocialsPage> {
 
           Row(
             children: const [
-              Text(' Friends: ', style: TextStyle(color: Colors.deepOrange))
+              Text(
+                ' Friends: ',
+                style: TextStyle(color: Colors.deepOrange),
+              )
             ],
           ),
 
@@ -169,11 +216,17 @@ class _SocialsPageState extends State<SocialsPage> {
           Row(
             children: [
               IconButton(
-                  icon: const Icon(Icons.account_circle), onPressed: () => {}),
+                  iconSize: 70,
+                  icon: const Icon(Icons.account_circle),
+                  onPressed: () => {}),
               IconButton(
-                  icon: const Icon(Icons.account_circle), onPressed: () => {}),
+                  iconSize: 70,
+                  icon: const Icon(Icons.account_circle),
+                  onPressed: () => {}),
               IconButton(
-                  icon: const Icon(Icons.account_circle), onPressed: () => {})
+                  iconSize: 70,
+                  icon: const Icon(Icons.account_circle),
+                  onPressed: () => {})
             ],
           )
         ],
