@@ -22,19 +22,27 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
   // MOST of these should move to globals.dart and or just rely on user input.
   String debugstatement = '';
   // Defining the distance matrix parameters
+  //
+  // DEMO COORDS 1
+  //
   // This one is just one block so it'll say walking is the best way
-  /*double oLat = 37.75754213760453;
+  double oLat = 37.75754213760453;
   double oLng = -122.43768627187049;
   double dLat = 37.75923433988162;
-  double dLng = -122.43573362376672;*/
+  double dLng = -122.43573362376672;
+  //
+  // DEMO COORDS 2
+  //
   // This one is a very long distance ~40+ km so it'll always say driving is best
-  double oLat = 37.74144781559247;
+  /*double oLat = 37.74144781559247;
   double oLng = -122.50524108120509;
   double dLat = 37.92185635671533;
-  double dLng = -122.3790957425826;
-  // This one has different weather and timings
-  /*
-  double oLat = 34.01223769135059;
+  double dLng = -122.3790957425826;*/
+  //
+  // DEMO COORDS 3
+  //
+  // This one has different weather and timings, will suggest bike as best
+  /*double oLat = 34.01223769135059;
   double oLng = -118.41844426456332;
   double dLat = 34.022624461162096;
   double dLng = -118.40059148190034;*/
