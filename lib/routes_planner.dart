@@ -305,16 +305,12 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
     throw Exception('God Damn This');
   } // I'm sorry to whoever has to review & read this, primarily myself
 
-  final TextEditingController latitudeController = TextEditingController();
-  final TextEditingController longitudeController = TextEditingController();
-  final TextEditingController destinationLatitudeController =
-      TextEditingController();
-  final TextEditingController destinationLongitudeController =
-      TextEditingController();
-  String? originLatitde;
+  final TextEditingController originController = TextEditingController();
+  final TextEditingController destinationController = TextEditingController();
+  /*String? originLatitde;
   String? originLongitude;
   String? destinationLatitude;
-  String? destinationLongitude;
+  String? destinationLongitude;*/
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -347,10 +343,10 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
 
                         return null;
                       },
-                      controller: latitudeController,
+                      controller: originController,
                       keyboardType: TextInputType.name,
                       onSaved: (value) {
-                        latitudeController.text = value!;
+                        originController.text = value!;
                       },
                       textInputAction: TextInputAction.done,
                     ),
@@ -379,10 +375,10 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
 
                         return null;
                       },
-                      controller: longitudeController,
+                      controller: destinationController,
                       keyboardType: TextInputType.name,
                       onSaved: (value) {
-                        longitudeController.text = value!;
+                        destinationController.text = value!;
                       },
                       textInputAction: TextInputAction.done,
                     ),
@@ -394,17 +390,15 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
                     // Validate will return true if the form is valid, or false if
                     // the form is invalid.
                     setState(() {
-                      /*originLatitde = latitudeController.text;
-                      originLongitude = longitudeController.text;
-                      destinationLatitude = destinationLatitudeController.text;
-                      destinationLongitude =
-                          destinationLongitudeController.text;
+                      var originAddress = originController.text;
+                      var destinAddress = destinationController.text;
 
-                      print(originLatitde); // Location
-                      print(originLongitude);
-                      print(destinationLongitude);
-                      print(destinationLatitude);*/
-                      //Name
+                      // Debug
+                      print('$originAddress');
+                      print('$destinAddress');
+
+                      /*List<Location> locations =
+                    await locationFromAddress("$originAddress");*/
                     });
                   },
                   child: const Text('Submit'),
