@@ -57,6 +57,7 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
   String tMode = 'driving';
   int duration = 0;
   int distance = 0;
+  List<dynamic> rankedSuggestionsList = ['Submit First'];
   // diesel cars emit only 80% emissions of avg. car
   // hybrids emit only 60% emissions of avg.car
   // evs emit 0 emissions
@@ -401,6 +402,7 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
                   child: const Text('Submit'),
                 ),
               ),
+              Text('Suggested Mode = ' + rankedSuggestionsList[0]),
             ],
           ),
         ),
@@ -429,7 +431,9 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
           //getDistanceMatrix(oLat, oLng, dLat, dLng, tMode, distMatrixKey);
           //getCarbonEmissions(duration, tMode, cTyp, cCls);
           //getWeatherCondition(oLat, oLng, dLat, dLng, openWeatherMapKey);
-          List<dynamic> rankedSuggestionsList = await getRankedSuggestions();
+          setState(() async {
+            rankedSuggestionsList = await getRankedSuggestions();
+          });
           print('RANKED SUGGESTIONS LIST: $rankedSuggestionsList');
           //bool tempWeatherClearTest = await getWeatherCondition(
           //    oLat, oLng, dLat, dLng, openWeatherMapKey);
