@@ -40,7 +40,7 @@ class _SocialsPageState extends State<SocialsPage> {
           Container(
               height: 70,
               width: 200,
-              alignment: Alignment.topLeft,
+              margin: EdgeInsets.fromLTRB(40, 10, 500, 0),
               decoration:
                   BoxDecoration(borderRadius: BorderRadius.circular(15)),
               child: Column(children: [
@@ -75,7 +75,7 @@ class _SocialsPageState extends State<SocialsPage> {
           Container(
               height: 70,
               width: 200,
-              //alignment: Alignment.topLeft,
+              margin: EdgeInsets.fromLTRB(0, 0, 460, 0),
               decoration:
                   BoxDecoration(borderRadius: BorderRadius.circular(15)),
               child: Column(children: [
@@ -103,6 +103,19 @@ class _SocialsPageState extends State<SocialsPage> {
                 Container(height: 10),
               ])),
 
+          Container(
+              height: 70,
+              width: 200,
+              margin: EdgeInsets.fromLTRB(500, 0, 0, 50),
+              decoration:
+                  BoxDecoration(borderRadius: BorderRadius.circular(15)),
+              child: Column(children: [
+                IconButton(
+                    iconSize: 100,
+                    icon: const Icon(Icons.account_box_rounded),
+                    onPressed: () {}),
+              ])),
+
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 16.0),
             child: ElevatedButton(
@@ -125,6 +138,7 @@ class _SocialsPageState extends State<SocialsPage> {
           ), //empty row
 
           Container(
+            margin: EdgeInsets.fromLTRB(0, 100, 0, 0),
             height: 50,
             width: 200,
             decoration: BoxDecoration(
