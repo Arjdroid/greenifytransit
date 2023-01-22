@@ -336,7 +336,7 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
                     TextFormField(
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
-                        labelText: 'Origin latitude',
+                        labelText: 'latitude',
                         hintText: 'Origin Latitude',
                       ),
                       validator: (String? value) {
@@ -355,6 +355,10 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
                     ),
                   ])),
 
+              const SizedBox(
+                height: 20,
+              ),
+
               Container(
                   height: 60,
                   width: 200,
@@ -364,7 +368,7 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
                     TextFormField(
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
-                        labelText: 'Origin longitude',
+                        labelText: 'longitude',
                         hintText: 'Origin longitude',
                       ),
                       validator: (String? value) {
@@ -382,6 +386,94 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
                       textInputAction: TextInputAction.done,
                     ),
                   ])),
+
+              const SizedBox(
+                height: 20,
+              ),
+
+              Container(
+                  height: 60,
+                  width: 200,
+                  decoration:
+                      BoxDecoration(borderRadius: BorderRadius.circular(15)),
+                  child: Column(children: [
+                    TextFormField(
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'latitude',
+                        hintText: 'Destination laitude',
+                      ),
+                      validator: (String? value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter some text';
+                        }
+
+                        return null;
+                      },
+                      controller: destinationLatitudeController,
+                      keyboardType: TextInputType.name,
+                      onSaved: (value) {
+                        destinationLatitudeController.text = value!;
+                      },
+                      textInputAction: TextInputAction.done,
+                    ),
+                  ])),
+
+              const SizedBox(
+                height: 20,
+              ),
+
+              Container(
+                  height: 60,
+                  width: 200,
+                  decoration:
+                      BoxDecoration(borderRadius: BorderRadius.circular(15)),
+                  child: Column(children: [
+                    TextFormField(
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'longitude',
+                        hintText: 'Destination longitude',
+                      ),
+                      validator: (String? value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter some text';
+                        }
+
+                        return null;
+                      },
+                      controller: destinationLongitudeController,
+                      keyboardType: TextInputType.name,
+                      onSaved: (value) {
+                        destinationLongitudeController.text = value!;
+                      },
+                      textInputAction: TextInputAction.done,
+                    ),
+                  ])),
+
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16.0),
+                child: ElevatedButton(
+                  onPressed: () {
+                    // Validate will return true if the form is valid, or false if
+                    // the form is invalid.
+                    setState(() {
+                      originLatitde = latitudeController.text;
+                      originLongitude = longitudeController.text;
+                      destinationLatitude = destinationLatitudeController.text;
+                      destinationLongitude =
+                          destinationLongitudeController.text;
+
+                      print(originLatitde); // Location
+                      print(originLongitude);
+                      print(destinationLongitude);
+                      print(destinationLatitude);
+                      //Name
+                    });
+                  },
+                  child: const Text('Submit'),
+                ),
+              ),
 
               // Text('Distance Matrix Details'),
               // Text(' '),
