@@ -410,9 +410,19 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
           // Convert origin name to origin coords
           List<Location> originLocations =
               await locationFromAddress("$originAddress");
+          List<Location> destinLocations =
+              await locationFromAddress("$destinAddress");
           // debug
+          /*print(
+              '${originLocations.last.latitude} ${originLocations.last.longitude}');
           print(
-              '${originLocations.last.longitude} ${originLocations.last.latitude}');
+              '${destinLocations.last.latitude} ${destinLocations.last.longitude}');*/
+          setState(() {
+            oLat = originLocations.last.latitude;
+            oLng = originLocations.last.longitude;
+            dLat = destinLocations.last.latitude;
+            dLng = destinLocations.last.longitude;
+          });
           // Get Weather Conditions
           isWeatherClear = await getWeatherCondition(
               oLat, oLng, dLat, dLng, openWeatherMapKey);
