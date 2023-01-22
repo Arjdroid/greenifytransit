@@ -151,7 +151,9 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
     var jsonString = response.body.toString();
     var data = jsonDecode(jsonString);
     if (response.statusCode == 200) {
-      return data;
+      var weatherMain = data['weather'][0]['main'];
+      print('$weatherMain');
+      return true;
     } else {
       throw Exception('Failed to call API');
     }
