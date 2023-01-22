@@ -145,7 +145,7 @@ class _PurchaseCredistsState extends State<PurchaseCredists> {
                   children: [
                     const Text(
                       'Replacing fossil-fuel-powered plnats in the US',
-                      textAlign: TextAlign.start,
+                      textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Color.fromARGB(255, 214, 247, 246),
                         fontSize: 20,
@@ -153,11 +153,11 @@ class _PurchaseCredistsState extends State<PurchaseCredists> {
                       ),
                     ),
                     const SizedBox(
-                      height: 20,
+                      height: 1,
                     ),
                     Row(
                       children: const [
-                        Text('Price: \$3 per kg CO2',
+                        Text('Price: \$5 per kg CO2',
                             textAlign: TextAlign.end,
                             style: TextStyle(
                                 color: Color.fromARGB(255, 214, 247, 246),
@@ -189,7 +189,8 @@ class _PurchaseCredistsState extends State<PurchaseCredists> {
                 child: Column(
                   children: [
                     const Text(
-                      'Scheme 3',
+                      'Strengthing solar-powered companies in India',
+                      textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Color.fromARGB(255, 214, 247, 246),
                         fontSize: 20,
@@ -197,11 +198,11 @@ class _PurchaseCredistsState extends State<PurchaseCredists> {
                       ),
                     ),
                     const SizedBox(
-                      height: 20,
+                      height: 1,
                     ),
                     Row(
                       children: const [
-                        Text('Price: per kg CO2',
+                        Text('Price: \$4per kg CO2',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 color: Color.fromARGB(255, 214, 247, 246),
