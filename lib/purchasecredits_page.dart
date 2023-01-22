@@ -144,7 +144,7 @@ class _PurchaseCredistsState extends State<PurchaseCredists> {
                 child: Column(
                   children: [
                     const Text(
-                      'Scheme 2',
+                      'Replacing fossil-fuel-powered plnats in the US',
                       textAlign: TextAlign.start,
                       style: TextStyle(
                         color: Color.fromARGB(255, 214, 247, 246),
@@ -157,7 +157,7 @@ class _PurchaseCredistsState extends State<PurchaseCredists> {
                     ),
                     Row(
                       children: const [
-                        Text('Price: per kg CO2',
+                        Text('Price: \$3 per kg CO2',
                             textAlign: TextAlign.end,
                             style: TextStyle(
                                 color: Color.fromARGB(255, 214, 247, 246),
