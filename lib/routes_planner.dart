@@ -51,10 +51,10 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
   double emissions = 0;
   // Current Weather Condition (temporary standin for getWeatherCondition)
   // This means that the weather is clear, if false that means that the weather is not clear
-  bool isWeatherClear = true;
+  bool isWeatherClear = false;
 
   // Function that gives a ranked suggestions list
-  Future<List> getRankedSuggestions(weatherClariy) async {
+  Future<List> getRankedSuggestions() async {
     // Get allNeededData from getAllData()
     List<dynamic> allNeededData = await getAllData(isWeatherClear);
     List suggestedModes = [];
@@ -142,8 +142,7 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
   }
 
   // Function that checks the weather for the Average between the 2 Coordinates
-  Future<bool> getWeatherCondition(
-      originLat, originLng, destLat, destLng, key) async {
+  void getWeatherCondition(originLat, originLng, destLat, destLng, key) async {
     // Get the mean latitude and longitude to check the weather of
     var averageLat = (originLat + destLat) / 2;
     var averageLng = (originLng + originLng) / 2;
@@ -160,15 +159,29 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
     var data = jsonDecode(jsonString);
     if (response.statusCode == 200) {
       var weatherMain = data['weather'][0]['main'];
-      print('$weatherMain');
+      //print('$weatherMain');
       if (weatherMain == 'Clear') {
-        return true;
+        //return true;
+        setState(() {
+          isWeatherClear = true;
+        });
       } else if (weatherMain == 'Clouds') {
-        return true;
+        //return true;
+        setState(() {
+          isWeatherClear = true;
+        });
       } else if (weatherMain == 'Mist') {
-        return true;
-      } else
-        return false;
+        //eturn true;
+        setState(() {
+          isWeatherClear = true;
+        });
+      } else {
+        setState(() {
+          isWeatherClear = true;
+        });
+      }
+      ;
+      //return false;
     } else {
       throw Exception('Failed to call API');
     }
@@ -192,6 +205,8 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
       var iterativeDistance =
           data['rows'][0]['elements'][0]['distance']['value']; // Meters
       getCarbonEmissions(iterativeDistance, mode, cTyp, cCls);
+      getWeatherCondition(
+          originLat, originLng, destLat, destLng, openWeatherMapKey);
       // Make a list of all the data
       List iterativeData = [
         mode,
@@ -326,12 +341,11 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
           //getCarbonEmissions(duration, tMode, cTyp, cCls);
           //getWeatherCondition(oLat, oLng, dLat, dLng, openWeatherMapKey);
           //getAllData(isWeatherClear);
-          List<dynamic> rankedSuggestionsList =
-              await getRankedSuggestions(isWeatherClear);
-          print('$rankedSuggestionsList');
-          bool tempWeatherClearTest = await getWeatherCondition(
-              oLat, oLng, dLat, dLng, openWeatherMapKey);
-          print('TempWeatherCleart Test: $tempWeatherClearTest');
+          List<dynamic> rankedSuggestionsList = await getRankedSuggestions();
+          //print('$rankedSuggestionsList');
+          //bool tempWeatherClearTest = await getWeatherCondition(
+          //    oLat, oLng, dLat, dLng, openWeatherMapKey);
+          //print('TempWeatherCleart Test: $tempWeatherClearTest');
         },
         child: const Icon(Icons.filter_center_focus_outlined),
       ),
