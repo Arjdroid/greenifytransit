@@ -39,9 +39,9 @@ class _SocialsPageState extends State<SocialsPage> {
 
           Row(children: [
             Container(
-                height: 55,
+                height: 59,
                 width: 200,
-                margin: EdgeInsets.fromLTRB(40, 10, 100, 0),
+                margin: EdgeInsets.fromLTRB(40, 10, 50, 0),
                 decoration:
                     BoxDecoration(borderRadius: BorderRadius.circular(15)),
                 child: Column(children: [
@@ -68,14 +68,14 @@ class _SocialsPageState extends State<SocialsPage> {
                   ),
                 ])),
             Container(
-                height: 120,
-                width: 200,
-                margin: EdgeInsets.fromLTRB(0, 25, 0, 0),
+                height: 95,
+                width: 80,
+                margin: EdgeInsets.fromLTRB(0, 25, 500, 0),
                 decoration:
                     BoxDecoration(borderRadius: BorderRadius.circular(15)),
                 child: Column(children: [
                   IconButton(
-                      iconSize: 100,
+                      iconSize: 70,
                       icon: const Icon(Icons.account_box_rounded),
                       onPressed: () {}),
                 ])),
@@ -87,7 +87,7 @@ class _SocialsPageState extends State<SocialsPage> {
 
           Row(children: [
             Container(
-                height: 70,
+                height: 74,
                 width: 200,
                 margin: EdgeInsets.fromLTRB(39, 0, 460, 100),
                 decoration:
@@ -119,7 +119,7 @@ class _SocialsPageState extends State<SocialsPage> {
           ]),
 
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16.0),
+            padding: const EdgeInsets.symmetric(vertical: 12.0),
             child: ElevatedButton(
               onPressed: () {
                 // Validate will return true if the form is valid, or false if
@@ -141,7 +141,7 @@ class _SocialsPageState extends State<SocialsPage> {
 
           Container(
             margin: EdgeInsets.fromLTRB(0, 0, 0, 100),
-            height: 50,
+            height: 46,
             width: 200,
             decoration: BoxDecoration(
                 color: Colors.orangeAccent,

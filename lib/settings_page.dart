@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:greenifytransitcodefest/globals.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
@@ -8,10 +9,10 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-  String cTyp = 'petrol';
-  String cCls = 'suv';
-  var items = ['petrol', 'diesel', 'hybrid'];
-  var itemsC = ['suv', 'sedan', 'hutch'];
+  //String cTyp = 'petrol';
+  //String cCls = 'suv';
+  var items = ['petrol', 'diesel', 'hybrid', 'ev'];
+  var itemsC = ['suv', 'sedan', 'hatch'];
   @override
   Widget build(BuildContext context) {
     return Scaffold(

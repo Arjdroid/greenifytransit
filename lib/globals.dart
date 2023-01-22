@@ -2,13 +2,13 @@
 
 double carbonTally = 0;
 
-String cTyp = '';
+String cTyp = 'petrol';
 
 // cTyp can can be 'petrol', 'diesel', 'hybrid', 'ev'
 
-String cCls = '';
+String cCls = 'hatch';
 
-//cCls can be 'sur', 'sedan', 'hutch'
+//cCls can be 'suv', 'sedan', 'hutch'
 
 // CO2 Emissions (from Route Planner)
 

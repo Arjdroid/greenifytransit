@@ -2,9 +2,11 @@
 // ignore_for_file: prefer_const_constructors, avoid_print
 
 import 'dart:convert';
+import 'package:greenifytransitcodefest/globals.dart';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:geocoding/geocoding.dart';
 
 // Variable Stores
 import 'package:greenifytransitcodefest/api_keys.dart';
@@ -21,29 +23,51 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
   // MOST of these should move to globals.dart and or just rely on user input.
   String debugstatement = '';
   // Defining the distance matrix parameters
-  // This one is just one block so it'll say biking is the best way
-  double oLat = 37.75754213760453;
+  double oLat = 0.0;
+  double oLng = 0.0;
+  double dLat = 0.0;
+  double dLng = 0.0;
+  String originAddress = '';
+  String destinAddress = '';
+  //
+  // DEMO COORDS 1
+  //
+  // This one is just one block so it'll say walking is the best way
+  /*double oLat = 37.75754213760453;
   double oLng = -122.43768627187049;
   double dLat = 37.75923433988162;
-  double dLng = -122.43573362376672;
+  double dLng = -122.43573362376672;*/
+  //
+  // DEMO COORDS 2
+  //
   // This one is a very long distance ~40+ km so it'll always say driving is best
   /*double oLat = 37.74144781559247;
   double oLng = -122.50524108120509;
   double dLat = 37.92185635671533;
   double dLng = -122.3790957425826;*/
+  //
+  // DEMO COORDS 3
+  //
+  // This one has different weather and timings, will suggest bike as best
+  /*double oLat = 34.01223769135059;
+  double oLng = -118.41844426456332;
+  double dLat = 34.022624461162096;
+  double dLng = -118.40059148190034;*/
   List modes = ['walking', 'bicycling', 'transit', 'driving'];
   String tMode = 'driving';
   int duration = 0;
   int distance = 0;
+  //List<dynamic> rankedSuggestionsList = ['Submit First'];
+  String suggestedModePlaceHolder = '';
   // diesel cars emit only 80% emissions of avg. car
   // hybrids emit only 60% emissions of avg.car
   // evs emit 0 emissions
   // Source: https://www.lightfoot.co.uk/news/2017/10/04/how-much-co2-does-a-car-emit-per-year/
-  String cTyp = 'hybrid';
+  //String cTyp = 'hybrid';
   List carTypes = ['petrol', 'diesel', 'hybrid', 'ev'];
   // SUV emits 14% more than hatch, Sedan emits 5% more
   // Source: https://www.theguardian.com/us-news/2020/sep/01/suv-conquered-america-climate-change-emissions
-  String cCls = 'sedan';
+  //String cCls = 'sedan';
   List carClasses = ['suv', 'sedan', 'hatch'];
   // Base Emissions (Assuming petrol hatchback car)
   double baseEmissions = 0;
@@ -285,48 +309,137 @@ class _RoutesPlannerState extends State<RoutesPlanner> {
     throw Exception('God Damn This');
   } // I'm sorry to whoever has to review & read this, primarily myself
 
+  final TextEditingController originController = TextEditingController();
+  final TextEditingController destinationController = TextEditingController();
+  /*String? originLatitde;
+  String? originLongitude;
+  String? destinationLatitude;
+  String? destinationLongitude;*/
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromARGB(255, 214, 247, 246),
       appBar: AppBar(
         elevation: 0,
         title: Text('Route Planner'),
       ),
-      body: Padding(
-        padding: EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text('Distance Matrix Details'),
-            Text(' '),
-            Text('Origin LatLng: $oLat, $oLng'),
-            Text('Dest. LatLng: $dLat, $dLng'),
-            Text(' '),
-            //Text('Mode: ' + modes.elementAt(0)),
-            //Text('Mode: $tMode'),
-            //Text(' '),
-            //Text('$distMatrixKey'),
-            //Text('Travel Time: $duration seconds'),
-            //Text('Distance: $distance meters'),
-            //Text(' '),
-            Text('Car Type: $cTyp'),
-            Text('Car Class: $cCls'),
-            //Text(' '),
-            //Text('Debug Statement: $debugstatement'),
-            //Text('Debug Base Emissions (Petrol Hatch Car): $baseEmissions g'),
-          ],
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.all(16.0),
+          child: Column(
+            children: [
+              Container(
+                  height: 60,
+                  width: 200,
+                  decoration:
+                      BoxDecoration(borderRadius: BorderRadius.circular(15)),
+                  child: Column(children: [
+                    TextFormField(
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'Origin',
+                        hintText: 'Starting Place',
+                      ),
+                      validator: (String? value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter some text';
+                        }
+
+                        return null;
+                      },
+                      controller: originController,
+                      keyboardType: TextInputType.name,
+                      onSaved: (value) {
+                        originController.text = value!;
+                      },
+                      textInputAction: TextInputAction.done,
+                    ),
+                  ])),
+              const SizedBox(
+                height: 20,
+              ),
+              Container(
+                  height: 60,
+                  width: 200,
+                  decoration:
+                      BoxDecoration(borderRadius: BorderRadius.circular(15)),
+                  child: Column(children: [
+                    TextFormField(
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'Destination',
+                        hintText: 'Destination Place',
+                      ),
+                      validator: (String? value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter some text';
+                        }
+
+                        return null;
+                      },
+                      controller: destinationController,
+                      keyboardType: TextInputType.name,
+                      onSaved: (value) {
+                        destinationController.text = value!;
+                      },
+                      textInputAction: TextInputAction.done,
+                    ),
+                  ])),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16.0),
+                child: ElevatedButton(
+                  onPressed: () {
+                    // Validate will return true if the form is valid, or false if
+                    // the form is invalid.
+                    setState(() {
+                      originAddress = originController.text;
+                      destinAddress = destinationController.text;
+
+                      // Debug
+                      print('$originAddress');
+                      print('$destinAddress');
+                    });
+                  },
+                  child: const Text('Submit'),
+                ),
+              ),
+              Text('Suggested Mode = $suggestedModePlaceHolder'),
+            ],
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
+          // Convert origin name to origin coords
+          List<Location> originLocations =
+              await locationFromAddress("$originAddress");
+          List<Location> destinLocations =
+              await locationFromAddress("$destinAddress");
+          // debug
+          /*print(
+              '${originLocations.last.latitude} ${originLocations.last.longitude}');
+          print(
+              '${destinLocations.last.latitude} ${destinLocations.last.longitude}');*/
+          setState(() {
+            oLat = originLocations.last.latitude;
+            oLng = originLocations.last.longitude;
+            dLat = destinLocations.last.latitude;
+            dLng = destinLocations.last.longitude;
+          });
+          // Get Weather Conditions
           isWeatherClear = await getWeatherCondition(
               oLat, oLng, dLat, dLng, openWeatherMapKey);
+          List<dynamic> rankedSuggestionsList = await getRankedSuggestions();
           //getDistanceMatrix(oLat, oLng, dLat, dLng, tMode, distMatrixKey);
           //getCarbonEmissions(duration, tMode, cTyp, cCls);
           //getWeatherCondition(oLat, oLng, dLat, dLng, openWeatherMapKey);
-          List<dynamic> rankedSuggestionsList = await getRankedSuggestions();
+          /*setState(() async {
+            rankedSuggestionsList = await getRankedSuggestions();
+          });*/
           print('RANKED SUGGESTIONS LIST: $rankedSuggestionsList');
+          setState(() {
+            suggestedModePlaceHolder = rankedSuggestionsList[0];
+          });
           //bool tempWeatherClearTest = await getWeatherCondition(
           //    oLat, oLng, dLat, dLng, openWeatherMapKey);
           //print('TempWeatherCleart Test: $tempWeatherClearTest');
