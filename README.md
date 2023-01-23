@@ -6,6 +6,8 @@ Team Name: greenifyTransit
 Team Leader: Arjun Singh
 Team Members: Arjun Singh, Adithya Bangolae, Sachit Shastri
 
+We won 2nd place in the senior category!
+
 Project Details: 
 A mobile application that helps users plan out trips and everyday transit to be more environmentally friendly while still retaining convenience and low travel times. 
 
