@@ -1,12 +1,21 @@
 # greenifyTransit
 
+TODO: 
+1) Improve U.I
+2) Add Google Login & Firestore for user prefs
+3) Add proper payment options & real carbon offset programs
+
+---
+
 The project made by the greenifyTransit Team for Oakridge Codefest 2023.
 
 Team Name: greenifyTransit
-Team Leader: Arjun Singh
-Team Members: Arjun Singh, Adithya Bangolae, Sachit Shastri
 
-We won 2nd place in the senior category!
+Team Leader: Arjun Singh
+
+Team Members: Adithya Bangolae, Sachit Shastri
+
+We won *2nd place* in the senior category!
 
 Project Details: 
 A mobile application that helps users plan out trips and everyday transit to be more environmentally friendly while still retaining convenience and low travel times. 
